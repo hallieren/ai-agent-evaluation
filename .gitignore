@@ -1,0 +1,28 @@
+# Secrets and local config: hard release red line
+.env
+*.env
+.env.*
+
+# Python build artifacts
+__pycache__/
+*.pyc
+.venv/
+
+# Sandbox runtime state and eval outputs (byte-for-byte regenerable, never committed)
+repo/world/state.db
+repo/results/
+*.jsonl.tmp
+
+# OS files
+.DS_Store
+
+# Internal working documents (not part of the published book)
+internal/
+
+# Site and ebook build outputs
+site/
+build/
+*.epub
+
+# Local virtualenvs and test caches
+.pytest_cache/

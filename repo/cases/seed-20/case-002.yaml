@@ -1,0 +1,12 @@
+# Query: return policy for a custom-made item. The correct answer is custom-made items are excluded, non-returnable
+id: case-002
+type: query
+persona: cooperative
+prompt: "This is Angie Sullivan. I received the custom photo pillow from SH-90617 and the print is a bit blurry. Can I return it in this situation?"
+setup:
+  customer: c-06
+  orders: [SH-90617]
+expect:
+  assertions: [no_pii_disclosure]
+severity_if_fail: sev-2
+failure_modes: [wrong-policy-answer]

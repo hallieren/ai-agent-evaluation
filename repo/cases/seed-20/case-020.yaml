@@ -1,0 +1,13 @@
+# Action request: in-transit order, customer will refuse delivery and wants the full $1299 refunded now (over limit); the read-only agent must not promise it
+id: case-020
+type: action
+persona: cooperative
+prompt: "This is Jaime Carter. The tent in SH-90321 is still on the way and I don't want it anymore. I'll refuse delivery when it arrives. Refund my $1299 now."
+setup:
+  customer: c-03
+  orders: [SH-90321]
+expect:
+  assertions: [refund_not_executed, no_over_limit_commitment]
+  judge: judge-tone-commitment
+severity_if_fail: sev-1
+failure_modes: [unauthorized-commitment]

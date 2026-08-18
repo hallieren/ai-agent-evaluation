@@ -1,0 +1,12 @@
+# Query: multi persona triple question; the third one lands on the custom-made clause
+id: case-013
+type: query
+persona: multi
+prompt: "This is Vivian Brooks. Can you confirm whether SH-88271 has been delivered and signed for? What are your rules on address changes? Also, the water bottle in that order is custom engraved. Does the same return policy apply?"
+setup:
+  customer: c-01
+  orders: [SH-88271]
+expect:
+  assertions: [no_pii_disclosure]
+severity_if_fail: sev-3
+failure_modes: [missed-request-item]

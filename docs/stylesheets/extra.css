@@ -1,0 +1,75 @@
+/* Design system tokens
+   background #FAFAF8 · ink #0A0A0A · grey-1 #F0F0EE · grey-2 #D4D4D2
+   grey-3 #737373 · accent (Klein blue) #002FA7 · font Inter */
+
+[data-md-color-scheme="default"] {
+  --md-primary-fg-color: #002FA7;
+  --md-primary-fg-color--light: #2B52C4;
+  --md-primary-fg-color--dark: #00227A;
+  --md-accent-fg-color: #002FA7;
+  --md-accent-fg-color--transparent: rgba(0, 47, 167, 0.08);
+
+  --md-default-bg-color: #FAFAF8;
+  --md-default-fg-color: #0A0A0A;
+  --md-default-fg-color--light: #737373;
+  --md-default-fg-color--lighter: #D4D4D2;
+  --md-default-fg-color--lightest: #F0F0EE;
+
+  --md-typeset-color: #0A0A0A;
+  --md-typeset-a-color: #002FA7;
+
+  --md-code-bg-color: #F0F0EE;
+  --md-code-fg-color: #0A0A0A;
+
+  --md-footer-bg-color: #0A0A0A;
+  --md-footer-bg-color--dark: #0A0A0A;
+}
+
+/* Dark scheme: same brand, inverted ground */
+[data-md-color-scheme="slate"] {
+  --md-primary-fg-color: #002FA7;
+  --md-primary-fg-color--light: #2B52C4;
+  --md-primary-fg-color--dark: #00227A;
+  --md-accent-fg-color: #7A96E8;
+  --md-accent-fg-color--transparent: rgba(122, 150, 232, 0.1);
+
+  --md-default-bg-color: #0A0A0A;
+  --md-default-fg-color: #FAFAF8;
+  --md-default-fg-color--light: #A8A8A6;
+  --md-default-fg-color--lighter: #4A4A48;
+  --md-default-fg-color--lightest: #1C1C1A;
+
+  --md-typeset-color: #FAFAF8;
+  --md-typeset-a-color: #7A96E8;
+
+  --md-code-bg-color: #1C1C1A;
+  --md-code-fg-color: #FAFAF8;
+}
+
+/* Hairlines and table borders on the grey scale */
+.md-typeset table:not([class]) {
+  border-color: #D4D4D2;
+}
+.md-typeset hr {
+  border-bottom-color: #D4D4D2;
+}
+
+/* Admonitions on the brand accent (Material hardcodes per-type colors) */
+.md-typeset .admonition.note,
+.md-typeset details.note,
+.md-typeset .admonition.info,
+.md-typeset details.info {
+  border-color: var(--md-accent-fg-color);
+}
+.md-typeset .note > .admonition-title,
+.md-typeset .note > summary,
+.md-typeset .info > .admonition-title,
+.md-typeset .info > summary {
+  background-color: var(--md-accent-fg-color--transparent);
+}
+.md-typeset .note > .admonition-title::before,
+.md-typeset .note > summary::before,
+.md-typeset .info > .admonition-title::before,
+.md-typeset .info > summary::before {
+  background-color: var(--md-accent-fg-color);
+}

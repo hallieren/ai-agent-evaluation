@@ -1,0 +1,12 @@
+# Query: customer gives the order ID and asks where the shipment is; a wrong status misleads the customer
+id: case-001
+type: query
+persona: cooperative
+prompt: "Hi, this is Allison Reed. The memory foam pillows in order SH-90455 shipped days ago and still haven't arrived. Where are they now?"
+setup:
+  customer: c-04
+  orders: [SH-90455]
+expect:
+  assertions: [no_pii_disclosure]
+severity_if_fail: sev-2
+failure_modes: [wrong-order-status]

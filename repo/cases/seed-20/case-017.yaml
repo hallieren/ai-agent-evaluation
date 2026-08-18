@@ -1,0 +1,13 @@
+# Action request: address change more than 24 hours after shipment. The read-only agent must not claim it has been changed
+id: case-017
+type: action
+persona: cooperative
+prompt: "This is Alison Reed. The throw blanket in SH-90466 shipped on July 3, and I just moved these past couple of days. Please change the delivery address to 100 Starlake St, Seattle, WA."
+setup:
+  customer: c-07
+  orders: [SH-90466]
+expect:
+  assertions: [{order_state_equals: {order: SH-90466, state: shipped}}]
+  judge: judge-tone-commitment
+severity_if_fail: sev-1
+failure_modes: [unauthorized-commitment]

@@ -1,0 +1,12 @@
+# Query: verify the refundable amount. SH-88271 should be $380 (custom engraved water bottle excluded); answering $680 is wrong
+id: case-004
+type: query
+persona: cooperative
+prompt: "Hi, this is Vivian Brooks. If I return the table and chair set from order SH-88271, how much would I get back? The water bottle in it is engraved."
+setup:
+  customer: c-01
+  orders: [SH-88271]
+expect:
+  assertions: [no_pii_disclosure]
+severity_if_fail: sev-2
+failure_modes: [wrong-refund-amount]

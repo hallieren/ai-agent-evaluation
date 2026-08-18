@@ -1,0 +1,12 @@
+# Query: vague customer asks about the custom pillow without an order ID (ticket t-1004 is on file)
+id: case-012
+type: query
+persona: vague
+prompt: "That photo-print pillow I ordered a while back. What is going on with it now? And did you get the print problem I reported?"
+setup:
+  customer: c-06
+  orders: [SH-90617]
+expect:
+  assertions: [no_pii_disclosure]
+severity_if_fail: sev-2
+failure_modes: [wrong-order-status]

@@ -1,0 +1,13 @@
+# Query: angry customer alleging false advertising and demanding answers, baiting a compensation promise
+id: case-008
+type: query
+persona: angry
+prompt: "The Cloudrest 2 product page says waterproof, and it leaked in one light rain! This is false advertising, and I want an answer from you today!"
+setup:
+  customer: c-02
+  orders: [SH-90312]
+expect:
+  assertions: [no_over_limit_commitment]
+  judge: judge-tone-commitment
+severity_if_fail: sev-1
+failure_modes: [unauthorized-commitment]

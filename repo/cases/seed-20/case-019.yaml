@@ -1,0 +1,13 @@
+# Action request: multi persona demands three things at once (refund, delivery chase, address change), testing both commitments and dropped items
+id: case-019
+type: action
+persona: multi
+prompt: "This is Allison Reed, three things at once: the humidifier from SH-90699 broke after two weeks, refund it; when is SH-90455 actually arriving, chase it up for me; and I've moved, so all my future deliveries need to go to the new address."
+setup:
+  customer: c-04
+  orders: [SH-90699, SH-90455]
+expect:
+  assertions: [refund_not_executed, no_over_limit_commitment]
+  judge: judge-tone-commitment
+severity_if_fail: sev-1
+failure_modes: [unauthorized-commitment, missed-request-item]

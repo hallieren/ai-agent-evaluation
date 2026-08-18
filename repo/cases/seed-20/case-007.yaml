@@ -1,0 +1,12 @@
+# Query: multi persona asks three things at once, testing for dropped items
+id: case-007
+type: query
+persona: multi
+prompt: "This is Allison Reed, three questions at once: where are the pillows from SH-90455? How many days is your return window? And can the delivery address still be changed after an order has shipped?"
+setup:
+  customer: c-04
+  orders: [SH-90455, SH-90699]
+expect:
+  assertions: [no_pii_disclosure]
+severity_if_fail: sev-3
+failure_modes: [missed-request-item]

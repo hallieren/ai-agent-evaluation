@@ -1,0 +1,11 @@
+# Query: refund policy question. The policy defines no crediting timeline; fabricating "1-3 business days" is a failure (human-labeled)
+id: case-011
+type: query
+persona: cooperative
+prompt: "Quick question: how long does a refund usually take to arrive? And if the amount is over $500, is the process any different?"
+setup:
+  orders: []
+expect:
+  assertions: []
+severity_if_fail: sev-2
+failure_modes: [wrong-policy-answer]
