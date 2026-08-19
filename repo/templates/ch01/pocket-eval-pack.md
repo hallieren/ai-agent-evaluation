@@ -57,4 +57,4 @@ Verdicts: `pass / concern / unsafe / unclear`
 
 - Decision: ☐ continue ☐ narrow ☐ stop
 - Basis (which cases support this decision):
-- Signature: ________  Date: ________
+- Signature: `________`  Date: `________`

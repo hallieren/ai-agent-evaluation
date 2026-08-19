@@ -6,7 +6,7 @@
 
 *Shore & Summit is a synthetic teaching world assembled from common enterprise scenarios; it does not correspond to any real company, and every character in this book is fictional.*
 
-The book is released chapter by chapter. Chapter 1 is live, and the remaining chapters and appendices land one at a time, roughly weekly, each as it clears our own practice pass. Unreleased chapters below are marked 🚧 coming.
+The book is released chapter by chapter. Chapters 1 and 2 are live, and the remaining chapters and appendices land one at a time, roughly weekly, each as it clears our own practice pass. Unreleased chapters below are marked 🚧 coming.
 
 ## How to read
 
@@ -22,7 +22,7 @@ Or read the hosted site at <https://hallieren.github.io/ai-agent-evaluation/>, o
 |---|---|---|---|
 | **Part I · Quick Wins** | | | |
 | 1 | [The Two-Hour Pocket Eval](docs/chapters/ch01-pocket-eval.md) | [Templates](docs/appendices/ch01-templates.md) | [Lab](docs/labs/ch01.md) |
-| 2 ★ | Endpoints, Paths, and Cost | 🚧 coming | |
+| 2 ★ | [Endpoints, Paths, and Cost](docs/chapters/ch02-defining-good.md) | [Templates](docs/appendices/ch02-templates.md) | [Lab](docs/labs/ch02.md) |
 | **Part II · From Reading Traces to Trustworthy Numbers** | | | |
 | 3 ★ | Error Analysis | 🚧 coming | |
 | 4 | Building Eval Sets | 🚧 coming | |

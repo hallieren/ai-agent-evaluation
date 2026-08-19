@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 840 320" font-family="Inter,-apple-system,'Helvetica Neue',Arial,sans-serif">
+  <style>
+    .surface{fill:#FAFAF8}.tp{fill:#0A0A0A}.ts{fill:#737373}
+    .main{fill:#002FA7}.blind{fill:#002FA7;fill-opacity:.16}.edge{stroke:#002FA7;stroke-width:2;fill:none}
+    .onfill{fill:#FAFAF8}
+    @media (prefers-color-scheme: dark){
+      .surface{fill:#0A0A0A}.tp{fill:#FAFAF8}.ts{fill:#A8A8A6}
+      .main{fill:#7A96E8}.blind{fill:#7A96E8;fill-opacity:.22}.edge{stroke:#7A96E8}
+      .onfill{fill:#0A0A0A}
+    }
+  </style>
+  <rect class="surface" x="0" y="0" width="840" height="320"/>
+  <text class="tp" x="24" y="38" font-size="17" font-weight="600">The triad: score the endpoint, attribute the path, account for the side effects</text>
+  <text class="ts" x="24" y="60" font-size="12">The endpoint is the primary criterion. The path does not replace it; it covers the endpoint's three blind spots.</text>
+
+  <!-- Endpoint block -->
+  <rect class="main" x="24" y="110" width="240" height="150" rx="6"/>
+  <text class="onfill" x="144" y="170" font-size="16" font-weight="600" text-anchor="middle">Score the endpoint</text>
+  <text class="onfill" x="144" y="196" font-size="12" text-anchor="middle">Verify whenever you can</text>
+  <text class="onfill" x="144" y="214" font-size="12" text-anchor="middle">Cheapest, most reliable criterion</text>
+
+  <!-- Arrows -->
+  <g class="edge">
+    <path d="M264 135 H 336"/><path d="M330 130 L 340 135 L 330 140"/>
+    <path d="M264 185 H 336"/><path d="M330 180 L 340 185 L 330 190"/>
+    <path d="M264 235 H 336"/><path d="M330 230 L 340 235 L 330 240"/>
+  </g>
+
+  <!-- Three blind spots -->
+  <rect class="blind" x="344" y="110" width="472" height="42" rx="6"/>
+  <text class="tp" x="360" y="127" font-size="12" font-weight="600">1 Why it failed</text>
+  <text class="ts" x="360" y="144" font-size="11">Path attribution: read the trace, mark the first bad step</text>
+
+  <rect class="blind" x="344" y="160" width="472" height="42" rx="6"/>
+  <text class="tp" x="360" y="177" font-size="12" font-weight="600">2 What it cost</text>
+  <text class="ts" x="360" y="194" font-size="11">Cost, latency, dangerous actions. Correct end state ≠ harmless path</text>
+
+  <rect class="blind" x="344" y="210" width="472" height="42" rx="6"/>
+  <text class="tp" x="360" y="227" font-size="12" font-weight="600">3 Side effects</text>
+  <text class="ts" x="360" y="244" font-size="11">The answer was right, and the refund went out twice</text>
+
+  <text class="ts" x="24" y="296" font-size="11">For a system that acts, "was the result right?" cannot answer these three. The path and the ledger answer them.</text>
+</svg>

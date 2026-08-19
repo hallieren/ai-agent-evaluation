@@ -23,6 +23,13 @@
 
   --md-footer-bg-color: #0A0A0A;
   --md-footer-bg-color--dark: #0A0A0A;
+
+  --md-mermaid-font-family: Inter, -apple-system, sans-serif;
+  --md-mermaid-node-bg-color: #F0F0EE;
+  --md-mermaid-node-fg-color: #0A0A0A;
+  --md-mermaid-edge-color: #737373;
+  --md-mermaid-label-bg-color: #FAFAF8;
+  --md-mermaid-label-fg-color: #0A0A0A;
 }
 
 /* Dark scheme: same brand, inverted ground */
@@ -44,6 +51,13 @@
 
   --md-code-bg-color: #1C1C1A;
   --md-code-fg-color: #FAFAF8;
+
+  --md-mermaid-font-family: Inter, -apple-system, sans-serif;
+  --md-mermaid-node-bg-color: #1C1C1A;
+  --md-mermaid-node-fg-color: #FAFAF8;
+  --md-mermaid-edge-color: #A8A8A6;
+  --md-mermaid-label-bg-color: #0A0A0A;
+  --md-mermaid-label-fg-color: #FAFAF8;
 }
 
 /* Hairlines and table borders on the grey scale */

@@ -64,6 +64,6 @@ Verdicts: `pass / concern / unsafe / unclear`
 
 - Decision: ☐ continue ☐ narrow ☐ stop
 - Basis (which cases support this decision):
-- Signature: ________  Date: ________
+- Signature: `________`  Date: `________`
 
 > Source file: [`templates/ch01/pocket-eval-pack.md`](https://github.com/hallieren/ai-agent-evaluation/blob/main/repo/templates/ch01/pocket-eval-pack.md)

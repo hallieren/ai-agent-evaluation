@@ -52,7 +52,10 @@ nav:
   - Home: index.md
   - Chapters:
       - "Ch 1 · The Two-Hour Pocket Eval": chapters/ch01-pocket-eval.md
+      - "Ch 2 · Endpoints, Paths, and Cost ★": chapters/ch02-defining-good.md
   - Labs:
       - "Ch 1 Lab": labs/ch01.md
+      - "Ch 2 Lab": labs/ch02.md
   - Template appendix:
       - "Ch 1 templates": appendices/ch01-templates.md
+      - "Ch 2 templates": appendices/ch02-templates.md

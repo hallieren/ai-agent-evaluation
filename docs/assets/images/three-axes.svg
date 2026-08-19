@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 840 330" font-family="Inter,-apple-system,'Helvetica Neue',Arial,sans-serif">
+  <style>
+    .surface{fill:#FAFAF8}.tp{fill:#0A0A0A}.ts{fill:#737373}
+    .axis{stroke:#737373;stroke-width:1.5}
+    .m{fill:#002FA7}.mring{fill:#002FA7;stroke:#FAFAF8;stroke-width:2}
+    @media (prefers-color-scheme: dark){
+      .surface{fill:#0A0A0A}.tp{fill:#FAFAF8}.ts{fill:#A8A8A6}
+      .axis{stroke:#A8A8A6}
+      .m{fill:#7A96E8}.mring{fill:#7A96E8;stroke:#0A0A0A}
+    }
+  </style>
+  <rect class="surface" x="0" y="0" width="840" height="330"/>
+  <text class="tp" x="24" y="38" font-size="17" font-weight="600">The three axes: where each of your task types lands</text>
+  <text class="ts" x="24" y="60" font-size="12">Position decides the judgment method and the attribute priorities. The domain lives in the task's nature, not in the industry.</text>
+
+  <!-- Axis 1 -->
+  <text class="tp" x="24" y="106" font-size="13" font-weight="600">Endpoint verifiable?</text>
+  <line class="axis" x1="200" y1="102" x2="780" y2="102"/>
+  <text class="ts" x="200" y="124" font-size="11">verifiable</text>
+  <text class="ts" x="780" y="124" font-size="11" text-anchor="end">not verifiable</text>
+  <circle class="mring" cx="270" cy="102" r="7"/>
+  <text class="tp" x="270" y="88" font-size="11" text-anchor="middle">lookup/check</text>
+  <rect class="mring" x="363" y="95" width="14" height="14" rx="3"/>
+  <text class="tp" x="380" y="88" font-size="11" text-anchor="middle">execute</text>
+  <path class="mring" d="M690 95 l8 14 h-16 z"/>
+  <text class="tp" x="690" y="88" font-size="11" text-anchor="middle">investigate/synthesize</text>
+
+  <!-- Axis 2 -->
+  <text class="tp" x="24" y="186" font-size="13" font-weight="600">Action reversible?</text>
+  <line class="axis" x1="200" y1="182" x2="780" y2="182"/>
+  <text class="ts" x="200" y="204" font-size="11">reversible</text>
+  <text class="ts" x="780" y="204" font-size="11" text-anchor="end">irreversible</text>
+  <circle class="mring" cx="250" cy="182" r="7"/>
+  <text class="tp" x="250" y="168" font-size="11" text-anchor="middle">lookup/check</text>
+  <path class="mring" d="M350 175 l8 14 h-16 z"/>
+  <text class="tp" x="358" y="168" font-size="11" text-anchor="middle">investigate/synthesize</text>
+  <rect class="mring" x="713" y="175" width="14" height="14" rx="3"/>
+  <text class="tp" x="720" y="168" font-size="11" text-anchor="middle">execute</text>
+
+  <!-- Axis 3 -->
+  <text class="tp" x="24" y="266" font-size="13" font-weight="600">Gold answer exists?</text>
+  <line class="axis" x1="200" y1="262" x2="780" y2="262"/>
+  <text class="ts" x="200" y="284" font-size="11">yes</text>
+  <text class="ts" x="780" y="284" font-size="11" text-anchor="end">no</text>
+  <circle class="mring" cx="245" cy="262" r="7"/>
+  <text class="tp" x="245" y="248" font-size="11" text-anchor="middle">lookup/check</text>
+  <rect class="mring" x="338" y="255" width="14" height="14" rx="3"/>
+  <text class="tp" x="352" y="248" font-size="11" text-anchor="middle">execute</text>
+  <path class="mring" d="M710 255 l8 14 h-16 z"/>
+  <text class="tp" x="710" y="248" font-size="11" text-anchor="middle">investigate/synthesize</text>
+
+  <text class="ts" x="24" y="314" font-size="11">● lookup/check   ■ execute   ▲ investigate/synthesize. Three task families of one world, spread across both ends of every axis.</text>
+</svg>

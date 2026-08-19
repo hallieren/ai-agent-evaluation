@@ -31,7 +31,8 @@ Be honest about the bias here: these 20 cases are all failures you could think o
 
 **Step 4, run every case, label on the four verdicts, 25 minutes.** Two-turn cases need no tooling. Paste the agent's first-turn reply back into the conversation verbatim, then send turn two. Label the whole conversation, not individual replies. A first-turn pass does not block a second-turn unsafe. Each output gets exactly one of the four verdicts: `pass / concern / unsafe / unclear`. Why four verdicts instead of a 0-to-10 score? A score is fake precision. You cannot explain the difference between a 6 and a 7, but you can explain the difference between "this one causes harm" and "this one is merely imperfect." Scores also get averaged, and the average is the best hiding place a high-risk failure could ask for (Chapter 2 expands on this). `unclear` is a legitimate verdict. Not being able to label is itself information. It means this task's endpoint isn't verifiable yet (also left for Chapter 2).
 
-**Aside: four verdicts, or binary?** One school in the field holds that all judgments should be binary. Every case asks pass/fail only, no middle bands allowed. The benefit is real. Binary forces you to write criteria that leave no room for fence-sitting, and it makes aggregation and automation cleanest. This book does not fight that school; once the four verdicts are on record, they collapse to binary at any time: `pass` passes, the other three fail. We keep four because two signals die in the collapse. The difference between `unsafe` and `concern` is the difference between "harm occurred" and "attempted / near miss," and their handling priorities differ by an order of magnitude; collapse it, and red-line failures land in the same bucket as tone flaws. `unclear` is a diagnostic signal: the information at hand cannot decide right from wrong, so what needs fixing is the task's criteria; there is nothing to fix in the reply. Binarization deletes exactly these two signals; the fence-sitting goes away only as a side effect.
+!!! note "Aside: four verdicts, or binary? (skip on a first pass)"
+    One school in the field holds that all judgments should be binary. Every case asks pass/fail only, no middle bands allowed. The benefit is real. Binary forces you to write criteria that leave no room for fence-sitting, and it makes aggregation and automation cleanest. This book does not fight that school; once the four verdicts are on record, they collapse to binary at any time: `pass` passes, the other three fail. We keep four because two signals die in the collapse. The difference between `unsafe` and `concern` is the difference between "harm occurred" and "attempted / near miss," and their handling priorities differ by an order of magnitude; collapse it, and red-line failures land in the same bucket as tone flaws. `unclear` is a diagnostic signal: the information at hand cannot decide right from wrong, so what needs fixing is the task's criteria; there is nothing to fix in the reply. Binarization deletes exactly these two signals; the fence-sitting goes away only as a side effect.
 
 **Step 5, fill in the decision sheet, 5 minutes.** Three options: **continue** (ship as planned), **narrow** (shrink the boundary, then ship: cut a class of requests, or route a class of actions to humans), **stop** (no ship until fixed). Write the criterion on paper, for example: "any single `unsafe` forbids continue."
 
@@ -121,6 +122,17 @@ What's heavy is the system in your imagination: the thousand-case eval set, the 
 The signature line is not for show. Only decisions with a name under them get taken seriously.
 
 ## Lab
+
+**Let an agent run it for you.** Set the repo up once with the prompt on the [home page](../index.md), then paste this to your coding agent:
+
+```text
+In the ai-agent-evaluation repo (already cloned and configured), run the Chapter 1 lab:
+python labs/ch01/run.py from repo/. It runs Mini (Lv.0, read-only) over cases/seed-20 and
+prints each case's final reply and tool-call summary. Then open labs/ch01/annotation-sheet.md
+so I can blind-label the four verdicts (pass / concern / unsafe / unclear) myself. Do NOT open
+or show me labs/ch01/reference.md until I say I'm done labeling. Stop and show me the output
+if any command errors.
+```
 
 **Follow-along track (default).** You don't need to bring your own agent; the repo ships a complete Mini.
 
