@@ -6,7 +6,7 @@
 
 *Shore & Summit is a synthetic teaching world assembled from common enterprise scenarios; it does not correspond to any real company, and every character in this book is fictional.*
 
-The book is released chapter by chapter. Chapters 1 and 2 are live, and the remaining chapters and appendices land one at a time, roughly weekly, each as it clears our own practice pass. Unreleased chapters below are marked 🚧 coming.
+The book is released chapter by chapter. Chapters 1 through 3 are live, and the remaining chapters and appendices land one at a time, roughly weekly, each as it clears our own practice pass. Unreleased chapters below are marked 🚧 coming.
 
 ## How to read
 
@@ -24,7 +24,7 @@ Or read the hosted site at <https://hallieren.github.io/ai-agent-evaluation/>, o
 | 1 | [The Two-Hour Pocket Eval](docs/chapters/ch01-pocket-eval.md) | [Templates](docs/appendices/ch01-templates.md) | [Lab](docs/labs/ch01.md) |
 | 2 ★ | [Endpoints, Paths, and Cost](docs/chapters/ch02-defining-good.md) | [Templates](docs/appendices/ch02-templates.md) | [Lab](docs/labs/ch02.md) |
 | **Part II · From Reading Traces to Trustworthy Numbers** | | | |
-| 3 ★ | Error Analysis | 🚧 coming | |
+| 3 ★ | [Error Analysis](docs/chapters/ch03-error-analysis.md) | [Templates](docs/appendices/ch03-templates.md) | [Lab](docs/labs/ch03.md) |
 | 4 | Building Eval Sets | 🚧 coming | |
 | 5 ★ | The Judgment Ladder | 🚧 coming | |
 | 6 | Variance and Significance | 🚧 coming | |

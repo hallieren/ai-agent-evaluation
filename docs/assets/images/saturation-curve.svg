@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 840 330" font-family="Inter,-apple-system,'PingFang SC','Noto Sans SC','Microsoft YaHei',sans-serif">
+  <style>
+    .surface{fill:#FAFAF8}.tp{fill:#0A0A0A}.ts{fill:#737373}
+    .axis{stroke:#737373;stroke-width:1.5}
+    .grid{stroke:#D4D4D2;stroke-width:1}
+    .solid{fill:none;stroke:#002FA7;stroke-width:2.5}
+    .dash{fill:none;stroke:#002FA7;stroke-width:2.5;stroke-dasharray:6 5;opacity:.75}
+    .dot{fill:#002FA7}.m{fill:#002FA7}
+    @media (prefers-color-scheme: dark){
+      .surface{fill:#0A0A0A}.tp{fill:#FAFAF8}.ts{fill:#A8A8A6}
+      .axis{stroke:#A8A8A6}.grid{stroke:#3A3A3A}
+      .solid{stroke:#7A96E8}.dash{stroke:#7A96E8}
+      .dot{fill:#7A96E8}.m{fill:#7A96E8}
+    }
+  </style>
+  <rect class="surface" x="0" y="0" width="840" height="330"/>
+  <text class="tp" x="24" y="34" font-size="17" font-weight="600">Saturation curves: the overall-saturation illusion (numbers illustrative)</text>
+
+  <line class="grid" x1="120" y1="90" x2="780" y2="90"/>
+  <text class="ts" x="112" y="94" font-size="13" text-anchor="end">8</text>
+  <text class="ts" x="112" y="274" font-size="13" text-anchor="end">0</text>
+  <text class="ts" x="120" y="80" font-size="13">cumulative new modes</text>
+
+  <line class="axis" x1="120" y1="90" x2="120" y2="270"/>
+  <line class="axis" x1="120" y1="270" x2="780" y2="270"/>
+  <text class="ts" x="120" y="288" font-size="13" text-anchor="middle">0</text>
+  <text class="ts" x="285" y="288" font-size="13" text-anchor="middle">8</text>
+  <text class="ts" x="450" y="288" font-size="13" text-anchor="middle">16</text>
+  <text class="ts" x="615" y="288" font-size="13" text-anchor="middle">24</text>
+  <text class="ts" x="780" y="288" font-size="13" text-anchor="middle">32</text>
+  <text class="ts" x="780" y="308" font-size="13" text-anchor="end">traces coded →</text>
+
+  <line class="grid" x1="532.5" y1="90" x2="532.5" y2="270" stroke-dasharray="4 4"/>
+
+  <polyline class="solid" points="120,270 161.25,225 202.5,202.5 243.75,180 285,157.5 326.25,135 367.5,123.75 408.75,112.5 450,101.25 491.25,94.5 532.5,90 615,90 697.5,90 780,90"/>
+  <circle class="dot" cx="780" cy="90" r="4"/>
+  <text class="tp" x="800" y="82" font-size="13" text-anchor="end">overall: flat after ~20, looks saturated</text>
+
+  <polyline class="dash" points="120,270 161.25,247.5 202.5,236.25 243.75,225 326.25,213.75 408.75,202.5 491.25,191.25 573.75,180 656.25,168.75 738.75,157.5 780,150.75"/>
+  <circle class="dot" cx="780" cy="150.75" r="4"/>
+  <text class="m" x="576" y="145" font-size="13">investigation family: still climbing</text>
+
+  <line class="solid" x1="140" y1="316" x2="170" y2="316"/>
+  <text class="ts" x="176" y="320" font-size="13">overall (mixed batch)</text>
+  <line class="dash" x1="360" y1="316" x2="390" y2="316"/>
+  <text class="ts" x="396" y="320" font-size="13">investigation family</text>
+</svg>

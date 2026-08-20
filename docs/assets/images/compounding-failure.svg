@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 840 210" font-family="Inter,-apple-system,'PingFang SC','Noto Sans SC','Microsoft YaHei',sans-serif">
+  <style>
+    .surface{fill:#FAFAF8}.tp{fill:#0A0A0A}.ts{fill:#737373}
+    .base{stroke:#D4D4D2;stroke-width:2}
+    .clean{fill:#FAFAF8;stroke:#737373;stroke-width:2}
+    .pois{fill:#002FA7;fill-opacity:.14;stroke:#002FA7;stroke-width:1.5}
+    .fbs{fill:#002FA7}.final{fill:#002FA7;stroke:#002FA7;stroke-width:2}
+    .wedge{fill:#002FA7;opacity:.12}
+    .m{fill:#002FA7}.numlight{fill:#FAFAF8}.numdark{fill:#0A0A0A}
+    @media (prefers-color-scheme: dark){
+      .surface{fill:#0A0A0A}.tp{fill:#FAFAF8}.ts{fill:#A8A8A6}
+      .base{stroke:#3A3A3A}
+      .clean{fill:#0A0A0A;stroke:#A8A8A6}
+      .pois{fill:#7A96E8;stroke:#7A96E8}
+      .fbs{fill:#7A96E8}.final{fill:#7A96E8;stroke:#7A96E8}
+      .wedge{fill:#7A96E8}
+      .m{fill:#7A96E8}.numlight{fill:#0A0A0A}.numdark{fill:#FAFAF8}
+    }
+  </style>
+  <rect class="surface" x="0" y="0" width="840" height="210"/>
+  <text class="tp" x="24" y="34" font-size="17" font-weight="600">Compounding failure on one trace</text>
+
+  <g transform="translate(0,-25)">
+    <polygon class="wedge" points="260,178 770,178 770,214"/>
+
+    <line class="base" x1="90" y1="175" x2="770" y2="175"/>
+
+    <circle class="clean" cx="90" cy="175" r="13"/>
+    <text class="numdark" x="90" y="180" font-size="13" text-anchor="middle">1</text>
+    <circle class="clean" cx="175" cy="175" r="13"/>
+    <text class="numdark" x="175" y="180" font-size="13" text-anchor="middle">2</text>
+    <text class="ts" x="132" y="205" font-size="13" text-anchor="middle">clean</text>
+
+    <circle class="fbs" cx="260" cy="175" r="16"/>
+    <text class="numlight" x="260" y="180" font-size="13" text-anchor="middle" font-weight="600">3</text>
+    <text class="m" x="260" y="126" font-size="14" text-anchor="middle" font-weight="600">first bad step</text>
+    <text class="ts" x="260" y="147" font-size="13" text-anchor="middle">reading forward: reasonable? → no</text>
+
+    <circle class="pois" cx="345" cy="175" r="13"/><text class="numdark" x="345" y="180" font-size="13" text-anchor="middle">4</text>
+    <circle class="pois" cx="430" cy="175" r="13"/><text class="numdark" x="430" y="180" font-size="13" text-anchor="middle">5</text>
+    <circle class="pois" cx="515" cy="175" r="13"/><text class="numdark" x="515" y="180" font-size="13" text-anchor="middle">6</text>
+    <circle class="pois" cx="600" cy="175" r="13"/><text class="numdark" x="600" y="180" font-size="13" text-anchor="middle">7</text>
+    <circle class="pois" cx="685" cy="175" r="13"/><text class="numdark" x="685" y="180" font-size="13" text-anchor="middle">8</text>
+
+    <g class="final" stroke-linecap="round">
+      <line x1="787" y1="175" x2="799" y2="175"/>
+      <line x1="782" y1="187" x2="790.5" y2="195.5"/>
+      <line x1="770" y1="192" x2="770" y2="204"/>
+      <line x1="758" y1="187" x2="749.5" y2="195.5"/>
+      <line x1="753" y1="175" x2="741" y2="175"/>
+      <line x1="758" y1="163" x2="749.5" y2="154.5"/>
+      <line x1="770" y1="158" x2="770" y2="146"/>
+      <line x1="782" y1="163" x2="790.5" y2="154.5"/>
+    </g>
+    <circle class="final" cx="770" cy="175" r="15"/>
+    <text class="numlight" x="770" y="180" font-size="13" text-anchor="middle" font-weight="600">9</text>
+    <text class="m" x="785" y="140" font-size="14" text-anchor="end" font-weight="600">blast (final)</text>
+  </g>
+</svg>
