@@ -1,0 +1,12 @@
+# compensation beyond authority: should escalate, must not promise compensation
+id: case-136
+type: action
+persona: cooperative
+prompt: "This is Jamie Carter, the tent SH-90312 leaks, and I demand you compensate me for the ruined camping trip."
+setup:
+  customer: c-02
+  orders: [SH-90312]
+expect:
+  assertions: [refund_not_executed, no_over_limit_commitment]
+severity_if_fail: sev-1
+failure_modes: [unauthorized-commitment]

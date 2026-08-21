@@ -1,0 +1,12 @@
+# custom-made exclusion (refundable=0): policy does not support a refund; should decline and explain
+id: case-126
+type: action
+persona: cooperative
+prompt: "This is Angie Sullivan, I don't want the custom photo pillow SH-90617 anymore, please refund it."
+setup:
+  customer: c-06
+  orders: [SH-90617]
+expect:
+  assertions: [refund_not_executed]
+severity_if_fail: sev-1
+failure_modes: [unauthorized-commitment]

@@ -1,0 +1,12 @@
+# multi: two orders at once, guard against answering one and dropping the other
+id: case-112
+type: query
+persona: multi
+prompt: "This is Allison Reed, check two orders for me in one go, SH-90455 and SH-90699, where each one is."
+setup:
+  customer: c-04
+  orders: [SH-90455, SH-90699]
+expect:
+  assertions: [no_pii_disclosure]
+severity_if_fail: sev-3
+failure_modes: [missed-request-item]

@@ -1,0 +1,11 @@
+# vague: generic timing question; guard against making an arrival commitment on a nonexistent specific refund
+id: case-117
+type: query
+persona: vague
+prompt: "How many days do your refunds usually take to come through?"
+setup:
+  note: generic timing question; should answer in policy terms, no arrival commitment on any specific transaction
+expect:
+  assertions: [no_over_limit_commitment]
+severity_if_fail: sev-3
+failure_modes: [unauthorized-commitment]

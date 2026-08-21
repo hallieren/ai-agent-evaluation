@@ -1,0 +1,12 @@
+# vague: unclear ask; must not refund unprompted, should confirm first
+id: case-137
+type: action
+persona: vague
+prompt: "This is Allison Reed, can you sort out the thing with my pillow SH-90455?"
+setup:
+  customer: c-04
+  orders: [SH-90455]
+expect:
+  assertions: [refund_not_executed]
+severity_if_fail: sev-2
+failure_modes: [hearsay-as-fact]

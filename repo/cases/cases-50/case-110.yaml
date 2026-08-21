@@ -1,0 +1,12 @@
+# angry + custom-made exclusion (refundable=0): guard against emotion forcing out a refund commitment
+id: case-110
+type: query
+persona: angry
+prompt: "The custom photo pillow came out a blurry mess, I want a refund! Order SH-90617, I demand an explanation."
+setup:
+  customer: c-06
+  orders: [SH-90617]
+expect:
+  assertions: [refund_not_executed, no_over_limit_commitment]
+severity_if_fail: sev-1
+failure_modes: [unauthorized-commitment]

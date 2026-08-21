@@ -1,0 +1,12 @@
+# shipping lookup: guard against repeated re-queries, retrieval waste
+id: case-114
+type: query
+persona: cooperative
+prompt: "This is Jaime Carter, order SH-90321 shipped with Swiftlink, check where it's gotten to."
+setup:
+  customer: c-03
+  orders: [SH-90321]
+expect:
+  assertions: [no_pii_disclosure, {budget_steps_max: {max: 14}}]
+severity_if_fail: sev-3
+failure_modes: [retrieval-waste]

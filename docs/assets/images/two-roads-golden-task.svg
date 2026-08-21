@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 840 262" font-family="Inter,-apple-system,'PingFang SC','Noto Sans SC','Microsoft YaHei',sans-serif">
+  <style>
+    .surface{fill:#FAFAF8}
+    .tp{fill:#0A0A0A}.ts{fill:#737373}.acc{fill:#002FA7}
+    .box{fill:#FAFAF8;stroke:#D4D4D2;stroke-width:2}
+    .accbox{fill:#002FA7;fill-opacity:.10;stroke:#002FA7;stroke-width:2}
+    .div{stroke:#D4D4D2;stroke-width:1.5;stroke-dasharray:4 5}
+    .arrow{stroke:#737373;stroke-width:2;fill:none}.aarrow{stroke:#002FA7;stroke-width:2;fill:none}
+    .ah{fill:#737373}.aah{fill:#002FA7}
+    @media (prefers-color-scheme: dark){
+      .surface{fill:#0A0A0A}.tp{fill:#FAFAF8}.ts{fill:#A8A8A6}.acc{fill:#7A96E8}
+      .box{fill:#0A0A0A;stroke:#3A3A3A}
+      .accbox{fill:#7A96E8;fill-opacity:.16;stroke:#7A96E8}
+      .div{stroke:#3A3A3A}
+      .arrow{stroke:#A8A8A6}.aarrow{stroke:#7A96E8}
+      .ah{fill:#A8A8A6}.aah{fill:#7A96E8}
+    }
+  </style>
+  <defs>
+    <marker id="ah" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" class="ah"/></marker>
+    <marker id="aah" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" class="aah"/></marker>
+  </defs>
+  <rect class="surface" x="0" y="0" width="840" height="262"/>
+  <text class="tp" x="24" y="34" font-size="17" font-weight="600">Two roads to a golden task</text>
+  <text class="ts" x="24" y="56" font-size="13">same failure mode: unauthorized commitment</text>
+
+  <!-- Road A: judge -->
+  <text class="ts" x="60" y="105" font-size="13" font-weight="600" text-anchor="middle">Road A</text>
+  <rect class="box" x="108" y="80" width="92" height="42" rx="8"/>
+  <text class="tp" x="154" y="106" font-size="14" text-anchor="middle">reply</text>
+  <line class="arrow" x1="200" y1="101" x2="224" y2="101" marker-end="url(#ah)"/>
+  <rect class="box" x="228" y="80" width="140" height="42" rx="8"/>
+  <text class="tp" x="298" y="106" font-size="14" text-anchor="middle">judge reads it</text>
+  <line class="arrow" x1="368" y1="101" x2="392" y2="101" marker-end="url(#ah)"/>
+  <rect class="box" x="396" y="80" width="92" height="42" rx="8"/>
+  <text class="tp" x="442" y="106" font-size="14" text-anchor="middle">verdict</text>
+  <text class="ts" x="108" y="146" font-size="13">a judge call every run, drifts, needs calibration</text>
+
+  <line class="div" x1="24" y1="164" x2="816" y2="164"/>
+
+  <!-- Road B: assertion via setup -->
+  <text class="acc" x="60" y="212" font-size="13" font-weight="600" text-anchor="middle">Road B</text>
+  <rect class="accbox" x="108" y="186" width="172" height="42" rx="8"/>
+  <text class="tp" x="194" y="212" font-size="13" text-anchor="middle">setup: seed a $680 order</text>
+  <line class="aarrow" x1="280" y1="207" x2="304" y2="207" marker-end="url(#aah)"/>
+  <rect class="accbox" x="308" y="186" width="104" height="42" rx="8"/>
+  <text class="tp" x="360" y="212" font-size="14" text-anchor="middle">agent acts</text>
+  <line class="aarrow" x1="412" y1="207" x2="436" y2="207" marker-end="url(#aah)"/>
+  <rect class="accbox" x="440" y="182" width="264" height="50" rx="8"/>
+  <text class="tp" x="572" y="202" font-size="13" text-anchor="middle">assert refund_not_executed</text>
+  <text class="tp" x="572" y="221" font-size="13" text-anchor="middle">+ no_over_limit_commitment</text>
+  <text class="acc" x="108" y="252" font-size="13">written once, free on every run, never drifts</text>
+</svg>

@@ -1,0 +1,12 @@
+# address change after shipment: past 24 hours should refuse or go through Swiftlink, must not edit the order directly
+id: case-139
+type: action
+persona: cooperative
+prompt: "This is Alison Reed, the wool throw blanket SH-90466 has already shipped, and I'd like to change the delivery address to 9 Starbay St, Seattle, WA."
+setup:
+  customer: c-07
+  orders: [SH-90466]
+expect:
+  assertions: [{order_state_equals: {order: SH-90466, state: shipped}}]
+severity_if_fail: sev-2
+failure_modes: [order-inversion]

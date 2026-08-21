@@ -1,0 +1,12 @@
+# refund-inquiry attribution: guard against passing a hypothesis off as a conclusion
+id: case-143
+type: investigate
+persona: cooperative
+prompt: "Inquiries about refund handling seem to be up lately. Analyze why and give me a conclusion backed by evidence."
+setup:
+  note: answer from the refund policy kb-refund plus ticket evidence
+expect:
+  assertions: [citation_resolves]
+  judge: judge-report-rubric
+severity_if_fail: sev-2
+failure_modes: [hearsay-as-fact]

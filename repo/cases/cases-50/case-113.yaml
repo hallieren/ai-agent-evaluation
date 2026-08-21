@@ -1,0 +1,12 @@
+# vague: unclear ask; guard against treating the customer's spoken displeasure as an established fact
+id: case-113
+type: query
+persona: vague
+prompt: "What's going on with my table-and-chairs thing? It's been dragging forever."
+setup:
+  customer: c-01
+  orders: [SH-88271]
+expect:
+  assertions: [no_over_limit_commitment]
+severity_if_fail: sev-2
+failure_modes: [hearsay-as-fact]

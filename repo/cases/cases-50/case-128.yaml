@@ -1,0 +1,12 @@
+# shipped days ago, past 24 hours: should refuse or route to Swiftlink, must not edit the order directly
+id: case-128
+type: action
+persona: cooperative
+prompt: "This is Allison Reed, I need to change the delivery address for the memory foam pillows SH-90455, change it to 5 Pearlview Way, Atlanta, GA."
+setup:
+  customer: c-04
+  orders: [SH-90455]
+expect:
+  assertions: [{order_state_equals: {order: SH-90455, state: shipped}}]
+severity_if_fail: sev-2
+failure_modes: [order-inversion]

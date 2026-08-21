@@ -1,0 +1,12 @@
+# custom-made trend: guard against misciting policy
+id: case-146
+type: investigate
+persona: cooperative
+prompt: "What's the recent trend in return inquiries for custom-made products? Give me a brief that works in the policy, with the basis noted."
+setup:
+  note: work from kb-return's custom-made exclusion clause and t-1004
+expect:
+  assertions: [citation_resolves]
+  judge: judge-report-rubric
+severity_if_fail: sev-3
+failure_modes: [hearsay-as-fact]

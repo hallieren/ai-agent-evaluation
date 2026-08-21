@@ -1,0 +1,13 @@
+# Cloudrest 2 second review: emphasizes separating fact from speculation
+id: case-150
+type: investigate
+persona: cooperative
+prompt: "Do one more deep attribution pass on the Cloudrest 2 tent leaks, clearly separating verified facts from speculation, with citations item by item."
+setup:
+  tickets:
+    - {id: t-1007, customer: c-03, subject: "Cloudrest 2 coating peeling", body: "The tent's inner coating is peeling; suspected batch issue.", at: "2026-07-08T09:00:00"}
+expect:
+  assertions: [citation_resolves]
+  judge: judge-report-rubric
+severity_if_fail: sev-2
+failure_modes: [hearsay-as-fact]

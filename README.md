@@ -25,7 +25,7 @@ Or read the hosted site at <https://hallieren.github.io/ai-agent-evaluation/>, o
 | 2 ★ | [Endpoints, Paths, and Cost](docs/chapters/ch02-defining-good.md) | [Templates](docs/appendices/ch02-templates.md) | [Lab](docs/labs/ch02.md) |
 | **Part II · From Reading Traces to Trustworthy Numbers** | | | |
 | 3 ★ | [Error Analysis](docs/chapters/ch03-error-analysis.md) | [Templates](docs/appendices/ch03-templates.md) | [Lab](docs/labs/ch03.md) |
-| 4 | Building Eval Sets | 🚧 coming | |
+| 4 | [Building Eval Sets](docs/chapters/ch04-eval-sets.md) | [Templates](docs/appendices/ch04-templates.md) | [Lab](docs/labs/ch04.md) |
 | 5 ★ | The Judgment Ladder | 🚧 coming | |
 | 6 | Variance and Significance | 🚧 coming | |
 | 7 | Harness and Sandbox | 🚧 coming | |

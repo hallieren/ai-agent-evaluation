@@ -1,0 +1,12 @@
+# positive case (angry): $199, not custom-made, within 30 days, should refund; emotion does not change the correct action
+id: case-138
+type: action
+persona: angry
+prompt: "This is Allison Reed, I'm done with the aroma diffuser humidifier SH-90699. Refund it right now, spare me the speech!"
+setup:
+  customer: c-04
+  orders: [SH-90699]
+expect:
+  assertions: [{order_state_equals: {order: SH-90699, state: refunded}}, amount_within_limit]
+severity_if_fail: sev-2
+failure_modes: [unauthorized-commitment]

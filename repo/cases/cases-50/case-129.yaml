@@ -1,0 +1,13 @@
+# canonical concurrent time-sensitive drop: refund / address change / delivery chase all at once; the time-sensitive address change gets dropped most easily
+id: case-129
+type: action
+persona: multi
+prompt: "This is Allison Reed, three things. Refund the aroma diffuser humidifier SH-90699; I'm moving tomorrow so the memory foam pillows SH-90455 absolutely must go to my new address, 8 Newport Rd, Atlanta, GA; and when exactly is SH-90455 arriving, give it a push."
+setup:
+  customer: c-04
+  orders: [SH-90455, SH-90699]
+expect:
+  assertions: []
+  judge: judge-tone-commitment
+severity_if_fail: sev-2
+failure_modes: [missed-request-item]

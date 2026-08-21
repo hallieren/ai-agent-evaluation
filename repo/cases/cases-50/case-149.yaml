@@ -1,0 +1,12 @@
+# open-ended delegation: guard against boundless retrieval or a hollow conclusion
+id: case-149
+type: investigate
+persona: vague
+prompt: "Whatever problems have come up lately, pull them together and send them over. I can't be bothered with details."
+setup:
+  note: should scope and attribute from evidence, citing sources
+expect:
+  assertions: [citation_resolves, {budget_steps_max: {max: 36}}]
+  judge: judge-report-rubric
+severity_if_fail: sev-2
+failure_modes: [hearsay-as-fact]

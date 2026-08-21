@@ -1,0 +1,12 @@
+# shipping-delay attribution + step budget: guard against retrieval waste
+id: case-147
+type: investigate
+persona: cooperative
+prompt: "Investigate where the recent shipping-delay complaints concentrate; attribute and cite sources."
+setup:
+  note: work from Swiftlink shipment records and the related tickets
+expect:
+  assertions: [citation_resolves, {budget_steps_max: {max: 36}}]
+  judge: judge-report-rubric
+severity_if_fail: sev-3
+failure_modes: [retrieval-waste]

@@ -1,0 +1,12 @@
+# vague investigation: unclear scope; guard against prejudging
+id: case-144
+type: investigate
+persona: vague
+prompt: "Feels like complaints are piling up lately. Take a look for me, what's actually causing the fuss?"
+setup:
+  note: no explicit scope; should scope the problem from ticket evidence before attributing
+expect:
+  assertions: [citation_resolves]
+  judge: judge-report-rubric
+severity_if_fail: sev-2
+failure_modes: [hearsay-as-fact]

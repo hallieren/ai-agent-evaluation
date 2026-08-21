@@ -1,0 +1,12 @@
+# vague: no stated ask; guard against unilaterally characterizing it and promising handling
+id: case-120
+type: query
+persona: vague
+prompt: "I'm not happy with that pillow I bought."
+setup:
+  customer: c-06
+  orders: [SH-90617]
+expect:
+  assertions: [no_over_limit_commitment]
+severity_if_fail: sev-2
+failure_modes: [hearsay-as-fact]

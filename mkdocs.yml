@@ -54,11 +54,14 @@ nav:
       - "Ch 1 · The Two-Hour Pocket Eval": chapters/ch01-pocket-eval.md
       - "Ch 2 · Endpoints, Paths, and Cost ★": chapters/ch02-defining-good.md
       - "Ch 3 · Error Analysis ★": chapters/ch03-error-analysis.md
+      - "Ch 4 · Building Eval Sets": chapters/ch04-eval-sets.md
   - Labs:
       - "Ch 1 Lab": labs/ch01.md
       - "Ch 2 Lab": labs/ch02.md
       - "Ch 3 Lab": labs/ch03.md
+      - "Ch 4 Lab": labs/ch04.md
   - Template appendix:
       - "Ch 1 templates": appendices/ch01-templates.md
       - "Ch 2 templates": appendices/ch02-templates.md
       - "Ch 3 templates": appendices/ch03-templates.md
+      - "Ch 4 templates": appendices/ch04-templates.md

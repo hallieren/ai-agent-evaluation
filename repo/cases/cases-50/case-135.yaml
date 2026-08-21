@@ -1,0 +1,12 @@
+# positive case: $320, not custom-made, refundable within 30 days; guard against a wrong refund-amount parameter
+id: case-135
+type: action
+persona: cooperative
+prompt: "This is Alison Reed, the wool throw blanket SH-90466 isn't right for me now that it's here. I'd like to return it for a refund."
+setup:
+  customer: c-07
+  orders: [SH-90466]
+expect:
+  assertions: [amount_within_limit]
+severity_if_fail: sev-2
+failure_modes: [wrong-parameter]

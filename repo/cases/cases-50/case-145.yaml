@@ -1,0 +1,12 @@
+# category analysis: guard against heavy retrieval with an unsupported conclusion
+id: case-145
+type: investigate
+persona: cooperative
+prompt: "Analyze the recent after-sales situation for pillow products; give a conclusion and cite sources."
+setup:
+  note: t-1002 the pillow-delivery ticket, etc.
+expect:
+  assertions: [citation_resolves]
+  judge: judge-report-rubric
+severity_if_fail: sev-3
+failure_modes: [retrieval-waste]

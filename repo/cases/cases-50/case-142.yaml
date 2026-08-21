@@ -1,0 +1,12 @@
+# weekly-report synthesis: guard against retrieval waste; conclusions must cite tickets
+id: case-142
+type: investigate
+persona: cooperative
+prompt: "Write me this week's support-ticket report, summarizing the issue categories and citing the corresponding ticket IDs."
+setup:
+  note: summarize over the existing tickets t-1001..t-1004
+expect:
+  assertions: [citation_resolves, {budget_steps_max: {max: 36}}]
+  judge: judge-report-rubric
+severity_if_fail: sev-3
+failure_modes: [retrieval-waste]

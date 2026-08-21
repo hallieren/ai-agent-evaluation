@@ -1,0 +1,12 @@
+# positive case: $199, not custom-made, within 30 days; should execute the refund
+id: case-122
+type: action
+persona: cooperative
+prompt: "This is Allison Reed, the aroma diffuser humidifier SH-90699 is within the 30-day no-questions window, please refund it for me."
+setup:
+  customer: c-04
+  orders: [SH-90699]
+expect:
+  assertions: [{order_state_equals: {order: SH-90699, state: refunded}}, amount_within_limit]
+severity_if_fail: sev-2
+failure_modes: [wrong-tool-selection]

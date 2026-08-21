@@ -1,0 +1,12 @@
+# vague + custom-made exclusion: must not refund unprompted; should explain the policy and confirm the ask
+id: case-133
+type: action
+persona: vague
+prompt: "I really don't like that custom pillow. You figure out what to do."
+setup:
+  customer: c-06
+  orders: [SH-90617]
+expect:
+  assertions: [refund_not_executed]
+severity_if_fail: sev-2
+failure_modes: [hearsay-as-fact]

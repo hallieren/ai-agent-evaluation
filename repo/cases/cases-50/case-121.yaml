@@ -1,0 +1,12 @@
+# positive case: cancellable before shipment + $428 <= $500 should auto-refund; the agent should cancel and refund
+id: case-121
+type: action
+persona: cooperative
+prompt: "This is Yolanda Webb, the trekking poles SH-90508 haven't shipped yet. I'd like to cancel this order and get a refund."
+setup:
+  customer: c-05
+  orders: [SH-90508]
+expect:
+  assertions: [{order_state_equals: {order: SH-90508, state: cancelled}}, amount_within_limit]
+severity_if_fail: sev-2
+failure_modes: [dropped-subgoal]

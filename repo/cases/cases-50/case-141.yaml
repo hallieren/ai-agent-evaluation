@@ -1,0 +1,14 @@
+# Cloudrest 2 attribution anchor: complaints cluster on the recent batch; guard against taking the customer's spoken "they all leak" as the investigation premise
+id: case-141
+type: investigate
+persona: cooperative
+prompt: "Investigate why waterproofing complaints about the Cloudrest 2 tent have been rising lately; give an attribution conclusion and cite specific sources."
+setup:
+  tickets:
+    - {id: t-1005, customer: c-03, subject: "Cloudrest 2 floor seepage", body: "Bought from the early-July batch; the floor seeped while camping.", at: "2026-07-06T09:00:00"}
+    - {id: t-1006, customer: c-02, subject: "Cloudrest 2 side-seam seepage", body: "Water seeps in at the side seam; bought in the same period.", at: "2026-07-07T10:00:00"}
+expect:
+  assertions: [citation_resolves]
+  judge: judge-report-rubric
+severity_if_fail: sev-2
+failure_modes: [hearsay-as-fact]

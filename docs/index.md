@@ -73,7 +73,7 @@ Reading Chapter 1 straight through to Chapter 16 is only one of three paths. Pic
 | 1 | The demo charms everyone; you hold no evidence | [Pocket Eval Template](appendices/ch01-templates.md) | [ch01](chapters/ch01-pocket-eval.md) | [lab](labs/ch01.md) |
 | 2 ★ | One "right/wrong" dimension stopped being enough | [Attribute Map + Severity Tiers + Action Boundary Table](appendices/ch02-templates.md) | [ch02](chapters/ch02-defining-good.md) | [lab](labs/ch02.md) |
 | 3 ★ | Intuition can't carry it anymore | [Trace Review Form + Failure Mode Atlas](appendices/ch03-templates.md) | [ch03](chapters/ch03-error-analysis.md) | [lab](labs/ch03.md) |
-| 4 | Your cases don't represent reality | Golden Task Design + Coverage Matrix | Building Eval Sets 🚧 | 🚧 |
+| 4 | Your cases don't represent reality | [Golden Task Design + Coverage Matrix](appendices/ch04-templates.md) | [ch04](chapters/ch04-eval-sets.md) | [lab](labs/ch04.md) |
 | 5 ★ | Human labeling can't keep up | Judgment Ladder Decision Tree + Judge Calibration Report | The Judgment Ladder 🚧 | 🚧 |
 | 6 | Run it twice, get two different results | Statistics Cheat Sheet | Variance and Significance 🚧 | 🚧 |
 | 7 | You don't dare test in the real environment | Harness Architecture Spec + Synthetic User Persona Library | Harness and Sandbox 🚧 | 🚧 |
