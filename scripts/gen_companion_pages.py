@@ -39,7 +39,7 @@ def gen_templates(ch: str) -> int:
         parts.append(demote(f.read_text(encoding="utf-8")))
         parts.append(f"\n> Source file: [`{rel[5:]}`]({GH}/{rel})\n\n---\n\n")
     out = ROOT / "docs" / "appendices" / f"{ch}-templates.md"
-    out.write_text("".join(parts).rstrip("-\n ") + "\n", encoding="utf-8")
+    out.write_text("".join(parts).rstrip("-\n ") + "\n", encoding="utf-8", newline="\n")
     return len(files)
 
 
@@ -54,7 +54,7 @@ def gen_lab(ch: str) -> None:
             + f"Full directory: [`repo/labs/{ch}/`]({GH_TREE}/repo/labs/{ch}/)\n\n"
             + listing + "\n")
     out = ROOT / "docs" / "labs" / f"{ch}.md"
-    out.write_text(body, encoding="utf-8")
+    out.write_text(body, encoding="utf-8", newline="\n")
 
 
 def main() -> None:

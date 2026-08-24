@@ -190,7 +190,7 @@ def main():
         key[tid] = s["fail"] or "clean"
     con.close()
     trace_io.save(traces, os.path.join(HERE, "pregen-60.jsonl"))
-    with open(os.path.join(HERE, "pregen-60-key.json"), "w", encoding="utf-8") as f:
+    with open(os.path.join(HERE, "pregen-60-key.json"), "w", encoding="utf-8", newline="\n") as f:
         json.dump(key, f, ensure_ascii=False, indent=1)
     counts = {m: sum(1 for v in key.values() if v == m) for m in sorted(set(key.values()))}
     print("t-0007 + pregen-60 generated; seeded distribution:", counts)

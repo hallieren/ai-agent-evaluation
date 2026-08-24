@@ -3,7 +3,7 @@ import json
 
 
 def save(traces, path):
-    with open(path, "w", encoding="utf-8") as f:
+    with open(path, "w", encoding="utf-8", newline="\n") as f:
         for t in traces:
             f.write(json.dumps(t, ensure_ascii=False) + "\n")
 
