@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 360" font-family="Inter,-apple-system,sans-serif">
+  <style>
+    .surface{fill:#FAFAF8}.tp{fill:#0A0A0A}.ts{fill:#737373}
+    .s25{fill:#002FA7;fill-opacity:.25}.s45{fill:#002FA7;fill-opacity:.45}
+    .s70{fill:#002FA7;fill-opacity:.72}.s100{fill:#002FA7}
+    .edge{stroke:#737373;stroke-width:1.5;fill:none}
+    .onfill{fill:#FAFAF8}
+    @media (prefers-color-scheme: dark){
+      .surface{fill:#0A0A0A}.tp{fill:#FAFAF8}.ts{fill:#A8A8A6}
+      .s25{fill:#7A96E8;fill-opacity:.30}.s45{fill:#7A96E8;fill-opacity:.50}
+      .s70{fill:#7A96E8;fill-opacity:.80}.s100{fill:#7A96E8}
+      .edge{stroke:#A8A8A6}
+      .onfill{fill:#0A0A0A}
+    }
+  </style>
+  <rect class="surface" x="0" y="0" width="760" height="360"/>
+  <text class="tp" x="24" y="38" font-size="17" font-weight="600">The judgment ladder</text>
+  <text class="ts" x="24" y="60" font-size="13">every failure mode lands on the lowest rung that can hold it</text>
+
+  <!-- four rungs, bottom-aligned at y=300 -->
+  <rect class="s25" x="24" y="230" width="166" height="70" rx="4"/>
+  <text class="tp" x="107" y="218" font-size="14" font-weight="600" text-anchor="middle">assertion</text>
+  <text class="tp" x="107" y="270" font-size="13" text-anchor="middle">one line of code</text>
+
+  <rect class="s45" x="206" y="200" width="166" height="100" rx="4"/>
+  <text class="tp" x="289" y="188" font-size="14" font-weight="600" text-anchor="middle">deterministic check</text>
+  <text class="tp" x="289" y="254" font-size="13" text-anchor="middle">write once, amortize</text>
+
+  <rect class="s70" x="388" y="160" width="166" height="140" rx="4"/>
+  <text class="tp" x="471" y="148" font-size="14" font-weight="600" text-anchor="middle">calibrated judge</text>
+  <text class="onfill" x="471" y="226" font-size="13" text-anchor="middle">language only,</text>
+  <text class="onfill" x="471" y="246" font-size="13" text-anchor="middle">aligned first</text>
+
+  <rect class="s100" x="570" y="120" width="166" height="180" rx="4"/>
+  <text class="tp" x="653" y="108" font-size="14" font-weight="600" text-anchor="middle">human</text>
+  <text class="onfill" x="653" y="196" font-size="13" text-anchor="middle">arbitrate · spot-check</text>
+  <text class="onfill" x="653" y="216" font-size="13" text-anchor="middle">· gold labels</text>
+
+  <!-- cost arrow -->
+  <g class="edge">
+    <path d="M40 322 H 700"/><path d="M692 317 L 702 322 L 692 327"/>
+  </g>
+  <text class="ts" x="370" y="344" font-size="13" text-anchor="middle">cost per verdict →</text>
+</svg>

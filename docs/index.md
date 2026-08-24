@@ -7,7 +7,7 @@ Written for engineers pushing agents toward production, the ones asked "can we s
 The whole book has one lab agent (**Mini**, a few hundred lines of pure-stdlib Python) and one task world (a fictional e-commerce company, **Shore & Summit**). Mini ships with its capabilities sealed behind flags, and every chapter's Lab keeps the same discipline: **write the eval first → then unlock the capability → watch what the eval catches.**
 
 !!! note "Released chapter by chapter"
-    Chapters 1 through 3 are live. The remaining chapters and appendices land one at a time, roughly weekly, each as it clears our own practice pass. Unreleased items appear below as plain titles marked 🚧.
+    Chapters 1 through 5 are live. The remaining chapters and appendices land one at a time, roughly weekly, each as it clears our own practice pass. Unreleased items appear below as plain titles marked 🚧.
 
 ## A 30-second start (no API key)
 
@@ -74,7 +74,7 @@ Reading Chapter 1 straight through to Chapter 16 is only one of three paths. Pic
 | 2 ★ | One "right/wrong" dimension stopped being enough | [Attribute Map + Severity Tiers + Action Boundary Table](appendices/ch02-templates.md) | [ch02](chapters/ch02-defining-good.md) | [lab](labs/ch02.md) |
 | 3 ★ | Intuition can't carry it anymore | [Trace Review Form + Failure Mode Atlas](appendices/ch03-templates.md) | [ch03](chapters/ch03-error-analysis.md) | [lab](labs/ch03.md) |
 | 4 | Your cases don't represent reality | [Golden Task Design + Coverage Matrix](appendices/ch04-templates.md) | [ch04](chapters/ch04-eval-sets.md) | [lab](labs/ch04.md) |
-| 5 ★ | Human labeling can't keep up | Judgment Ladder Decision Tree + Judge Calibration Report | The Judgment Ladder 🚧 | 🚧 |
+| 5 ★ | Human labeling can't keep up | [Judgment Ladder Decision Tree + Judge Validation Report](appendices/ch05-templates.md) | [ch05](chapters/ch05-judgment-ladder.md) | [lab](labs/ch05.md) |
 | 6 | Run it twice, get two different results | Statistics Cheat Sheet | Variance and Significance 🚧 | 🚧 |
 | 7 | You don't dare test in the real environment | Harness Architecture Spec + Synthetic User Persona Library | Harness and Sandbox 🚧 | 🚧 |
 | 8 ★ | The reply is impeccable; the danger hides in a mid-trace parameter | Action Permission Matrix + Side-Effect Audit Table | Dangerous Tools 🚧 | 🚧 |

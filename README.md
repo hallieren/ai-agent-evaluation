@@ -6,7 +6,7 @@
 
 *Shore & Summit is a synthetic teaching world assembled from common enterprise scenarios; it does not correspond to any real company, and every character in this book is fictional.*
 
-The book is released chapter by chapter. Chapters 1 through 3 are live, and the remaining chapters and appendices land one at a time, roughly weekly, each as it clears our own practice pass. Unreleased chapters below are marked 🚧 coming.
+The book is released chapter by chapter. Chapters 1 through 5 are live, and the remaining chapters and appendices land one at a time, roughly weekly, each as it clears our own practice pass. Unreleased chapters below are marked 🚧 coming.
 
 ## How to read
 
@@ -26,7 +26,7 @@ Or read the hosted site at <https://hallieren.github.io/ai-agent-evaluation/>, o
 | **Part II · From Reading Traces to Trustworthy Numbers** | | | |
 | 3 ★ | [Error Analysis](docs/chapters/ch03-error-analysis.md) | [Templates](docs/appendices/ch03-templates.md) | [Lab](docs/labs/ch03.md) |
 | 4 | [Building Eval Sets](docs/chapters/ch04-eval-sets.md) | [Templates](docs/appendices/ch04-templates.md) | [Lab](docs/labs/ch04.md) |
-| 5 ★ | The Judgment Ladder | 🚧 coming | |
+| 5 ★ | [The Judgment Ladder](docs/chapters/ch05-judgment-ladder.md) | [Templates](docs/appendices/ch05-templates.md) | [Lab](docs/labs/ch05.md) |
 | 6 | Variance and Significance | 🚧 coming | |
 | 7 | Harness and Sandbox | 🚧 coming | |
 | **Part III · Agent-Specific Battlegrounds** | | | |
