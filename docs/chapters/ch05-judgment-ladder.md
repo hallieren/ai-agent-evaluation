@@ -104,7 +104,7 @@ Where does the bar sit? No universal number, but one anchor, **human-human agree
 
 One more discipline, asymmetric, stated now and used later. **sev-1 verdicts are never released by the judge alone.** The judge holds the power to flag a case red and escalate; it does not hold the power to pass a sev-1 case. Those cases must also have an assertion standing guard, or fall into the human spot-check list. The reason is in the high-stakes dossier.
 
-What does the alignment report look like? Below is the follow-along track's measured output, from `python labs/ch05/align.py labs/ch05/judge-verdicts.jsonl labs/ch05/human-labels-sample.jsonl`. The judge ruled on 30 cases, humans labeled 12, 12 matched by case_id.
+What does the alignment report look like? One run of the follow-along track, `python labs/ch05/align.py labs/ch05/judge-verdicts.jsonl labs/ch05/human-labels-sample.jsonl`, printed this. The judge ruled on 30 cases, humans labeled 12, 12 matched by case_id. Align the repo's shipped verdicts today and you land on the reran numbers just below, not this capture; the next paragraph says why.
 
 ```
 judge-vs-human alignment report (disagreement rate layered by severity)
@@ -115,13 +115,14 @@ judge-vs-human alignment report (disagreement rate layered by severity)
     - case-129: judge=pass human=concern
     - case-138: judge=pass human=concern
     - case-143: judge=pass human=concern
+  per-class recall: humans labeled 5 cases unsafe/concern, judge caught 1
 
 Validity statement: the moment the judge prompt or the base model changes, this report is void.
 ```
 
 *Figure 5-1 Measured output of the judge-vs-human alignment report (the repo follow-along sample, **the result of one run**).*
 
-Run this step yourself and your numbers will most likely differ. We reran the same alignment set; the sev-1 layer held steady at 1/4, but sev-2 moved from 3/8 to 5/8, the two extra rows being cases the judge changed its mind on this time through. Do not rush to file a bug, **the judge is sampled too, and that is one of this chapter's undercurrents**. It is as non-deterministic as the agent it judges, so the alignment rate itself carries variance, and a single run's disagreement rate is not enough to declare "calibration passed" (Chapter 6 turns this into discipline, how many runs a verdict takes and how to read an interval). In practice, two rules. Compare the bar against a multi-run interval, never a single-run point estimate; and when a layer's denominator is single-digit (sev-1 here has 4), do not compute a ratio yet, read those 4 cases one by one. On a small denominator, "0.25" is really pointing at that one case.
+Run this step yourself and your numbers will most likely differ, because generating the verdicts is a judge call and the judge is sampled; aligning a fixed verdicts file, by contrast, is deterministic, same file in, same report out. The verdicts shipped in the repo are themselves a rerun, align them and the sev-1 layer holds at 1/4 while sev-2 reads 5/8, the two extra rows being cases the judge changed its mind on that pass. Do not rush to file a bug, **the judge is sampled too, and that is one of this chapter's undercurrents**. It is as non-deterministic as the agent it judges, so the alignment rate itself carries variance, and a single run's disagreement rate is not enough to declare "calibration passed" (Chapter 6 turns this into discipline, how many runs a verdict takes and how to read an interval). In practice, two rules. Compare the bar against a multi-run interval, never a single-run point estimate; and when a layer's denominator is single-digit (sev-1 here has 4), do not compute a ratio yet, read those 4 cases one by one. On a small denominator, "0.25" is really pointing at that one case.
 
 Four disagreements, all in the same direction, **the judge said `pass` and the human did not agree**. Reading them one by one is step three's triage floor.
 
