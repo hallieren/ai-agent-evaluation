@@ -45,7 +45,7 @@ flowchart LR
     end
     subgraph P2["Part II From Reading Traces to Trustworthy Numbers"]
         direction TB
-        c3["3 Error Analysis"] --> c4["4 Building Eval Sets"] --> c5["5 The Judgment Ladder"] --> c6["6 Variance and Significance"] --> c7["7 Harness and Sandbox"]
+        c3["3 Error Analysis"] --> c4["4 Building Eval Sets"] --> c5["5 The Judgment Ladder"] --> c6["6 Variance, Sampling, and Significance"] --> c7["7 Harness and Sandbox"]
     end
     subgraph P3["Part III Agent-Specific Battlegrounds"]
         direction TB

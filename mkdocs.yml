@@ -56,7 +56,7 @@ nav:
       - "Ch 3 · Error Analysis ★": chapters/ch03-error-analysis.md
       - "Ch 4 · Building Eval Sets": chapters/ch04-eval-sets.md
       - "Ch 5 · The Judgment Ladder ★": chapters/ch05-judgment-ladder.md
-      - "Ch 6 · Variance and Significance": chapters/ch06-variance.md
+      - "Ch 6 · Variance, Sampling, and Significance": chapters/ch06-variance.md
   - Labs:
       - "Ch 1 Lab": labs/ch01.md
       - "Ch 2 Lab": labs/ch02.md

@@ -188,7 +188,7 @@ The full map of the book's 16 chapters across the three jobs follows.
 | 3 Error Analysis | | ● |  |
 | 4 Building Eval Sets | ● |  |  |
 | 5 The Judgment Ladder | ● |  |  |
-| 6 Variance and Significance | ● |  |  |
+| 6 Variance, Sampling, and Significance | ● |  |  |
 | 7 Harness and Sandbox |  |  | ● |
 | 8 Dangerous Tools |  | ● |  |
 | 9 Planning and Cost |  | ● |  |
