@@ -56,15 +56,18 @@ nav:
       - "Ch 3 · Error Analysis ★": chapters/ch03-error-analysis.md
       - "Ch 4 · Building Eval Sets": chapters/ch04-eval-sets.md
       - "Ch 5 · The Judgment Ladder ★": chapters/ch05-judgment-ladder.md
+      - "Ch 6 · Variance and Significance": chapters/ch06-variance.md
   - Labs:
       - "Ch 1 Lab": labs/ch01.md
       - "Ch 2 Lab": labs/ch02.md
       - "Ch 3 Lab": labs/ch03.md
       - "Ch 4 Lab": labs/ch04.md
       - "Ch 5 Lab": labs/ch05.md
+      - "Ch 6 Lab": labs/ch06.md
   - Template appendix:
       - "Ch 1 templates": appendices/ch01-templates.md
       - "Ch 2 templates": appendices/ch02-templates.md
       - "Ch 3 templates": appendices/ch03-templates.md
       - "Ch 4 templates": appendices/ch04-templates.md
       - "Ch 5 templates": appendices/ch05-templates.md
+      - "Ch 6 templates": appendices/ch06-templates.md

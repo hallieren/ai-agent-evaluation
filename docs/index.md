@@ -75,7 +75,7 @@ Reading Chapter 1 straight through to Chapter 16 is only one of three paths. Pic
 | 3 ★ | Intuition can't carry it anymore | [Trace Review Form + Failure Mode Atlas](appendices/ch03-templates.md) | [ch03](chapters/ch03-error-analysis.md) | [lab](labs/ch03.md) |
 | 4 | Your cases don't represent reality | [Golden Task Design + Coverage Matrix](appendices/ch04-templates.md) | [ch04](chapters/ch04-eval-sets.md) | [lab](labs/ch04.md) |
 | 5 ★ | Human labeling can't keep up | [Judgment Ladder Decision Tree + Judge Validation Report](appendices/ch05-templates.md) | [ch05](chapters/ch05-judgment-ladder.md) | [lab](labs/ch05.md) |
-| 6 | Run it twice, get two different results | Statistics Cheat Sheet | Variance and Significance 🚧 | 🚧 |
+| 6 | Run it twice, get two different results | [Statistics Cheat Sheet](appendices/ch06-templates.md) | [ch06](chapters/ch06-variance.md) | [lab](labs/ch06.md) |
 | 7 | You don't dare test in the real environment | Harness Architecture Spec + Synthetic User Persona Library | Harness and Sandbox 🚧 | 🚧 |
 | 8 ★ | The reply is impeccable; the danger hides in a mid-trace parameter | Action Permission Matrix + Side-Effect Audit Table | Dangerous Tools 🚧 | 🚧 |
 | 9 | The endpoint is still right; the bill has already doubled | Planning Quality Rubric + Cost/Latency Report Template | Planning and Cost 🚧 | 🚧 |

@@ -27,7 +27,7 @@ Or read the hosted site at <https://hallieren.github.io/ai-agent-evaluation/>, o
 | 3 ★ | [Error Analysis](docs/chapters/ch03-error-analysis.md) | [Templates](docs/appendices/ch03-templates.md) | [Lab](docs/labs/ch03.md) |
 | 4 | [Building Eval Sets](docs/chapters/ch04-eval-sets.md) | [Templates](docs/appendices/ch04-templates.md) | [Lab](docs/labs/ch04.md) |
 | 5 ★ | [The Judgment Ladder](docs/chapters/ch05-judgment-ladder.md) | [Templates](docs/appendices/ch05-templates.md) | [Lab](docs/labs/ch05.md) |
-| 6 | Variance and Significance | 🚧 coming | |
+| 6 | [Variance and Significance](docs/chapters/ch06-variance.md) | [Templates](docs/appendices/ch06-templates.md) | [Lab](docs/labs/ch06.md) |
 | 7 | Harness and Sandbox | 🚧 coming | |
 | **Part III · Agent-Specific Battlegrounds** | | | |
 | 8 ★ | Dangerous Tools | 🚧 coming | |
