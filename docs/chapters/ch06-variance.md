@@ -1,4 +1,4 @@
-# 6 The Fourth Wall: Run It Twice and Get Two Different Results — Variance, Sampling, and Significance
+# 6 The Fourth Wall: Variance, Sampling, and Significance
 
 !!! info "Chapter companion"
     📋 [Chapter templates](../appendices/ch06-templates.md) · 🧪 [Lab guide](../labs/ch06.md) · 💻 [Code & data (GitHub)](https://github.com/hallieren/ai-agent-evaluation/tree/main/repo/labs/ch06/)
