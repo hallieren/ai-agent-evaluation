@@ -1,0 +1,98 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 420" font-family="Inter,-apple-system,sans-serif">
+  <style>
+    .surface{fill:#FAFAF8}.tp{fill:#0A0A0A}.ts{fill:#737373}
+    .pass{fill:#002FA7;fill-opacity:.72}
+    .fail{fill:#FAFAF8;stroke:#B8B8B4;stroke-width:1.5}
+    .edge{stroke:#737373;stroke-width:1.5;fill:none}
+    .sep{stroke:#B8B8B4;stroke-width:1;fill:none}
+    .accent{fill:#002FA7}
+    .callout{fill:#002FA7;fill-opacity:.09;stroke:#002FA7;stroke-width:1.5}
+    @media (prefers-color-scheme: dark){
+      .surface{fill:#0A0A0A}.tp{fill:#FAFAF8}.ts{fill:#A8A8A6}
+      .pass{fill:#7A96E8;fill-opacity:.85}
+      .fail{fill:#0A0A0A;stroke:#5A5A58}
+      .edge{stroke:#A8A8A6}
+      .sep{stroke:#5A5A58}
+      .accent{fill:#7A96E8}
+      .callout{fill:#7A96E8;fill-opacity:.16;stroke:#7A96E8}
+    }
+  </style>
+  <rect class="surface" x="0" y="0" width="760" height="420"/>
+  <text class="tp" x="24" y="38" font-size="17" font-weight="600">Two layers of variance</text>
+  <text class="ts" x="24" y="60" font-size="13">columns (runs) barely move · rows (cases) move a lot</text>
+
+  <!-- legend -->
+  <rect class="pass" x="470" y="27" width="16" height="16" rx="3"/>
+  <text class="tp" x="492" y="40" font-size="13">pass</text>
+  <rect class="fail" x="548" y="27" width="16" height="16" rx="3"/>
+  <text class="tp" x="570" y="40" font-size="13">fail</text>
+
+  <!-- column headers -->
+  <text class="ts" x="220" y="98" font-size="13" text-anchor="middle">r-01</text>
+  <text class="ts" x="300" y="98" font-size="13" text-anchor="middle">r-02</text>
+  <text class="ts" x="380" y="98" font-size="13" text-anchor="middle">r-03</text>
+  <text class="ts" x="460" y="98" font-size="13" text-anchor="middle">r-04</text>
+  <text class="ts" x="540" y="98" font-size="13" text-anchor="middle">r-05</text>
+  <line class="sep" x1="590" y1="112" x2="590" y2="292"/>
+  <text class="ts" x="660" y="98" font-size="13" text-anchor="middle">case rate</text>
+
+  <!-- case-01: P P P P P -> 1.0 -->
+  <text class="tp" x="24" y="137" font-size="13">case-01</text>
+  <rect class="pass" x="200" y="119" width="40" height="26" rx="4"/>
+  <rect class="pass" x="280" y="119" width="40" height="26" rx="4"/>
+  <rect class="pass" x="360" y="119" width="40" height="26" rx="4"/>
+  <rect class="pass" x="440" y="119" width="40" height="26" rx="4"/>
+  <rect class="pass" x="520" y="119" width="40" height="26" rx="4"/>
+  <text class="tp" x="660" y="137" font-size="14" font-weight="600" text-anchor="middle">1.0</text>
+
+  <!-- case-02: P P P P F -> 0.8 -->
+  <text class="tp" x="24" y="173" font-size="13">case-02</text>
+  <rect class="pass" x="200" y="155" width="40" height="26" rx="4"/>
+  <rect class="pass" x="280" y="155" width="40" height="26" rx="4"/>
+  <rect class="pass" x="360" y="155" width="40" height="26" rx="4"/>
+  <rect class="pass" x="440" y="155" width="40" height="26" rx="4"/>
+  <rect class="fail" x="520" y="155" width="40" height="26" rx="4"/>
+  <text class="tp" x="660" y="173" font-size="14" font-weight="600" text-anchor="middle">0.8</text>
+
+  <!-- case-03: P F P P F -> 0.6 (flips) -->
+  <text class="tp" x="24" y="209" font-size="13">case-03</text>
+  <rect class="pass" x="200" y="191" width="40" height="26" rx="4"/>
+  <rect class="fail" x="280" y="191" width="40" height="26" rx="4"/>
+  <rect class="pass" x="360" y="191" width="40" height="26" rx="4"/>
+  <rect class="pass" x="440" y="191" width="40" height="26" rx="4"/>
+  <rect class="fail" x="520" y="191" width="40" height="26" rx="4"/>
+  <text class="tp" x="660" y="209" font-size="14" font-weight="600" text-anchor="middle">0.6</text>
+
+  <!-- case-04: F F F F F -> 0.0 (hard case) -->
+  <text class="tp" x="24" y="245" font-size="13">case-04</text>
+  <rect class="fail" x="200" y="227" width="40" height="26" rx="4"/>
+  <rect class="fail" x="280" y="227" width="40" height="26" rx="4"/>
+  <rect class="fail" x="360" y="227" width="40" height="26" rx="4"/>
+  <rect class="fail" x="440" y="227" width="40" height="26" rx="4"/>
+  <rect class="fail" x="520" y="227" width="40" height="26" rx="4"/>
+  <text class="tp" x="660" y="245" font-size="14" font-weight="600" text-anchor="middle">0.0</text>
+
+  <!-- case-05: P P F P P -> 0.8 -->
+  <text class="tp" x="24" y="281" font-size="13">case-05</text>
+  <rect class="pass" x="200" y="263" width="40" height="26" rx="4"/>
+  <rect class="pass" x="280" y="263" width="40" height="26" rx="4"/>
+  <rect class="fail" x="360" y="263" width="40" height="26" rx="4"/>
+  <rect class="pass" x="440" y="263" width="40" height="26" rx="4"/>
+  <rect class="pass" x="520" y="263" width="40" height="26" rx="4"/>
+  <text class="tp" x="660" y="281" font-size="14" font-weight="600" text-anchor="middle">0.8</text>
+
+  <text class="ts" x="24" y="309" font-size="13" font-style="italic">… 45 more cases</text>
+
+  <!-- run-layer annotation -->
+  <g class="edge">
+    <path d="M206 332 H 554"/>
+    <path d="M214 327 L 204 332 L 214 337"/>
+    <path d="M546 327 L 556 332 L 546 337"/>
+  </g>
+  <text class="ts" x="380" y="352" font-size="13" text-anchor="middle">across runs: pass rate swings ≈ ±3 pts — the run layer</text>
+
+  <!-- callout -->
+  <rect class="callout" x="24" y="364" width="712" height="48" rx="6"/>
+  <text class="tp" x="40" y="385" font-size="13">Cluster by case: fold each row to one rate first, then n = 50 → interval <tspan class="accent" font-weight="600">±11</tspan>.</text>
+  <text class="ts" x="40" y="404" font-size="13">Most of the variance is the case layer; more runs cannot press it. Counting 250 as independent fakes ±6.</text>
+</svg>

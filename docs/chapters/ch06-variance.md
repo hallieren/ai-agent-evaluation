@@ -1,4 +1,4 @@
-# 6 The Fourth Wall: Run It Twice, Get Two Different Results, Variance, Sampling, and Significance
+# 6 The Fourth Wall: Run It Twice and Get Two Different Results — Variance, Sampling, and Significance
 
 !!! info "Chapter companion"
     📋 [Chapter templates](../appendices/ch06-templates.md) · 🧪 [Lab guide](../labs/ch06.md) · 💻 [Code & data (GitHub)](https://github.com/hallieren/ai-agent-evaluation/tree/main/repo/labs/ch06/)
@@ -55,6 +55,10 @@ A side check while we are here. If every run **redrew 50 fresh cases**, the bino
 
 Where between them, you do not guess. There is an algorithm that does not lie, **cluster by case**. **Each case first folds its 5 runs into one pass rate (all five pass = 1.0, three pass and two fail = 0.6); then take the standard deviation over these 50 case means and divide by √50.** The information the repeated runs supply folds into the case means automatically, and not a bit is counted twice.
 
+![Two layers of variance and clustering by case](../assets/images/two-layer-variance.svg)
+
+*Figure 6-1 Two layers of variance, and why clustering by case is the honest denominator. Read across a row (the five runs of one case) and the verdict barely moves — that is the run layer, the small between-run swing of about ±3 points. Read down the rows and case means run the whole range from 0.0 to 1.0 — that is the case layer, where most of the variance lives. Cluster-by-case folds each row into a single rate first, so the 250 verdicts collapse to n = 50 and the interval lands at ±11; counting the 250 as independent would fake a ±6 the data cannot support.*
+
 Walk it through with this example's numbers (units unified to proportions, 3.2 percentage points = 0.032). Run-layer variance = between-run variance × case count = 0.032² × 50 ≈ 0.05. Subtract that from the total variance 0.74 × 0.26 ≈ 0.19, and the case layer keeps about 0.14, close to three times the run layer. The clustered standard error (the standard deviation of the mean itself, measuring how much the estimate wobbles rather than the data) ≈ 5.5 percentage points, a 95% interval of about **±11**. The tempting ±6 is not on offer. Five repeated runs pressed the interval from ±12 only to ±11; the bulk of the variance sits in the case layer, and repeated runs cannot press it.
 
 Reporting ±6 by treating 250 verdicts as independent samples has a name in statistics, **pseudo-replication**. An ugly name, but accurate. Report the interval half as wide and you will declare improvements twice as often. The convention is fixed from here on. For merged multi-run numbers, the denominator is the case count and the algorithm is cluster-by-case; the harness's `interval95_clustered` implements exactly that, ten lines in all. 250 appears in the cost ledger, never in the interval.
@@ -106,6 +110,10 @@ pass@k fits scenarios with a human backstop, candidates generated, retries allow
 A single-run 90% sounds shippable; 0.9⁵ ≈ 59% is a frightening bill. Put that bill's assumption on the table first, **the same case is independent across runs**, the same customer's same request arriving five times, each time an independent coin with a 90% success rate.
 
 The opposite extreme is just as real. If failures concentrate on a fixed 10% of hard cases, that 10% fails every time and the other 90% passes every time, and the probability of 5 straight fully correct runs is 90%, no drop at all. The same "single-run 90%" can make pass^5 either 59% or 90%, and the whole difference is the shape of the failure, like a coin or like hard cases. Where your agent falls between the two ends has to be measured; an assumption is no substitute.
+
+![The same 90% under two shapes of failure](../assets/images/failure-shape.svg)
+
+*Figure 6-2 The same single-run 90% can produce pass⁵ ≈ 59% or ≈ 90%, and the shape of the failure decides which. On the left, failures behave like a coin: each run independently fails about 10%, the failures scatter across cases, and five clean runs in a row is 0.9⁵ ≈ 59%. On the right, failures behave like fixed hard cases: the same 10% fails every run while the easy 90% passes every run, so five fully correct runs is ≈ 90%. Both panels carry the identical single-run pass rate; only the flip rate tells you which one your agent is, so measure it rather than assume.*
 
 The **flip rate** exists for exactly this. Run the same case 5 times; the share of cases whose verdicts disagree measures directly how much "coin" is in your failures. An agent with a high flip rate fails like a coin, and any mean you report is a report on luck. An agent with a low flip rate and failures nailed to fixed cases gives you a stable mean, but every one of those hard cases deserves to go back to Chapter 3 for case-by-case coding. They are defects, not noise to throw away.
 
@@ -160,6 +168,24 @@ The **Statistics Cheat Sheet** (see the repo's [`templates/ch06/`](../appendices
 2. **The always-carry-an-interval report template**, metric, mean, interval, case count, run count, sev-layer counts, six columns and not one may be dropped. From this chapter on, this template is the base grid of every eval report in the book. The interval column's convention is printed in the template's footnote, merged multi-run clustered by case, denominator the case count, not the verdict count.
 
 ## Lab
+
+**Let an agent run it for you.** This lab measures variance against a real model, so it needs a model API (there is no offline path; `MODEL_FAKE=1` is script-testing only). In a repo set up per the [home page](../index.md), paste this to your coding agent:
+
+```text
+In the ai-agent-evaluation repo, run the Chapter 6 lab. From repo/, first run
+python labs/ch06/run.py once (default --repeat 1): it runs both prompt variants A and B
+over cases/cases-50. Report each version's single-run pass rate and the gap between them,
+then stop and let me write that gap down before anything else. Next ask me for one primary
+metric (I will say the layered pass rate) and have me write it down; only then run
+python labs/ch06/run.py --repeat 5 and show me the means, the clustered-by-case intervals,
+and the significance tests across every metric. Open
+templates/ch06/stats-cheat-sheet-report-template.md so I can land the comparison report.
+Important: do not tell me which version is better from the single run, do not pick the
+"significant" metric for me, and label every non-primary metric exploratory (send it to
+reproduction, not into a conclusion). The single-run gap is the thing this chapter takes
+apart; me committing to it and to the primary metric before the repeat runs is the whole
+point. Stop and show me the output if any command errors.
+```
 
 **Follow-along track (default).**
 

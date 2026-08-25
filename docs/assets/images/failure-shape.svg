@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 380" font-family="Inter,-apple-system,sans-serif">
+  <style>
+    .surface{fill:#FAFAF8}.tp{fill:#0A0A0A}.ts{fill:#737373}
+    .pass{fill:#002FA7;fill-opacity:.72}
+    .fail{fill:#FAFAF8;stroke:#B8B8B4;stroke-width:1.5}
+    .sep{stroke:#B8B8B4;stroke-width:1;fill:none}
+    .accent{fill:#002FA7}
+    @media (prefers-color-scheme: dark){
+      .surface{fill:#0A0A0A}.tp{fill:#FAFAF8}.ts{fill:#A8A8A6}
+      .pass{fill:#7A96E8;fill-opacity:.85}
+      .fail{fill:#0A0A0A;stroke:#5A5A58}
+      .sep{stroke:#5A5A58}
+      .accent{fill:#7A96E8}
+    }
+  </style>
+  <rect class="surface" x="0" y="0" width="760" height="380"/>
+  <text class="tp" x="24" y="38" font-size="17" font-weight="600">Same 90%, two shapes of failure</text>
+  <text class="ts" x="24" y="60" font-size="13">single-run pass rate identical · pass⁵ is not</text>
+
+  <!-- legend -->
+  <rect class="pass" x="470" y="27" width="16" height="16" rx="3"/>
+  <text class="tp" x="492" y="40" font-size="13">pass</text>
+  <rect class="fail" x="548" y="27" width="16" height="16" rx="3"/>
+  <text class="tp" x="570" y="40" font-size="13">fail</text>
+
+  <line class="sep" x1="380" y1="82" x2="380" y2="330"/>
+
+  <!-- LEFT panel: coin -->
+  <text class="tp" x="200" y="100" font-size="14" font-weight="600" text-anchor="middle">like a coin</text>
+  <text class="ts" x="200" y="120" font-size="13" text-anchor="middle">the 10% of fails scatter</text>
+  <!-- grid 10 cases x 5 runs; fails at (1,0)(6,1)(4,2)(8,3)(3,4) -->
+  <rect class="pass" x="60" y="140" width="20" height="16" rx="3"/><rect class="fail" x="88" y="140" width="20" height="16" rx="3"/><rect class="pass" x="116" y="140" width="20" height="16" rx="3"/><rect class="pass" x="144" y="140" width="20" height="16" rx="3"/><rect class="pass" x="172" y="140" width="20" height="16" rx="3"/><rect class="pass" x="200" y="140" width="20" height="16" rx="3"/><rect class="pass" x="228" y="140" width="20" height="16" rx="3"/><rect class="pass" x="256" y="140" width="20" height="16" rx="3"/><rect class="pass" x="284" y="140" width="20" height="16" rx="3"/><rect class="pass" x="312" y="140" width="20" height="16" rx="3"/>
+  <rect class="pass" x="60" y="162" width="20" height="16" rx="3"/><rect class="pass" x="88" y="162" width="20" height="16" rx="3"/><rect class="pass" x="116" y="162" width="20" height="16" rx="3"/><rect class="pass" x="144" y="162" width="20" height="16" rx="3"/><rect class="pass" x="172" y="162" width="20" height="16" rx="3"/><rect class="pass" x="200" y="162" width="20" height="16" rx="3"/><rect class="fail" x="228" y="162" width="20" height="16" rx="3"/><rect class="pass" x="256" y="162" width="20" height="16" rx="3"/><rect class="pass" x="284" y="162" width="20" height="16" rx="3"/><rect class="pass" x="312" y="162" width="20" height="16" rx="3"/>
+  <rect class="pass" x="60" y="184" width="20" height="16" rx="3"/><rect class="pass" x="88" y="184" width="20" height="16" rx="3"/><rect class="pass" x="116" y="184" width="20" height="16" rx="3"/><rect class="pass" x="144" y="184" width="20" height="16" rx="3"/><rect class="fail" x="172" y="184" width="20" height="16" rx="3"/><rect class="pass" x="200" y="184" width="20" height="16" rx="3"/><rect class="pass" x="228" y="184" width="20" height="16" rx="3"/><rect class="pass" x="256" y="184" width="20" height="16" rx="3"/><rect class="pass" x="284" y="184" width="20" height="16" rx="3"/><rect class="pass" x="312" y="184" width="20" height="16" rx="3"/>
+  <rect class="pass" x="60" y="206" width="20" height="16" rx="3"/><rect class="pass" x="88" y="206" width="20" height="16" rx="3"/><rect class="pass" x="116" y="206" width="20" height="16" rx="3"/><rect class="pass" x="144" y="206" width="20" height="16" rx="3"/><rect class="pass" x="172" y="206" width="20" height="16" rx="3"/><rect class="pass" x="200" y="206" width="20" height="16" rx="3"/><rect class="pass" x="228" y="206" width="20" height="16" rx="3"/><rect class="pass" x="256" y="206" width="20" height="16" rx="3"/><rect class="fail" x="284" y="206" width="20" height="16" rx="3"/><rect class="pass" x="312" y="206" width="20" height="16" rx="3"/>
+  <rect class="pass" x="60" y="228" width="20" height="16" rx="3"/><rect class="pass" x="88" y="228" width="20" height="16" rx="3"/><rect class="pass" x="116" y="228" width="20" height="16" rx="3"/><rect class="fail" x="144" y="228" width="20" height="16" rx="3"/><rect class="pass" x="172" y="228" width="20" height="16" rx="3"/><rect class="pass" x="200" y="228" width="20" height="16" rx="3"/><rect class="pass" x="228" y="228" width="20" height="16" rx="3"/><rect class="pass" x="256" y="228" width="20" height="16" rx="3"/><rect class="pass" x="284" y="228" width="20" height="16" rx="3"/><rect class="pass" x="312" y="228" width="20" height="16" rx="3"/>
+  <text class="ts" x="200" y="262" font-size="13" text-anchor="middle">5 runs × 10 cases</text>
+  <text class="accent" x="200" y="296" font-size="20" font-weight="600" text-anchor="middle">pass⁵ ≈ 59%</text>
+  <text class="ts" x="200" y="316" font-size="13" text-anchor="middle">0.9⁵ — each run an independent coin</text>
+
+  <!-- RIGHT panel: hard cases -->
+  <text class="tp" x="560" y="100" font-size="14" font-weight="600" text-anchor="middle">like fixed hard cases</text>
+  <text class="ts" x="560" y="120" font-size="13" text-anchor="middle">the 10% of fails pile on the same case</text>
+  <!-- grid 10 cases x 5 runs; column 5 (x=560) fails every run -->
+  <rect class="pass" x="420" y="140" width="20" height="16" rx="3"/><rect class="pass" x="448" y="140" width="20" height="16" rx="3"/><rect class="pass" x="476" y="140" width="20" height="16" rx="3"/><rect class="pass" x="504" y="140" width="20" height="16" rx="3"/><rect class="pass" x="532" y="140" width="20" height="16" rx="3"/><rect class="fail" x="560" y="140" width="20" height="16" rx="3"/><rect class="pass" x="588" y="140" width="20" height="16" rx="3"/><rect class="pass" x="616" y="140" width="20" height="16" rx="3"/><rect class="pass" x="644" y="140" width="20" height="16" rx="3"/><rect class="pass" x="672" y="140" width="20" height="16" rx="3"/>
+  <rect class="pass" x="420" y="162" width="20" height="16" rx="3"/><rect class="pass" x="448" y="162" width="20" height="16" rx="3"/><rect class="pass" x="476" y="162" width="20" height="16" rx="3"/><rect class="pass" x="504" y="162" width="20" height="16" rx="3"/><rect class="pass" x="532" y="162" width="20" height="16" rx="3"/><rect class="fail" x="560" y="162" width="20" height="16" rx="3"/><rect class="pass" x="588" y="162" width="20" height="16" rx="3"/><rect class="pass" x="616" y="162" width="20" height="16" rx="3"/><rect class="pass" x="644" y="162" width="20" height="16" rx="3"/><rect class="pass" x="672" y="162" width="20" height="16" rx="3"/>
+  <rect class="pass" x="420" y="184" width="20" height="16" rx="3"/><rect class="pass" x="448" y="184" width="20" height="16" rx="3"/><rect class="pass" x="476" y="184" width="20" height="16" rx="3"/><rect class="pass" x="504" y="184" width="20" height="16" rx="3"/><rect class="pass" x="532" y="184" width="20" height="16" rx="3"/><rect class="fail" x="560" y="184" width="20" height="16" rx="3"/><rect class="pass" x="588" y="184" width="20" height="16" rx="3"/><rect class="pass" x="616" y="184" width="20" height="16" rx="3"/><rect class="pass" x="644" y="184" width="20" height="16" rx="3"/><rect class="pass" x="672" y="184" width="20" height="16" rx="3"/>
+  <rect class="pass" x="420" y="206" width="20" height="16" rx="3"/><rect class="pass" x="448" y="206" width="20" height="16" rx="3"/><rect class="pass" x="476" y="206" width="20" height="16" rx="3"/><rect class="pass" x="504" y="206" width="20" height="16" rx="3"/><rect class="pass" x="532" y="206" width="20" height="16" rx="3"/><rect class="fail" x="560" y="206" width="20" height="16" rx="3"/><rect class="pass" x="588" y="206" width="20" height="16" rx="3"/><rect class="pass" x="616" y="206" width="20" height="16" rx="3"/><rect class="pass" x="644" y="206" width="20" height="16" rx="3"/><rect class="pass" x="672" y="206" width="20" height="16" rx="3"/>
+  <rect class="pass" x="420" y="228" width="20" height="16" rx="3"/><rect class="pass" x="448" y="228" width="20" height="16" rx="3"/><rect class="pass" x="476" y="228" width="20" height="16" rx="3"/><rect class="pass" x="504" y="228" width="20" height="16" rx="3"/><rect class="pass" x="532" y="228" width="20" height="16" rx="3"/><rect class="fail" x="560" y="228" width="20" height="16" rx="3"/><rect class="pass" x="588" y="228" width="20" height="16" rx="3"/><rect class="pass" x="616" y="228" width="20" height="16" rx="3"/><rect class="pass" x="644" y="228" width="20" height="16" rx="3"/><rect class="pass" x="672" y="228" width="20" height="16" rx="3"/>
+  <text class="ts" x="560" y="262" font-size="13" text-anchor="middle">5 runs × 10 cases</text>
+  <text class="accent" x="560" y="296" font-size="20" font-weight="600" text-anchor="middle">pass⁵ ≈ 90%</text>
+  <text class="ts" x="560" y="316" font-size="13" text-anchor="middle">the easy 90% pass every run</text>
+
+  <text class="ts" x="380" y="356" font-size="13" text-anchor="middle">Same 90% single-run — the shape of failure sets pass⁵. Measure it with the flip rate; don't assume.</text>
+</svg>
