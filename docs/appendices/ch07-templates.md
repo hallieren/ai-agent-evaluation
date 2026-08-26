@@ -14,8 +14,8 @@
 ```
 case(YAML)──> runner ──> trace(JSONL)──┬──> assertions ──┐
                 │  │                   │                 ├──> stats ──> report
-                │  └── synthetic users                   │
-                │                      └──> judge ───────┘
+                │  │                   └──> judge ───────┘
+                │  └── synthetic users
                 └───── world(sandbox + stubs)
 ```
 
