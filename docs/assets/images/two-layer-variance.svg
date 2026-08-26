@@ -89,7 +89,7 @@
     <path d="M214 327 L 204 332 L 214 337"/>
     <path d="M546 327 L 556 332 L 546 337"/>
   </g>
-  <text class="ts" x="380" y="352" font-size="13" text-anchor="middle">across runs: pass rate swings ≈ ±3 pts — the run layer</text>
+  <text class="ts" x="380" y="352" font-size="13" text-anchor="middle">across runs: pass rate swings ≈ ±3 pts, the run layer</text>
 
   <!-- callout -->
   <rect class="callout" x="24" y="364" width="712" height="48" rx="6"/>

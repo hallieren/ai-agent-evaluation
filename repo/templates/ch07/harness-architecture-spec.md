@@ -5,11 +5,11 @@
 ## 1. Six-component data flow
 
 ```
-cases ──> runner ──> trace(JSONL, contract §3)
-              │            │
-   world(sandbox+stubs)  assertions ──┐
-   synth(synthetic users) judge ──────┼──> stats ──> report
-                                        ┘
+case(YAML)──> runner ──> trace(JSONL)──┬──> assertions ──┐
+                │  │                   │                 ├──> stats ──> report
+                │  └── synth(synthetic users)            │
+                │                      └──> judge ───────┘
+                └───── world(sandbox + stubs)
 ```
 
 | Component | Job | My counterpart |

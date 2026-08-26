@@ -121,15 +121,11 @@ Now assemble the machine (`harness/`). Six components, each one loot from an ear
 
 The data flow is a straight line.
 
-```
-case(YAML)──> runner ──> trace(JSONL)──┬──> assertions ──┐
-                │  │                   │                 ├──> stats ──> report
-                │  └── synth(synthetic users)            │
-                │                      └──> judge ───────┘
-                └───── world(sandbox + stubs)
-```
+![The harness's six-component data flow](../assets/images/harness-dataflow.svg)
 
-**Figure 7-1 The harness's six-component data flow.** Two swappable parts hang under the runner, world and synth. The six components contain not a trace of Shore & Summit knowledge; all of the world knowledge lives in those two swappable parts. Verdicts run dual-channel (assertions and judge, Chapter 5's ladder), merge at stats into numbers with intervals, and report prints them layered by sev. A few hundred lines of Python, no magic. "Build a thin harness yourself" means nothing more than stringing the six pieces of equipment you already own onto one data flow; no platform required.
+*Figure 7-1 The harness's six-component data flow. Two swappable parts hang under the runner, world and synth. The six components contain not a trace of Shore & Summit knowledge; all of the world knowledge lives in those two swappable parts. Verdicts run dual-channel (assertions and judge, Chapter 5's ladder), merge at stats into numbers with intervals, and report prints them layered by sev.*
+
+A few hundred lines of Python, no magic. "Build a thin harness yourself" means nothing more than stringing the six pieces of equipment you already own onto one data flow; no platform required.
 
 ### Stub Fidelity Itself Must Be Evaluated
 
