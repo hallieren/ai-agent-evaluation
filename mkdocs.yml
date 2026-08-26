@@ -57,6 +57,7 @@ nav:
       - "Ch 4 · Building Eval Sets": chapters/ch04-eval-sets.md
       - "Ch 5 · The Judgment Ladder ★": chapters/ch05-judgment-ladder.md
       - "Ch 6 · Variance, Sampling, and Significance": chapters/ch06-variance.md
+      - "Ch 7 · Harness and Sandbox": chapters/ch07-harness.md
   - Labs:
       - "Ch 1 Lab": labs/ch01.md
       - "Ch 2 Lab": labs/ch02.md
@@ -64,6 +65,7 @@ nav:
       - "Ch 4 Lab": labs/ch04.md
       - "Ch 5 Lab": labs/ch05.md
       - "Ch 6 Lab": labs/ch06.md
+      - "Ch 7 Lab": labs/ch07.md
   - Template appendix:
       - "Ch 1 templates": appendices/ch01-templates.md
       - "Ch 2 templates": appendices/ch02-templates.md
@@ -71,3 +73,4 @@ nav:
       - "Ch 4 templates": appendices/ch04-templates.md
       - "Ch 5 templates": appendices/ch05-templates.md
       - "Ch 6 templates": appendices/ch06-templates.md
+      - "Ch 7 templates": appendices/ch07-templates.md
