@@ -38,4 +38,4 @@ Before submitting a case, read the coverage matrix in Chapter 4, Building Eval S
 
 ## Licensing
 
-By submitting, you agree that prose contributions are licensed under CC BY-NC-SA 4.0 and code contributions under MIT.
+By submitting, you agree that prose contributions are licensed under CC BY-NC-SA 4.0 and code contributions under MIT. For prose contributions you additionally grant the author the right to relicense your contribution, including in commercially published editions of this book. Code under MIT needs no additional grant.

@@ -1,0 +1,12 @@
+cff-version: 1.2.0
+message: "If you use this book or its companion code, please cite it as below."
+title: "AI Agent Evaluation"
+authors:
+  - family-names: "Ren"
+    given-names: "Hallie"
+type: software
+url: "https://hallieren.github.io/ai-agent-evaluation/"
+repository-code: "https://github.com/hallieren/ai-agent-evaluation"
+license: CC-BY-NC-SA-4.0
+year: 2026
+abstract: "A free, open-source book on evaluating AI agents: score the endpoint, attribute the path, account for the side effects. Sixteen chapters with templates and zero-dependency labs."

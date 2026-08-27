@@ -6,7 +6,7 @@
 
 *Shore & Summit is a synthetic teaching world assembled from common enterprise scenarios; it does not correspond to any real company, and every character in this book is fictional.*
 
-The book is released chapter by chapter. Chapters 1 through 8 are live, and the remaining chapters and appendices land one at a time, roughly weekly, each as it clears our own practice pass. Unreleased chapters below are marked 🚧 coming.
+The book is released chapter by chapter. Chapters 1 through 8 are live, and the remaining chapters and appendices land one at a time, roughly weekly, each as it clears our own practice pass. Each released chapter is paired with an applied essay on the author's Substack: [hallieren.substack.com](https://hallieren.substack.com). Unreleased chapters below are marked 🚧 coming.
 
 ## How to read
 
