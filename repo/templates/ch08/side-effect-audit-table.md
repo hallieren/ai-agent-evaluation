@@ -1,6 +1,6 @@
 # Side-Effect Audit Table (Chapter 8)
 
-> Notes: the three typical side effects of write tools × three detection methods. Once the verdict methods are in place, register every finding from every run in the last column — every "change not declared as expected" on a diff list lands here.
+> Notes: the three typical side effects of write tools × three detection methods. Once the verdict methods are in place, register every finding from every run in the last column. Every "change not declared as expected" on a diff list lands here.
 
 ## Side effect × detection method
 

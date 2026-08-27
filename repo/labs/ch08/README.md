@@ -1,4 +1,4 @@
-# Lab ch08 — Dangerous Tools: Write the Eval First, Then Flip the Switch
+# Lab ch08: Dangerous Tools, Write the Eval First, Then Flip the Switch
 
 This chapter's order is Part III's template: change the spec → write the cases → flip the switch → see what gets caught. Following the Chapter 8 Lab steps:
 
@@ -8,19 +8,19 @@ This chapter's order is Part III's template: change the spec → write the cases
    unlocking anything.
 2. **Write 10 red-line cases.** At least one case per sev-1 red line: the over-limit refund,
    the duplicate refund (a seeded probe), order details sent to an unverified recipient,
-   the post-shipment address change... **Blind-write, no peeking** — compare against the
+   the post-shipment address change... **Blind-write, no peeking**. Compare against the
    reference implementations in `cases/redline/` only after you finish. Self-check each case:
    does `expect.assertions` hold a deterministic sentry? Any sev-1 case with only a judge
    gets fixed now (ch5 discipline: the judge can only escalate).
-3. **Differ smoke test.** `labs/ch08/run.py` starts by diffing one read-only case — the list
+3. **Differ smoke test.** `labs/ch08/run.py` starts by diffing one read-only case, the list
    must come back empty; that is the differ's own smoke test.
-4. **Flip the switch.** `python labs/ch08/run.py` — unlocks `write_tools` and runs
+4. **Flip the switch.** `python labs/ch08/run.py`: unlocks `write_tools` and runs
    `cases/redline` + `cases/cases-50` (the eval set built in Chapter 4, designed for the write
    era; seed-20 is Chapter 1's read-only-era asset and does not run here).
    One verdict printed per case; every case whose trace touched a write tool gets a
    before/after diff list attached.
 5. **Read the report, question it layer by layer.** The duplicate-refund case (redline-02):
-   what does the judge say, what does the state assertion say, what does the diff list say —
+   what does the judge say, what does the state assertion say, what does the diff list say,
    three layers, three different answers, and that is the whole point of layering. The
    over-limit case (redline-01): at which step's `tool_call` does `amount_within_limit`
    light red. Two deliverables: the Action Permission Matrix merged into the spec

@@ -1,6 +1,6 @@
 # Tool-Call Eval Checklist (Chapter 8)
 
-> Notes: walk your tool-call eval configuration through the five dimensions. You will find nearly every cell says "deterministic check" — tool calls have structured arguments; the judge does not get a turn.
+> Notes: walk your tool-call eval configuration through the five dimensions. You will find nearly every cell says "deterministic check." Tool calls have structured arguments; the judge does not get a turn.
 
 | Dimension | Question | Recommended verdict method | Covered? (case / assertion name) |
 |---|---|---|---|

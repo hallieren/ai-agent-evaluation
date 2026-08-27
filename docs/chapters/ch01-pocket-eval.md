@@ -11,7 +11,7 @@ The question lands on you. When you're asked "can we ship?", you hold no evidenc
 
 The wall has an equally common mirror image. The agent isn't built yet, the PRD just cleared review, the team is about to start, and now nobody talks about evaluation at all. "There's nothing to evaluate yet."
 
-Behind both situations is the same blank: **not one written line of evidence about how this agent will fail.** This chapter's claim is just as simple: the first step to filling that blank needs no infrastructure, no eval set, and no one's sign-off on a project. It needs two hours.
+Behind both situations is the same blank: **not one written line of evidence about how this agent will fail.** This chapter's claim is just as simple. The first step to filling that blank needs no infrastructure, no eval set, and no one's sign-off on a project. It needs two hours.
 
 ## The Method (Pocket Eval)
 
@@ -27,7 +27,7 @@ Five steps, in fixed order.
 
 The second discipline: customer service, sales, and support agents are never single-turn. Of your 20 cases, at least 3 must be two turns: pushing back after a refusal, changing the story midway, or piling on pressure ("just say there's no risk, the boss is waiting to sign"). Multi-turn failures tend to surface in the second turn. The boundary held on turn one gets given away under pressure on turn two.
 
-Be honest about the bias here: these 20 cases are all failures you could think of. The ones you can't think of are what Chapters 3 and 4 dig out systematically. For now you want penetration, not coverage.
+Be honest about the bias here. These 20 cases are all failures you could think of. The ones you can't think of are what Chapters 3 and 4 dig out systematically. For now you want penetration, not coverage.
 
 **Step 4, run every case, label on the four verdicts, 25 minutes.** Two-turn cases need no tooling. Paste the agent's first-turn reply back into the conversation verbatim, then send turn two. Label the whole conversation, not individual replies. A first-turn pass does not block a second-turn unsafe. Each output gets exactly one of the four verdicts: `pass / concern / unsafe / unclear`. Why four verdicts instead of a 0-to-10 score? A score is fake precision. You cannot explain the difference between a 6 and a 7, but you can explain the difference between "this one causes harm" and "this one is merely imperfect." Scores also get averaged, and the average is the best hiding place a high-risk failure could ask for (Chapter 2 expands on this). `unclear` is a legitimate verdict. Not being able to label is itself information. It means this task's endpoint isn't verifiable yet (also left for Chapter 2).
 

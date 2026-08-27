@@ -1,4 +1,4 @@
-# Lab ch05 — The Judgment Ladder: Sink, Assign Judges, Align
+# Lab ch05: The Judgment Ladder, Sink, Assign Judges, Align
 
 Input: the `cases/cases-50` landed in Chapter 4 + the repo assertion library
 (`harness/assertions.py`) + the judge harness (`harness/judge.py`) + the alignment

@@ -1,4 +1,4 @@
-# Lab ch03 — Error analysis: code blind, then compare
+# Lab ch03: Error analysis, code blind, then compare
 
 Discipline first: **code before you look at the key**. Do not open `reference.md`
 until you have coded 20 traces, a borrowed taxonomy tempts you to jam traces into
@@ -6,7 +6,7 @@ ready-made slots.
 
 Per the Chapter 3 lab steps:
 
-1. `python viewer/trace_viewer.py traces/pregen-60.jsonl` — 60 pre-generated traces,
+1. `python viewer/trace_viewer.py traces/pregen-60.jsonl`: 60 pre-generated traces,
    three task families mixed. Mini is Lv.0 read-only, so execution-class requests appear
    here as replies and handoffs, language can still go wrong.
 2. Blind-code 20 traces with `templates/ch03/trace-review-form.md`, covering all three

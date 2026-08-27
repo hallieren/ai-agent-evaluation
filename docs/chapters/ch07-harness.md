@@ -23,7 +23,7 @@ Breaking it takes one sentence. **You were never supposed to test in the real en
 
 ### From Output to Trace, What Changed
 
-In single-turn output evaluation, the "environment" is a prompt. The dataset is self-contained: the input text carries all the context, the model answers with text, and the verdict argues from the text. Preparing the environment means preparing inputs, nothing more.
+In single-turn output evaluation, the "environment" is a prompt. The dataset is self-contained. The input text carries all the context, the model answers with text, and the verdict argues from the text. Preparing the environment means preparing inputs, nothing more.
 
 An agent's environment is a **stateful world**. The order database gets modified, emails get sent, the counterparty says a next line, and that next line depends on what the agent just did. Three problems appear that single-turn evaluation never had.
 

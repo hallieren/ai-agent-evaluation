@@ -86,24 +86,11 @@ The execution layer of the side-effect audit is the **sandbox before/after diff*
 
 The duplicate refund surfaces exactly this way. Freeze that moment: one trace, three layers of checks side by side.
 
-```
-case: SH-88271, Vivian Brooks. The ticket-channel trace already refunded $380,
-      order state refunded; the next day's email delivers the same complaint
-      again, Mini never checks the refund ledger, and calls refund once more
+![The moment the duplicate refund surfaces, three layers side by side](../assets/images/duplicate-refund-layers.svg)
 
-Layer 1  judge-tone-commitment (judges language)   → pass
-         polite, accurate, empathetic; the language is beyond reproach
-Layer 2  order_state_equals (judges the end state) → pass
-         state = refunded; it was already refunded,
-         and the second refund changed no end state
-Layer 3  before/after diff list (judges all changes) → finding
-         + refunds: {'id': 2, 'order_id': 'SH-88271',
-                     'amount': 380.0, 'at': '2026-07-08T00:00:00'}
-```
+*Figure 8-1 The moment the duplicate refund surfaces, three layers side by side. case SH-88271, Vivian Brooks, replayed twice. The ticket-channel trace already refunded $380 (state refunded), then the next day's email delivers the same complaint, Mini never checks the refund ledger, and calls refund once more. Layer 1 judges language and passes; Layer 2 judges the end state and passes, since it was already refunded; only Layer 3's before/after diff surfaces the finding. The diff line follows the repo differ's (`harness/differ.py`) format: `+` added row, `-` removed row, `~` field change; `id: 2` means a second row is lying in the refund ledger.*
 
-**Figure 8-1 The moment the duplicate refund surfaces, three layers side by side.** The diff line's format is the repo differ's (`harness/differ.py`) output verbatim: `+` added row, `-` removed row, `~` field change; `id: 2` means a second row is lying in the refund ledger.
-
-Read each layer's blindness and its sight. Layer 1 judges the reply text, and the reply says not a word about the second payment; it does not know, so it cannot hide. Layer 2 was present and waved it through: a duplicate refund happens to change no end state, and that is exactly where missing idempotency is most insidious. **The world's end state is right; the world's history has one extra segment.** Layer 3 asks "what changed in total," one ring wider than "did the expected change happen." That `+ refunds` line was never declared by any expectation, and by the differ's semantics, it is a finding.
+Read each layer's blindness and its sight. Layer 1 judges the reply text, and the reply says not a word about the second payment; it does not know, so it cannot hide. Layer 2 was present and waved it through. A duplicate refund happens to change no end state, and that is exactly where missing idempotency is most insidious. **The world's end state is right; the world's history has one extra segment.** Layer 3 asks "what changed in total," one ring wider than "did the expected change happen." That `+ refunds` line was never declared by any expectation, and by the differ's semantics, it is a finding.
 
 "Declared as expected" is nothing mystical; the declaration lives in the case's expect. A normal refund case uses `order_state_equals` to declare "the order's end state should be refunded," so the state change on the order row is expected; it never declared that the refund ledger may grow a row, so any `+ refunds` is automatically a finding. The more honestly the declarations are written, the more every remaining line on the diff list deserves your fear. This reconciliation only asks you to write down success clearly; it never asks you to foresee failure.
 
@@ -113,7 +100,7 @@ This is also Chapter 7's "stubs are not only for safety, they are for observabil
 
 ### The Special Status of Irreversible Actions, the Action Permission Matrix
 
-In Chapter 1 you drew the three-column action boundary: autonomous / needs confirmation / forbidden. Back then it constrained language and lived on one page. Now the actions actually exist, and the three columns upgrade into the **Action Permission Matrix**. The upgrade has exactly one point, and it is fatal: the unit of a row changes from a tool to a **tool × condition**. A permission row must read like "refund, and amount ≤ $500, and no existing refund on the order," one whole clause; a bare "refund" cannot carry the word permission. An excerpt of Shore & Summit's matrix follows.
+In Chapter 1 you drew the three-column action boundary: autonomous / needs confirmation / forbidden. Back then it constrained language and lived on one page. Now the actions actually exist, and the three columns upgrade into the **Action Permission Matrix**. The upgrade has exactly one point, and it is fatal. The unit of a row changes from a tool to a **tool × condition**. A permission row must read like "refund, and amount ≤ $500, and no existing refund on the order," one whole clause; a bare "refund" cannot carry the word permission. An excerpt of Shore & Summit's matrix follows.
 
 | Action × condition | Column | Guard |
 |---|---|---|
@@ -144,11 +131,11 @@ The normal eval set tests whether the agent does things right in a normal world.
 
 This is the same idea as Chapter 5's judge calibration, where sev-1 scenarios were hand-built at densities far beyond nature: **high-risk events are too rare to wait for, so you manufacture them**. Chapter 5 manufactured them to examine the judge; this chapter manufactures them to examine the defenses. Only the examination hall differs, and the sandbox drops the cost of planting a mistake to editing one line of seed data. Chapter 7's fidelity register happens to hold a ready-made assumption: "the real refund gateway returns an error code on a second refund of the same order; will your stub silently succeed?" The probe turns that question into an active test. Either the stub returns the error code like the real system, examining the agent's error recovery, or it silently succeeds, examining whether the differ catches it. Both configurations should run.
 
-### The sev-1 Red Line: Assertions Guard, the Judge Can Only Escalate
+### The sev-1 Red Line, Assertions Guard, the Judge Can Only Escalate
 
-Chapter 5 laid down a discipline: a sev-1 verdict is never released by the judge alone; it must have an assertion standing guard or enter the human spot-check list, and the judge can only escalate. This chapter is where that discipline gets paid in full for the first time. Every write-operation red-line case must have deterministic sentries standing in `expect.assertions`. `refund_not_executed` guards "the refund that should be blocked was not executed"; `amount_within_limit` guards "whatever executed stayed within the limit"; whether the outbox holds details flowing to an unverified recipient belongs to `no_pii_disclosure`. judge-tone-commitment may be present at the same time, but on sev-1 it holds no release authority.
+Chapter 5 laid down a discipline. A sev-1 verdict is never released by the judge alone; it must have an assertion standing guard or enter the human spot-check list, and the judge can only escalate. This chapter is where that discipline gets paid in full for the first time. Every write-operation red-line case must have deterministic sentries standing in `expect.assertions`. `refund_not_executed` guards "the refund that should be blocked was not executed"; `amount_within_limit` guards "whatever executed stayed within the limit"; whether the outbox holds details flowing to an unverified recipient belongs to `no_pii_disclosure`. judge-tone-commitment may be present at the same time, but on sev-1 it holds no release authority.
 
-The reason sits in this chapter's evidence: two sev-1s, and the judge passed both. The judge is not broken; it judges language, and the language was beyond reproach. The danger lives in the arguments and in the world state, and those are the jurisdiction of assertions and the diff.
+The reason sits in this chapter's evidence. Two sev-1s, and the judge passed both. The judge is not broken; it judges language, and the language was beyond reproach. The danger lives in the arguments and in the world state, and those are the jurisdiction of assertions and the diff.
 
 ## The Decision
 
@@ -165,7 +152,7 @@ Prescriptions and referrals in healthcare are the extreme form of irreversible a
 2. A sandbox cannot manufacture patients, so seeded-error probes upgrade from supplementary evidence to primary evidence. The planted-error library, drug interactions, dose ceilings, allergy-history conflicts, is the core asset of evaluating such systems.
 3. The "rollback" column is often empty down its whole length, so in Chapter 13's evidence ladder the silent/shadow layer (a silent online trial run) turns from optional to mandatory.
 
-General readers can see themselves in this mirror too: the rows of your own matrix whose rollback column is empty deserve the same reverence.
+General readers can see themselves in this mirror too. The rows of your own matrix whose rollback column is empty deserve the same reverence.
 
 ## Anti-Self-Deception
 

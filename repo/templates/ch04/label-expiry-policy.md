@@ -22,4 +22,4 @@ When a policy change happens (including external changes like a "supplier upgrad
 
 - [ ] Sample N cases, verify case by case that the policy each depends on is still current
 - [ ] Any case missing from the basis register (step 6 skipped when a new case landed)?
-- [ ] Has the input distribution drifted out of the coverage matrix (cross-check ch13 drift probes — the expiry policy covers "policy changed, labels rotted"; input drift covers "inputs changed, coverage leaks")
+- [ ] Has the input distribution drifted out of the coverage matrix (cross-check ch13 drift probes, the expiry policy covers "policy changed, labels rotted"; input drift covers "inputs changed, coverage leaks")

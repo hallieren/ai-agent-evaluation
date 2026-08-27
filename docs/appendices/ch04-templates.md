@@ -7,7 +7,7 @@
 
 ## Coverage Matrix Template (Chapter 4)
 
-> Note: three-dimensional coverage, failure mode × severity × user type. An empty cell is not a sin, an unsigned one is — rule every empty cell "fill" or "reasoned empty" and log it in the annotation bar.
+> Note: three-dimensional coverage, failure mode × severity × user type. An empty cell is not a sin, an unsigned one is. Rule every empty cell "fill" or "reasoned empty" and log it in the annotation bar.
 
 ### Matrix (one row per failure mode, counts spread by persona)
 
@@ -81,6 +81,6 @@ When a policy change happens (including external changes like a "supplier upgrad
 
 - [ ] Sample N cases, verify case by case that the policy each depends on is still current
 - [ ] Any case missing from the basis register (step 6 skipped when a new case landed)?
-- [ ] Has the input distribution drifted out of the coverage matrix (cross-check ch13 drift probes — the expiry policy covers "policy changed, labels rotted"; input drift covers "inputs changed, coverage leaks")
+- [ ] Has the input distribution drifted out of the coverage matrix (cross-check ch13 drift probes, the expiry policy covers "policy changed, labels rotted"; input drift covers "inputs changed, coverage leaks")
 
 > Source file: [`templates/ch04/label-expiry-policy.md`](https://github.com/hallieren/ai-agent-evaluation/blob/main/repo/templates/ch04/label-expiry-policy.md)

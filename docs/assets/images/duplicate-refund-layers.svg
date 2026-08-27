@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 780 344" font-family="Inter,-apple-system,sans-serif">
+  <style>
+    .surface{fill:#FAFAF8}.tp{fill:#0A0A0A}.ts{fill:#737373}
+    .band{fill:#FFFFFF;fill-opacity:.55;stroke:#B8B8B4;stroke-width:1.5}
+    .find{fill:#002FA7;fill-opacity:.09;stroke:#002FA7;stroke-width:1.5}
+    .pill-pass{fill:#FAFAF8;stroke:#B8B8B4;stroke-width:1.5}
+    .pill-find{fill:#002FA7;stroke:#002FA7;stroke-width:1.5}
+    .accent{fill:#002FA7}
+    .onaccent{fill:#FAFAF8}
+    .mono{font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+    @media (prefers-color-scheme: dark){
+      .surface{fill:#0A0A0A}.tp{fill:#FAFAF8}.ts{fill:#A8A8A6}
+      .band{fill:#FFFFFF;fill-opacity:.04;stroke:#5A5A58}
+      .find{fill:#7A96E8;fill-opacity:.16;stroke:#7A96E8}
+      .pill-pass{fill:#0A0A0A;stroke:#5A5A58}
+      .pill-find{fill:#7A96E8;stroke:#7A96E8}
+      .accent{fill:#7A96E8}
+      .onaccent{fill:#0A0A0A}
+    }
+  </style>
+  <rect class="surface" x="0" y="0" width="780" height="344"/>
+
+  <text class="tp" x="24" y="34" font-size="17" font-weight="600">The duplicate refund surfaces, three layers side by side</text>
+  <text class="ts" x="24" y="56" font-size="13">Same trace, same order SH-88271; only the widest check catches it</text>
+
+  <!-- Layer 1 -->
+  <rect class="band" x="20" y="76" width="740" height="66" rx="8"/>
+  <text class="tp" x="40" y="106" font-size="14" font-weight="600">Layer 1   judge-tone-commitment</text>
+  <text class="ts" x="40" y="128" font-size="13">judges language · reply polite, says nothing of the 2nd payment</text>
+  <rect class="pill-pass" x="624" y="92" width="120" height="34" rx="17"/>
+  <text class="ts" x="684" y="114" font-size="14" font-weight="600" text-anchor="middle">PASS</text>
+
+  <!-- Layer 2 -->
+  <rect class="band" x="20" y="152" width="740" height="66" rx="8"/>
+  <text class="tp" x="40" y="182" font-size="14" font-weight="600">Layer 2   order_state_equals</text>
+  <text class="ts" x="40" y="204" font-size="13">judges end state · already refunded, 2nd refund changes nothing</text>
+  <rect class="pill-pass" x="624" y="168" width="120" height="34" rx="17"/>
+  <text class="ts" x="684" y="190" font-size="14" font-weight="600" text-anchor="middle">PASS</text>
+
+  <!-- Layer 3 -->
+  <rect class="find" x="20" y="228" width="740" height="90" rx="8"/>
+  <text class="tp" x="40" y="256" font-size="14" font-weight="600">Layer 3   before/after diff</text>
+  <text class="ts" x="40" y="278" font-size="13">judges all changes · a line no expectation ever declared</text>
+  <text class="accent mono" x="40" y="304" font-size="13">+ refunds {id: 2, order_id: SH-88271, amount: 380.0}</text>
+  <rect class="pill-find" x="624" y="244" width="120" height="34" rx="17"/>
+  <text class="onaccent" x="684" y="266" font-size="14" font-weight="600" text-anchor="middle">FINDING</text>
+</svg>

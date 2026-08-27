@@ -36,7 +36,7 @@
   <rect class="pass" x="60" y="228" width="20" height="16" rx="3"/><rect class="pass" x="88" y="228" width="20" height="16" rx="3"/><rect class="pass" x="116" y="228" width="20" height="16" rx="3"/><rect class="fail" x="144" y="228" width="20" height="16" rx="3"/><rect class="pass" x="172" y="228" width="20" height="16" rx="3"/><rect class="pass" x="200" y="228" width="20" height="16" rx="3"/><rect class="pass" x="228" y="228" width="20" height="16" rx="3"/><rect class="pass" x="256" y="228" width="20" height="16" rx="3"/><rect class="pass" x="284" y="228" width="20" height="16" rx="3"/><rect class="pass" x="312" y="228" width="20" height="16" rx="3"/>
   <text class="ts" x="200" y="262" font-size="13" text-anchor="middle">5 runs × 10 cases</text>
   <text class="accent" x="200" y="296" font-size="20" font-weight="600" text-anchor="middle">pass⁵ ≈ 59%</text>
-  <text class="ts" x="200" y="316" font-size="13" text-anchor="middle">0.9⁵ — each run an independent coin</text>
+  <text class="ts" x="200" y="316" font-size="13" text-anchor="middle">0.9⁵, each run an independent coin</text>
 
   <!-- RIGHT panel: hard cases -->
   <text class="tp" x="560" y="100" font-size="14" font-weight="600" text-anchor="middle">like fixed hard cases</text>
@@ -51,5 +51,5 @@
   <text class="accent" x="560" y="296" font-size="20" font-weight="600" text-anchor="middle">pass⁵ ≈ 90%</text>
   <text class="ts" x="560" y="316" font-size="13" text-anchor="middle">the easy 90% pass every run</text>
 
-  <text class="ts" x="380" y="356" font-size="13" text-anchor="middle">Same 90% single-run — the shape of failure sets pass⁵. Measure it with the flip rate; don't assume.</text>
+  <text class="ts" x="380" y="356" font-size="13" text-anchor="middle">Same 90% single-run, the shape of failure sets pass⁵. Measure it with the flip rate; don't assume.</text>
 </svg>

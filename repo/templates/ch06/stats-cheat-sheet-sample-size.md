@@ -10,7 +10,7 @@
 | ±5 percentage points | ≈ 400 cases |
 
 Derivation: half-width ≈ 1/√n → to distinguish a 5-point improvement, you need about 400 cases. "How big an eval set is enough": half the answer is content, the coverage matrix (ch4); half is size, here.
-**n is the case count, not the verdict count**: merged multi-run clusters by case (each case first folds its k runs into one pass rate); repeated runs cannot press case-layer variance — 50 cases × 5 runs ≈ ±11, not 1/√250 ≈ ±6.
+**n is the case count, not the verdict count**: merged multi-run clusters by case (each case first folds its k runs into one pass rate); repeated runs cannot press case-layer variance. 50 cases × 5 runs ≈ ±11, not 1/√250 ≈ ±6.
 
 ## Flip rate
 
