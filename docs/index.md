@@ -7,7 +7,7 @@ Written for engineers pushing agents toward production, the ones asked "can we s
 The whole book has one lab agent (**Mini**, a few hundred lines of pure-stdlib Python) and one task world (a fictional e-commerce company, **Shore & Summit**). Mini ships with its capabilities sealed behind flags, and every chapter's Lab keeps the same discipline: **write the eval first → then unlock the capability → watch what the eval catches.**
 
 !!! note "Released chapter by chapter"
-    Chapters 1 through 7 are live. The remaining chapters and appendices land one at a time, roughly weekly, each as it clears our own practice pass. Unreleased items appear below as plain titles marked 🚧.
+    Chapters 1 through 8 are live. The remaining chapters and appendices land one at a time, roughly weekly, each as it clears our own practice pass. Unreleased items appear below as plain titles marked 🚧.
 
 ## A 30-second start (no API key)
 
@@ -77,7 +77,7 @@ Reading Chapter 1 straight through to Chapter 16 is only one of three paths. Pic
 | 5 ★ | Human labeling can't keep up | [Judgment Ladder Decision Tree + Judge Validation Report](appendices/ch05-templates.md) | [ch05](chapters/ch05-judgment-ladder.md) | [lab](labs/ch05.md) |
 | 6 | Run it twice, get two different results | [Statistics Cheat Sheet](appendices/ch06-templates.md) | [ch06](chapters/ch06-variance.md) | [lab](labs/ch06.md) |
 | 7 | You don't dare test in the real environment | [Harness Architecture Spec + Synthetic User Persona Library](appendices/ch07-templates.md) | [ch07](chapters/ch07-harness.md) | [lab](labs/ch07.md) |
-| 8 ★ | The reply is impeccable; the danger hides in a mid-trace parameter | Action Permission Matrix + Side-Effect Audit Table | Dangerous Tools 🚧 | 🚧 |
+| 8 ★ | The reply is impeccable; the danger hides in a mid-trace parameter | [Action Permission Matrix + Side-Effect Audit Table](appendices/ch08-templates.md) | [ch08](chapters/ch08-dangerous-tools.md) | [lab](labs/ch08.md) |
 | 9 | The endpoint is still right; the bill has already doubled | Planning Quality Rubric + Cost/Latency Report Template | Planning and Cost 🚧 | 🚧 |
 | 10 | It digs up last month's history to apologize to a customer | Memory Eval Matrix + Long-Task Attribution Protocol | Memory 🚧 | 🚧 |
 | 11 ★ | End-to-end failed; both agents say it wasn't them | Multi-Agent Attribution Decision Tree + Handoff Checklist | Subagents 🚧 | 🚧 |

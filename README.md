@@ -6,7 +6,7 @@
 
 *Shore & Summit is a synthetic teaching world assembled from common enterprise scenarios; it does not correspond to any real company, and every character in this book is fictional.*
 
-The book is released chapter by chapter. Chapters 1 through 7 are live, and the remaining chapters and appendices land one at a time, roughly weekly, each as it clears our own practice pass. Unreleased chapters below are marked 🚧 coming.
+The book is released chapter by chapter. Chapters 1 through 8 are live, and the remaining chapters and appendices land one at a time, roughly weekly, each as it clears our own practice pass. Unreleased chapters below are marked 🚧 coming.
 
 ## How to read
 
@@ -30,7 +30,7 @@ Or read the hosted site at <https://hallieren.github.io/ai-agent-evaluation/>, o
 | 6 | [Variance and Significance](docs/chapters/ch06-variance.md) | [Templates](docs/appendices/ch06-templates.md) | [Lab](docs/labs/ch06.md) |
 | 7 | [Harness and Sandbox](docs/chapters/ch07-harness.md) | [Templates](docs/appendices/ch07-templates.md) | [Lab](docs/labs/ch07.md) |
 | **Part III · Agent-Specific Battlegrounds** | | | |
-| 8 ★ | Dangerous Tools | 🚧 coming | |
+| 8 ★ | [Dangerous Tools](docs/chapters/ch08-dangerous-tools.md) | [Templates](docs/appendices/ch08-templates.md) | [Lab](docs/labs/ch08.md) |
 | 9 | Planning and Cost | 🚧 coming | |
 | 10 | Memory | 🚧 coming | |
 | 11 ★ | Subagents | 🚧 coming | |
