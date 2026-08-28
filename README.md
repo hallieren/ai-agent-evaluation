@@ -31,7 +31,7 @@ Or read the hosted site at <https://hallieren.github.io/ai-agent-evaluation/>, o
 | 7 | [Harness and Sandbox](docs/chapters/ch07-harness.md) | [Templates](docs/appendices/ch07-templates.md) | [Lab](docs/labs/ch07.md) |
 | **Part III · Agent-Specific Battlegrounds** | | | |
 | 8 ★ | [Dangerous Tools](docs/chapters/ch08-dangerous-tools.md) | [Templates](docs/appendices/ch08-templates.md) | [Lab](docs/labs/ch08.md) |
-| 9 | Planning and Cost | 🚧 coming | |
+| 9 | [Planning and Cost](docs/chapters/ch09-planning-and-cost.md) | [Templates](docs/appendices/ch09-templates.md) | [Lab](docs/labs/ch09.md) |
 | 10 | Memory | 🚧 coming | |
 | 11 ★ | Subagents | 🚧 coming | |
 | 12 ★ | Attacks | 🚧 coming | |

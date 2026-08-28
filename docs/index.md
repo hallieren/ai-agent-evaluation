@@ -78,7 +78,7 @@ Reading Chapter 1 straight through to Chapter 16 is only one of three paths. Pic
 | 6 | Run it twice, get two different results | [Statistics Cheat Sheet](appendices/ch06-templates.md) | [ch06](chapters/ch06-variance.md) | [lab](labs/ch06.md) |
 | 7 | You don't dare test in the real environment | [Harness Architecture Spec + Synthetic User Persona Library](appendices/ch07-templates.md) | [ch07](chapters/ch07-harness.md) | [lab](labs/ch07.md) |
 | 8 ★ | The reply is impeccable; the danger hides in a mid-trace parameter | [Action Permission Matrix + Side-Effect Audit Table](appendices/ch08-templates.md) | [ch08](chapters/ch08-dangerous-tools.md) | [lab](labs/ch08.md) |
-| 9 | The endpoint is still right; the bill has already doubled | Planning Quality Rubric + Cost/Latency Report Template | Planning and Cost 🚧 | 🚧 |
+| 9 | The endpoint is still right; the bill has already doubled | [Plan Quality Rubric + Cost/Latency Report Template](appendices/ch09-templates.md) | [ch09](chapters/ch09-planning-and-cost.md) | [lab](labs/ch09.md) |
 | 10 | It digs up last month's history to apologize to a customer | Memory Eval Matrix + Long-Task Attribution Protocol | Memory 🚧 | 🚧 |
 | 11 ★ | End-to-end failed; both agents say it wasn't them | Multi-Agent Attribution Decision Tree + Handoff Checklist | Subagents 🚧 | 🚧 |
 | 12 ★ | A piece of external content says "ignore previous instructions," and it does | Red Team Protocol + Shutdown Red-Line Checklist | Attacks 🚧 | 🚧 |
