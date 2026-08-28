@@ -7,7 +7,7 @@ Written for engineers pushing agents toward production, the ones asked "can we s
 The whole book has one lab agent (**Mini**, a few hundred lines of pure-stdlib Python) and one task world (a fictional e-commerce company, **Shore & Summit**). Mini ships with its capabilities sealed behind flags, and every chapter's Lab keeps the same discipline: **write the eval first → then unlock the capability → watch what the eval catches.**
 
 !!! note "Released chapter by chapter"
-    Chapters 1 through 9 are live. The remaining chapters and appendices land one at a time, roughly weekly, each as it clears our own practice pass. Unreleased items appear below as plain titles marked 🚧.
+    Chapters 1 through 10 are live. The remaining chapters and appendices land one at a time, roughly weekly, each as it clears our own practice pass. Unreleased items appear below as plain titles marked 🚧.
 
 ## A 30-second start (no API key)
 
@@ -79,7 +79,7 @@ Reading Chapter 1 straight through to Chapter 16 is only one of three paths. Pic
 | 7 | You don't dare test in the real environment | [Harness Architecture Spec + Synthetic User Persona Library](appendices/ch07-templates.md) | [ch07](chapters/ch07-harness.md) | [lab](labs/ch07.md) |
 | 8 ★ | The reply is impeccable; the danger hides in a mid-trace parameter | [Action Permission Matrix + Side-Effect Audit Table](appendices/ch08-templates.md) | [ch08](chapters/ch08-dangerous-tools.md) | [lab](labs/ch08.md) |
 | 9 | The endpoint is still right; the bill has already doubled | [Plan Quality Rubric + Cost/Latency Report Template](appendices/ch09-templates.md) | [ch09](chapters/ch09-planning-and-cost.md) | [lab](labs/ch09.md) |
-| 10 | It digs up last month's history to apologize to a customer | Memory Eval Matrix + Long-Task Attribution Protocol | Memory 🚧 | 🚧 |
+| 10 | It digs up last month's history to apologize to a customer | [Memory Eval Matrix + Long-Task Attribution Protocol](appendices/ch10-templates.md) | [ch10](chapters/ch10-memory.md) | [lab](labs/ch10.md) |
 | 11 ★ | End-to-end failed; both agents say it wasn't them | Multi-Agent Attribution Decision Tree + Handoff Checklist | Subagents 🚧 | 🚧 |
 | 12 ★ | A piece of external content says "ignore previous instructions," and it does | Red Team Protocol + Shutdown Red-Line Checklist | Attacks 🚧 | 🚧 |
 | 13 ★ | 91% offline, wrecked in week two of production | Evidence Ladder + Monitoring Signal Spec | Online Eval 🚧 | 🚧 |

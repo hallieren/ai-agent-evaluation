@@ -60,6 +60,7 @@ nav:
       - "Ch 7 · Harness and Sandbox": chapters/ch07-harness.md
       - "Ch 8 · Dangerous Tools ★": chapters/ch08-dangerous-tools.md
       - "Ch 9 · Planning and Cost": chapters/ch09-planning-and-cost.md
+      - "Ch 10 · Memory": chapters/ch10-memory.md
   - Labs:
       - "Ch 1 Lab": labs/ch01.md
       - "Ch 2 Lab": labs/ch02.md
@@ -70,6 +71,7 @@ nav:
       - "Ch 7 Lab": labs/ch07.md
       - "Ch 8 Lab": labs/ch08.md
       - "Ch 9 Lab": labs/ch09.md
+      - "Ch 10 Lab": labs/ch10.md
   - Template appendix:
       - "Ch 1 templates": appendices/ch01-templates.md
       - "Ch 2 templates": appendices/ch02-templates.md
@@ -80,3 +82,4 @@ nav:
       - "Ch 7 templates": appendices/ch07-templates.md
       - "Ch 8 templates": appendices/ch08-templates.md
       - "Ch 9 templates": appendices/ch09-templates.md
+      - "Ch 10 templates": appendices/ch10-templates.md
