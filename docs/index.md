@@ -7,7 +7,7 @@ Written for engineers pushing agents toward production, the ones asked "can we s
 The whole book has one lab agent (**Mini**, a few hundred lines of pure-stdlib Python) and one task world (a fictional e-commerce company, **Shore & Summit**). Mini ships with its capabilities sealed behind flags, and every chapter's Lab keeps the same discipline: **write the eval first → then unlock the capability → watch what the eval catches.**
 
 !!! note "Released chapter by chapter"
-    Chapters 1 through 8 are live. The remaining chapters and appendices land one at a time, roughly weekly, each as it clears our own practice pass. Unreleased items appear below as plain titles marked 🚧.
+    Chapters 1 through 9 are live. The remaining chapters and appendices land one at a time, roughly weekly, each as it clears our own practice pass. Unreleased items appear below as plain titles marked 🚧.
 
 ## A 30-second start (no API key)
 

@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 380" font-family="Inter,-apple-system,sans-serif">
+  <style>
+    .surface{fill:#FAFAF8}.tp{fill:#0A0A0A}.ts{fill:#737373}
+    .axis{stroke:#B8B8B4;stroke-width:1.5;fill:none}
+    .grid{stroke:#B8B8B4;stroke-width:1;opacity:.35;fill:none}
+    .curve{stroke:#B8B8B4;stroke-width:2.5;fill:none}
+    .accent{fill:#002FA7}.accentline{stroke:#002FA7;fill:none}
+    .dot{fill:#002FA7}.knee{fill:#002FA7;stroke:#FAFAF8;stroke-width:2}
+    @media (prefers-color-scheme: dark){
+      .surface{fill:#0A0A0A}.tp{fill:#FAFAF8}.ts{fill:#A8A8A6}
+      .axis{stroke:#5A5A58}.grid{stroke:#5A5A58}.curve{stroke:#6A6A68}
+      .accent{fill:#7A96E8}.accentline{stroke:#7A96E8}
+      .dot{fill:#7A96E8}.knee{fill:#7A96E8;stroke:#0A0A0A}
+    }
+  </style>
+  <rect class="surface" x="0" y="0" width="760" height="380"/>
+  <text class="tp" x="24" y="38" font-size="17" font-weight="600">Cost-quality tradeoff</text>
+  <text class="ts" x="24" y="60" font-size="13">one point per configuration, read it as slope</text>
+
+  <!-- axes -->
+  <line class="axis" x1="90" y1="86" x2="90" y2="300"/>
+  <line class="axis" x1="90" y1="300" x2="706" y2="300"/>
+  <!-- y gridlines -->
+  <line class="grid" x1="90" y1="110" x2="700" y2="110"/>
+  <line class="grid" x1="90" y1="200" x2="700" y2="200"/>
+  <line class="grid" x1="90" y1="290" x2="700" y2="290"/>
+  <!-- y ticks -->
+  <text class="ts" x="80" y="114" font-size="13" text-anchor="end">80%</text>
+  <text class="ts" x="80" y="204" font-size="13" text-anchor="end">70%</text>
+  <text class="ts" x="80" y="294" font-size="13" text-anchor="end">60%</text>
+  <text class="ts" x="90" y="76" font-size="13">Pass rate</text>
+
+  <!-- curve through the five points -->
+  <polyline class="curve" points="140,290 270,209 400,146 530,137 660,110"/>
+
+  <!-- budget-line marker at the knee -->
+  <line class="accentline" x1="400" y1="150" x2="400" y2="300" stroke-width="1.4" stroke-dasharray="4 3"/>
+
+  <!-- slope labels -->
+  <text class="accent" x="198" y="242" font-size="13" font-weight="600" text-anchor="middle">+9 pts</text>
+  <text class="accent" x="330" y="166" font-size="13" font-weight="600" text-anchor="middle">+7 pts</text>
+  <text class="accent" x="465" y="126" font-size="13" font-weight="600" text-anchor="middle">+1 pt</text>
+  <text class="accent" x="597" y="108" font-size="13" font-weight="600" text-anchor="middle">+3 pts</text>
+
+  <!-- dots -->
+  <circle class="dot" cx="140" cy="290" r="6"/>
+  <circle class="dot" cx="270" cy="209" r="6"/>
+  <circle class="knee" cx="400" cy="146" r="9"/>
+  <circle class="dot" cx="530" cy="137" r="6"/>
+  <circle class="dot" cx="660" cy="110" r="6"/>
+
+  <!-- point letters -->
+  <text class="tp" x="152" y="286" font-size="14" font-weight="600">A</text>
+  <text class="tp" x="282" y="205" font-size="14" font-weight="600">B</text>
+  <text class="tp" x="386" y="140" font-size="14" font-weight="600" text-anchor="end">C</text>
+  <text class="tp" x="542" y="133" font-size="14" font-weight="600">D</text>
+  <text class="tp" x="672" y="106" font-size="14" font-weight="600">E</text>
+
+  <!-- knee callout -->
+  <line class="accentline" x1="462" y1="244" x2="406" y2="152" stroke-width="1.2"/>
+  <text class="accent" x="470" y="250" font-size="13.5" font-weight="600">The knee (C) is where</text>
+  <text class="accent" x="470" y="270" font-size="13.5" font-weight="600">the budget line stands</text>
+
+  <!-- x ticks -->
+  <text class="tp" x="140" y="322" font-size="13" text-anchor="middle">$0.01</text>
+  <text class="tp" x="270" y="322" font-size="13" text-anchor="middle">$0.02</text>
+  <text class="tp" x="400" y="322" font-size="13" text-anchor="middle">$0.04</text>
+  <text class="tp" x="530" y="322" font-size="13" text-anchor="middle">$0.08</text>
+  <text class="tp" x="660" y="322" font-size="13" text-anchor="middle">$0.16</text>
+  <text class="ts" x="400" y="352" font-size="13" text-anchor="middle">Median cost per task (illustrative)</text>
+</svg>

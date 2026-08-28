@@ -5,7 +5,7 @@
 
 ## The Wall
 
-After Chapter 8 unlocked `write_tools`, Mini's tasks naturally got longer. A refund means looking up the order, checking the policy, then executing; an investigation means retrieving, cross-checking, writing up. The step-by-step reactive loop starts to show its limits: halfway through, it forgets what it originally set out to do. The cure looks ready-made. Give it an explicit planner, plan first, then execute the plan. The switch this chapter unlocks is called `planner`. The order follows Part III's discipline: write the eval first, then flip the switch.
+After Chapter 8 unlocked `write_tools`, Mini's tasks naturally got longer. A refund means looking up the order, checking the policy, then executing; an investigation means retrieving, cross-checking, writing up. The step-by-step reactive loop starts to show its limits. Halfway through, it forgets what it originally set out to do. The cure looks ready-made. Give it an explicit planner, plan first, then execute the plan. The switch this chapter unlocks is called `planner`. The order follows Part III's discipline. Write the eval first, then flip the switch.
 
 The eval has to come first because the planner brings more than capability; it brings a new shape of failure. An agent that can plan starts taking clever detours. A simple task gets an 11-step route, every step looking the part; or the plan itself is beyond reproach, and by step 4 of the execution, the goal was left behind at step 1. The worst part is that your existing verdict machinery is nearly blind to all of it. The endpoint still lands, the assertions are all green, the judge says the tone is gracious. Only the bill has doubled.
 
@@ -60,7 +60,7 @@ Deviation does not automatically equal error; a plan colliding with reality is s
 
 ### Process Reward vs Outcome Reward
 
-In judging plans you are actually choosing between two scoring stances. Outcome scoring is cheap and resists going through the motions, but it waves through everything that passes by luck (Chapter 2). Process scoring can catch detours, but it is expensive and has its own disease: it rewards processes that look like good processes. Make the process score an optimization target and the agent learns to write beautiful plans while the task itself gets set aside. Wherever the score is, behavior crowds in.
+In judging plans you are actually choosing between two scoring stances. Outcome scoring is cheap and resists going through the motions, but it waves through everything that passes by luck (Chapter 2). Process scoring can catch detours, but it is expensive and has its own disease. It rewards processes that look like good processes. Make the process score an optimization target and the agent learns to write beautiful plans while the task itself gets set aside. Wherever the score is, behavior crowds in.
 
 This book's position follows the main line. **Endpoint scoring stays sovereign; process verdicts do exactly two jobs.** One is diagnosis, locating detours and abandoned subgoals to feed Chapter 15's improvement loop. The other is red lines: zero tolerance for unplanned writes. Process scores rank nothing and gate nothing as a primary metric.
 
@@ -82,7 +82,7 @@ The trace's `usage` fields, tokens_in, tokens_out, cost_usd, wall_s, have been t
 
 **Two: state the accounting basis before the numbers.** Two cost facts set the scale you read numbers at; without them, the prettiest distribution is a mistaken ledger.
 
-- **First, the bulk of an agent's cost is re-reading its own context.** Each turn of the loop, the model reads the system prompt, the tool list, and every prior step from the top. tokens_in grows roughly quadratically with step count; an 11-step trace burns far more than four times the input of a 3-step one. Prompt caching (prefix caching) exists exactly for this line item: the re-read prefix bills at the cache rate, and cache hit or miss moves per-task cost by multiples.
+- **First, the bulk of an agent's cost is re-reading its own context.** Each turn of the loop, the model reads the system prompt, the tool list, and every prior step from the top. tokens_in grows roughly quadratically with step count; an 11-step trace burns far more than four times the input of a 3-step one. Prompt caching (prefix caching) exists exactly for this line item. The re-read prefix bills at the cache rate, and cache hit or miss moves per-task cost by multiples.
 
     Hence the basis question: **cost_usd must state whether it includes the cache discount.** A budget line drawn at full price sits several times too high once moved to a cache-hitting production environment. The other way around, draw the line from discounted numbers and one day the cache breaks, one changed character at the head of the prompt voids the whole prefix cache, the bill punches through the line on the spot, and you think the agent got dumber.
 - **Second, input and output prices differ by an order of magnitude.** Market pricing generally has output far dearer than input. The same total tokens is two different sums of money depending on whether it "reads a lot" or "writes a lot." Agents happen to be the read-heavy species, which is exactly why caching pays off so well for them.
@@ -105,23 +105,13 @@ The repo's `cost_usd` converts with env-var unit prices (`mini/llm.py`, defaults
 | D same as C, step budget doubled | $0.08 | 77% |
 | E large model + planner | $0.16 | 80% |
 
-*Table 9-2 Median cost and pass rate for the five configuration points (all illustrative). Figure 9-1 is drawn from these five points; how to read it is in the caption.*
+*Table 9-2 Median cost and pass rate for the five configuration points (all illustrative). Figure 9-1 is drawn from these five points; how to read it follows the figure.*
 
-```
-Pass rate (illustrative)
- 80% |                                        E
-     |
- 76% |              C          D
-     |
- 69% |      B
-     |
- 60% |  A
-     +----+-------+------+----------+---------+--
-       $0.01   $0.02  $0.04      $0.08     $0.16
-                 Median cost per task (illustrative)
-```
+![The cost-quality tradeoff curve](../assets/images/cost-quality-curve.svg)
 
-**Figure 9-1 The cost-quality tradeoff curve (illustrative data).** Its language is slope. A to B, one more cent buys 9 points; buy it with your eyes closed. B to C, two more cents buy 7 points; the planner earns its keep on this eval set. C to D, cost doubles and buys 1 point, and Chapter 6's interval will tell you that 1 point is noise; what the money actually bought is a longer detour allowance. D to E, double again to probe the large model, and buy 3 points.
+*Figure 9-1 The cost-quality tradeoff curve (illustrative data), drawn from the five points in Table 9-2. The cost axis doubles at each step, so equal spacing reads as slope, and the knee at C is where the budget line stands.*
+
+**Its language is slope.** A to B, one more cent buys 9 points; buy it with your eyes closed. B to C, two more cents buy 7 points; the planner earns its keep on this eval set. C to D, cost doubles and buys 1 point, and Chapter 6's interval will tell you that 1 point is noise; what the money actually bought is a longer detour allowance. D to E, double again to probe the large model, and buy 3 points.
 
 Whether those 3 points are worth it, the answer lives back in the attribute ranking you wrote down in Chapter 2; the curve itself cannot say. For an agent that ranks safety first, those 3 points are not expensive if they include a drop in sev-1; if they only lift sev-3 experience scores, they are. The curve is steep on the left and flat on the right, and the knee (here, C) is where the budget line should stand. The curve does not make the call for you. It only lays the unit price of every trade on the table.
 
@@ -133,7 +123,7 @@ One more trap: draw the curve per task type. The same planner may buy quality on
 
 Three calls to make this chapter.
 
-1. **Does efficiency count as a quality metric?** Yes, booked at sev-3 by default. Detours and slowness go into the iteration queue; they do not block release. Two exceptions escalate. First, a detour that touches a sensitive object: an unrelated customer profile is an unauthorized read, tiered by sev, not by efficiency. Second, cost so far out of control it threatens sustainable operation; a bill that far gone is an existential problem.
+1. **Does efficiency count as a quality metric?** Yes, booked at sev-3 by default. Detours and slowness go into the iteration queue; they do not block release. Two exceptions escalate. First, a detour that touches a sensitive object. An unrelated customer profile is an unauthorized read, tiered by sev, not by efficiency. Second, cost so far out of control it threatens sustainable operation; a bill that far gone is an existential problem.
 2. **How much deviation triggers the alarm?** Two tracks. Red-line deviations, unplanned writes and unplanned cross-customer reads: zero tolerance, one occurrence reports. Ratio deviations, meaning the orphan-step share: threshold written down in advance, per Chapter 6's discipline, before the run. Over the line goes to `concern`; when it clusters on one task type, go read those traces.
 3. **Where does the cost budget line sit?** Drawn per task type. Two starting anchors: with a reference trace, `budget_steps_max` is reference steps × 2; without one, take the historical P95 plus headroom. Once set, write it into the case, and the over-line rate goes in the report. The value of the line is that "it got expensive" becomes an event that rings on the spot; how precise the number is comes second. Without the line, getting expensive waits for someone to sigh over the quarterly bill.
 
@@ -172,7 +162,7 @@ No model API? Run python labs/ch09/align.py --demo and show me the raw output.
 Stop and show me the output if any command errors.
 ```
 
-**Follow-along track (default).** The order does not change: write the eval first, then flip the switch.
+**Follow-along track (default).** The order does not change. Write the eval first, then flip the switch.
 
 1. **Budgets first.** Give `cases/cases-50` budgets by task type; reference traces and suggested values are in the notes at [`labs/ch09/`](../labs/ch09.md). Write `budget_steps_max` and `budget_cost_max` into each case's assertion config. Then write down the deviation red lines: unplanned write operations, unplanned `get_customer` calls, one occurrence reports.
 2. **Flip the switch.** Turn on `planner`, run the full set with `--repeat` on the runner; Chapter 6's interval discipline gets no exemption for a new switch.
@@ -180,7 +170,7 @@ Stop and show me the output if any command errors.
 4. **Report.** Use the Cost/Latency Report Template to produce the book's first eval report with a cost distribution: median / P95 / max, the budgets-met rate, plus the planner-on vs planner-off pair of cost-quality points.
 5. **Decide.** Answer the Decision section's three questions against the report, write the budget revisions back into the cases, and from then on this budget lives with the eval set.
 
-**Migration box (optional).** Take your agent's 10 most recent traces. No explicit planner needed: treat the task goal as a one-subgoal plan and hand-label which subgoal each step belongs to. Whatever cannot be labeled is an orphan step; count the share, and that is your deviation baseline.
+**Migration box (optional).** Take your agent's 10 most recent traces. No explicit planner needed. Treat the task goal as a one-subgoal plan and hand-label which subgoal each step belongs to. Whatever cannot be labeled is an orphan step; count the share, and that is your deviation baseline.
 
 Then pull those 10 traces' token spend or cost from your logs and sort. The dearest one is how many times the median? That multiple is your cost tail, and the reason the alarm belongs at P95, not at the mean. Your bill is decided by the tail, and now you have 10 traces of evidence.
 
