@@ -33,6 +33,10 @@ The two roads share one trait, and it is the deadliest one, **the error is produ
 
 Run multi-session cases end to end and the pass rate can tell you "memory has a problem," but not which link is broken. To say which, take it apart. Memory has only two paths, **write** and **read**, and each path breaks in two ways. The write path's two are writing it wrong and not writing it; the read path's two are grabbing the wrong object and failing to grab what is there. Four mechanisms, each with its own test.
 
+![Memory has two paths, each breaks two ways](../assets/images/memory-eval-map.svg)
+
+*Figure 10-1 Memory's two paths and four mechanisms. The write path breaks as miswrite (wrong content) or forgetting (nothing written); the read path breaks as crosstalk (wrong object) or missed recall (nothing surfaced). Each cell carries its own test and default severity, so a blended pass rate hides which repair to make. The two read failures sit at opposite severities and must never merge, crosstalk a safety event (sev-1, another person's information), missed recall a capability event (sev-3, your own information unused).*
+
 **Miswrite (wrong content written).** The write path is broken; the written content does not match the session's facts. Its test is the cheapest, because no second session is needed. Audit memory when the session ends, and ask of every new entry whether it can be traced back to a fact in this session's trace. Order numbers, amounts, statuses, whatever can be reconciled against the sandbox goes to deterministic checks; summary-style notes go to judge spot checks.
 
 **Forgetting (should have written, didn't).** The write path skipped; the entry simply is not in memory. This error exists in the shape of an absence. Auditing what memory holds cannot show "should be there and is not"; only the next session can examine for it. Session one plants a fact the future will need, say the customer changed the delivery address; session two tests for it.
@@ -64,6 +68,10 @@ To say it in full, **this is the judge's error-prone zone**. Judging "do these t
 The step-40 failure has its root cause at step 6, and every step in between is innocent; they just faithfully cited a bad state. This is the limit form of Chapter 3's first_bad_step discipline. Within one session, reading back along the trace finds the first wrong step; across sessions, "step 6" may sit in another trace three days ago.
 
 The attribution protocol therefore gains one move, **trace back along the write chain**. Start from the failure and ask "which memory entry does this wrong statement cite"; jump to that entry's write point and ask again; stop at the step that no longer cites any bad state, and that is the first bad write. `first_bad_step` gets filled in as always, only the numbering now crosses traces. Run the Cloudrest 2 attribution down this chain and it stops at day one's note-writing step.
+
+![The step-40 failure roots three days back](../assets/images/write-chain-backtrack.svg)
+
+*Figure 10-2 The Cloudrest 2 three-day contamination, forward and back. Day one's note "they all leak" is a miswrite; day two and day three each read it and write on top, so the error compounds forward and the real cause never reaches the report. Attribution runs the other way, from the wrong conclusion to the memory it cites to that entry's write point, and stops where nothing bad is cited any more, the first bad write on day one.*
 
 Backtracking is after the fact. Prevention takes **checkpoints**. Don't wait for step 40 to fail and then backtrack; turn intermediate states into verifiable endpoints along the way, Chapter 2's "make the endpoint verifiable" applied on the time axis. Two default sites. One is the **session boundary**, audit the day's memory writes before closing shop, so miswrites and drift settle the same day. The other is **before an irreversible action**; Chapter 8's confirmation gate gains one more check item, is the memory this action relies on still fresh? Had the Cloudrest 2 investigation reconciled notes against evidence at day one's close, day two would not have walked out carrying "the whole line leaks."
 

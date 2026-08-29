@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 780 366" font-family="Inter,-apple-system,sans-serif">
+  <style>
+    .surface{fill:#FAFAF8}.tp{fill:#0A0A0A}.ts{fill:#737373}
+    .band{fill:#FFFFFF;fill-opacity:.55;stroke:#B8B8B4;stroke-width:1.5}
+    .find{fill:#002FA7;fill-opacity:.09;stroke:#002FA7;stroke-width:1.5}
+    .rowlab{fill:#F0F0EC;stroke:#B8B8B4;stroke-width:1.5}
+    .accent{fill:#002FA7}
+    .mono{font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+    @media (prefers-color-scheme: dark){
+      .surface{fill:#0A0A0A}.tp{fill:#FAFAF8}.ts{fill:#A8A8A6}
+      .band{fill:#FFFFFF;fill-opacity:.04;stroke:#5A5A58}
+      .find{fill:#7A96E8;fill-opacity:.16;stroke:#7A96E8}
+      .rowlab{fill:#1A1A1A;stroke:#5A5A58}
+      .accent{fill:#7A96E8}
+    }
+  </style>
+  <rect class="surface" x="0" y="0" width="780" height="366"/>
+
+  <text class="tp" x="24" y="34" font-size="17" font-weight="600">Memory has two paths, each breaks two ways</text>
+  <text class="ts" x="24" y="56" font-size="13">Four mechanisms, four tests, four repairs; the two read failures never merge</text>
+
+  <!-- column headers -->
+  <text class="ts" x="274" y="88" font-size="13" font-weight="600" text-anchor="middle">Wrong action (did it, wrong)</text>
+  <text class="ts" x="598" y="88" font-size="13" font-weight="600" text-anchor="middle">Missing action (should, didn't)</text>
+
+  <!-- row labels -->
+  <rect class="rowlab" x="20" y="100" width="84" height="96" rx="8"/>
+  <text class="tp" x="62" y="145" font-size="14" font-weight="600" text-anchor="middle">Write</text>
+  <text class="ts" x="62" y="165" font-size="13" text-anchor="middle">path</text>
+
+  <rect class="rowlab" x="20" y="208" width="84" height="96" rx="8"/>
+  <text class="tp" x="62" y="253" font-size="14" font-weight="600" text-anchor="middle">Read</text>
+  <text class="ts" x="62" y="273" font-size="13" text-anchor="middle">path</text>
+
+  <!-- write / wrong : miswrite -->
+  <rect class="band" x="116" y="100" width="316" height="96" rx="8"/>
+  <text class="tp" x="136" y="132" font-size="15" font-weight="600">Miswrite</text>
+  <text class="ts" x="136" y="158" font-size="13">Session-end audit, no 2nd session needed</text>
+  <text class="ts" x="136" y="182" font-size="13">default <tspan class="tp" font-weight="600">sev-2</tspan></text>
+
+  <!-- write / missing : forgetting -->
+  <rect class="band" x="440" y="100" width="316" height="96" rx="8"/>
+  <text class="tp" x="460" y="132" font-size="15" font-weight="600">Forgetting</text>
+  <text class="ts" x="460" y="158" font-size="13">Next session tests it, fail-if-absent</text>
+  <text class="ts" x="460" y="182" font-size="13">default <tspan class="tp" font-weight="600">sev-3</tspan></text>
+
+  <!-- read / wrong : crosstalk (sev-1) -->
+  <rect class="find" x="116" y="208" width="316" height="96" rx="8"/>
+  <text class="accent" x="136" y="240" font-size="15" font-weight="600">Crosstalk</text>
+  <text class="ts mono" x="136" y="266" font-size="13">no_pii_disclosure, fail-if-present</text>
+  <text class="accent" x="136" y="290" font-size="13" font-weight="600">sev-1, zero tolerance</text>
+
+  <!-- read / missing : missed recall -->
+  <rect class="band" x="440" y="208" width="316" height="96" rx="8"/>
+  <text class="tp" x="460" y="240" font-size="15" font-weight="600">Missed recall</text>
+  <text class="ts" x="460" y="266" font-size="13">Query the store first, fail-if-absent</text>
+  <text class="ts" x="460" y="290" font-size="13">default <tspan class="tp" font-weight="600">sev-3</tspan></text>
+
+  <!-- read-row punchline -->
+  <text class="ts" x="116" y="334" font-size="13"><tspan class="accent" font-weight="600">Crosstalk = safety event</tspan> (someone else's info)  ·  Missed recall = capability event (own info unused)</text>
+</svg>
