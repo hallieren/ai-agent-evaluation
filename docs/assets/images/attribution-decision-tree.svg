@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 780 470" font-family="Inter,-apple-system,sans-serif">
+  <style>
+    .surface{fill:#FAFAF8}.tp{fill:#0A0A0A}.ts{fill:#737373}
+    .band{fill:#FFFFFF;fill-opacity:.55;stroke:#B8B8B4;stroke-width:1.5}
+    .find{fill:#002FA7;fill-opacity:.09;stroke:#002FA7;stroke-width:1.5}
+    .edge{stroke:#737373;stroke-width:1.5;fill:none}
+    .arw{fill:#737373}
+    .accent{fill:#002FA7}
+    .mono{font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+    @media (prefers-color-scheme: dark){
+      .surface{fill:#0A0A0A}.tp{fill:#FAFAF8}.ts{fill:#A8A8A6}
+      .band{fill:#FFFFFF;fill-opacity:.04;stroke:#5A5A58}
+      .find{fill:#7A96E8;fill-opacity:.16;stroke:#7A96E8}
+      .edge{stroke:#A8A8A6}.arw{fill:#A8A8A6}
+      .accent{fill:#7A96E8}
+    }
+  </style>
+  <defs>
+    <marker id="a2" markerWidth="8" markerHeight="8" refX="6.5" refY="3.5" orient="auto"><path d="M0 0 L7 3.5 L0 7 Z" class="arw"/></marker>
+  </defs>
+  <rect class="surface" x="0" y="0" width="780" height="470"/>
+
+  <text class="tp" x="24" y="34" font-size="17" font-weight="600">Attribution walks a fixed order to one of three exits</text>
+  <text class="ts" x="24" y="56" font-size="13">Locate the system-level bad step, check the boundary, then drill down or check the two ends</text>
+
+  <!-- N1 -->
+  <rect class="band" x="290" y="76" width="200" height="44" rx="8"/>
+  <text class="tp" x="390" y="103" font-size="13.5" text-anchor="middle">outer <tspan class="mono">first_bad_step</tspan></text>
+  <line class="edge" x1="390" y1="120" x2="390" y2="143" marker-end="url(#a2)"/>
+
+  <!-- N2 -->
+  <rect class="band" x="280" y="144" width="220" height="44" rx="8"/>
+  <text class="tp" x="390" y="171" font-size="13.5" text-anchor="middle">boundary check, whose step?</text>
+
+  <!-- junction -->
+  <line class="edge" x1="390" y1="188" x2="390" y2="206"/>
+  <line class="edge" x1="390" y1="206" x2="136" y2="206"/>
+  <line class="edge" x1="136" y1="206" x2="136" y2="370" marker-end="url(#a2)"/>
+  <line class="edge" x1="390" y1="206" x2="600" y2="206"/>
+  <line class="edge" x1="600" y1="206" x2="600" y2="212" marker-end="url(#a2)"/>
+
+  <text class="ts" x="150" y="250" font-size="13">main / tool_call step</text>
+  <text class="ts" x="430" y="200" font-size="13">subagent step</text>
+
+  <!-- N3 drill down -->
+  <rect class="band" x="485" y="214" width="230" height="52" rx="8"/>
+  <text class="tp" x="600" y="240" font-size="13.5" font-weight="600" text-anchor="middle">drill into nested trace</text>
+  <text class="ts" x="600" y="259" font-size="13" text-anchor="middle">↺ recursive, repeat per layer</text>
+  <line class="edge" x1="600" y1="266" x2="600" y2="299" marker-end="url(#a2)"/>
+
+  <!-- N4 -->
+  <rect class="band" x="485" y="300" width="230" height="44" rx="8"/>
+  <text class="tp" x="600" y="327" font-size="13" text-anchor="middle">nested <tspan class="mono">first_bad_step</tspan> found?</text>
+
+  <!-- N4 branches -->
+  <line class="edge" x1="600" y1="344" x2="600" y2="356"/>
+  <line class="edge" x1="600" y1="356" x2="390" y2="356"/>
+  <line class="edge" x1="390" y1="356" x2="390" y2="370" marker-end="url(#a2)"/>
+  <line class="edge" x1="600" y1="356" x2="644" y2="356"/>
+  <line class="edge" x1="644" y1="356" x2="644" y2="370" marker-end="url(#a2)"/>
+  <text class="ts" x="470" y="350" font-size="13">found inside</text>
+  <text class="ts" x="654" y="350" font-size="13">all clean, two ends</text>
+
+  <!-- exits -->
+  <rect class="band" x="24" y="372" width="224" height="74" rx="8"/>
+  <text class="tp" x="42" y="402" font-size="13.5" font-weight="600">Exit A · main agent</text>
+  <text class="ts" x="42" y="424" font-size="13">→ failure atlas, fix its prompt</text>
+
+  <rect class="band" x="278" y="372" width="224" height="74" rx="8"/>
+  <text class="tp" x="296" y="402" font-size="13.5" font-weight="600">Exit B · subagent</text>
+  <text class="ts" x="296" y="424" font-size="13">→ its eval set, fix its prompt</text>
+
+  <rect class="find" x="532" y="372" width="224" height="74" rx="8"/>
+  <text class="accent" x="550" y="402" font-size="13.5" font-weight="600">Exit C · handoff</text>
+  <text class="ts" x="550" y="424" font-size="13">→ fix the contract, not a prompt</text>
+
+  <text class="ts" x="390" y="463" font-size="13" text-anchor="middle">Three exits, one per suspect; the conclusion is a drill-down path, not a lone step number.</text>
+</svg>

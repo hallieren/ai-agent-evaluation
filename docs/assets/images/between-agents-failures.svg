@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 780 396" font-family="Inter,-apple-system,sans-serif">
+  <style>
+    .surface{fill:#FAFAF8}.tp{fill:#0A0A0A}.ts{fill:#737373}
+    .band{fill:#FFFFFF;fill-opacity:.55;stroke:#B8B8B4;stroke-width:1.5}
+    .find{fill:#002FA7;fill-opacity:.09;stroke:#002FA7;stroke-width:1.5}
+    .edge{stroke:#737373;stroke-width:1.5;fill:none}
+    .arw{fill:#737373}
+    .accent{fill:#002FA7}.drop{fill:#B23A48}
+    .mono{font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+    @media (prefers-color-scheme: dark){
+      .surface{fill:#0A0A0A}.tp{fill:#FAFAF8}.ts{fill:#A8A8A6}
+      .band{fill:#FFFFFF;fill-opacity:.04;stroke:#5A5A58}
+      .find{fill:#7A96E8;fill-opacity:.16;stroke:#7A96E8}
+      .edge{stroke:#A8A8A6}.arw{fill:#A8A8A6}
+      .accent{fill:#7A96E8}.drop{fill:#E88A94}
+    }
+  </style>
+  <defs>
+    <marker id="a1" markerWidth="8" markerHeight="8" refX="6.5" refY="3.5" orient="auto"><path d="M0 0 L7 3.5 L0 7 Z" class="arw"/></marker>
+  </defs>
+  <rect class="surface" x="0" y="0" width="780" height="396"/>
+
+  <text class="tp" x="24" y="34" font-size="17" font-weight="600">Both failures live between the agents, not inside them</text>
+  <text class="ts" x="24" y="56" font-size="13">Each agent is internally clean; the dropped field and the trust loop sit on the interface</text>
+
+  <!-- Panel 1: handoff -->
+  <text class="ts" x="24" y="94" font-size="13" font-weight="600">① Swiftlink handoff, a field falls between the two</text>
+
+  <rect class="band" x="30" y="110" width="140" height="64" rx="8"/>
+  <text class="tp" x="100" y="138" font-size="14" font-weight="600" text-anchor="middle">Main agent</text>
+  <text class="ts" x="100" y="158" font-size="13" text-anchor="middle">asks status</text>
+
+  <rect class="band" x="320" y="110" width="140" height="64" rx="8"/>
+  <text class="tp" x="390" y="138" font-size="13.5" font-weight="600" text-anchor="middle">Logistics sub</text>
+  <text class="ts mono" x="390" y="158" font-size="13" text-anchor="middle">track_shipment</text>
+
+  <rect class="find" x="610" y="110" width="140" height="64" rx="8"/>
+  <text class="tp" x="680" y="138" font-size="14" font-weight="600" text-anchor="middle">Main agent</text>
+  <text class="accent" x="680" y="158" font-size="13" font-weight="600" text-anchor="middle">wrong answer</text>
+
+  <line class="edge" x1="170" y1="142" x2="318" y2="142" marker-end="url(#a1)"/>
+  <text class="ts" x="244" y="132" font-size="13" text-anchor="middle">spawn: "check status"</text>
+  <text class="drop" x="244" y="166" font-size="13" text-anchor="middle">✕ intent + 24h window</text>
+
+  <line class="edge" x1="460" y1="142" x2="608" y2="142" marker-end="url(#a1)"/>
+  <text class="ts" x="534" y="132" font-size="13" text-anchor="middle">return: "in transit"</text>
+  <text class="drop" x="534" y="166" font-size="13" text-anchor="middle">✕ ship time</text>
+
+  <!-- Panel 2: collusion -->
+  <text class="ts" x="24" y="238" font-size="13" font-weight="600">② Wrong-plan collusion, the cascade bent into a loop</text>
+
+  <rect class="band" x="140" y="256" width="200" height="64" rx="8"/>
+  <text class="tp" x="240" y="284" font-size="14" font-weight="600" text-anchor="middle">Main agent</text>
+  <text class="ts" x="240" y="304" font-size="13" text-anchor="middle">drafts refund plan</text>
+
+  <rect class="band" x="440" y="256" width="200" height="64" rx="8"/>
+  <text class="tp" x="540" y="284" font-size="14" font-weight="600" text-anchor="middle">Reviewer sub</text>
+  <text class="ts" x="540" y="304" font-size="13" text-anchor="middle">reads summary only</text>
+
+  <line class="edge" x1="340" y1="276" x2="438" y2="276" marker-end="url(#a1)"/>
+  <text class="ts" x="389" y="268" font-size="13" text-anchor="middle">plan summary</text>
+  <line class="edge" x1="438" y1="302" x2="342" y2="302" marker-end="url(#a1)"/>
+  <text class="accent" x="389" y="316" font-size="13" text-anchor="middle">"approved"</text>
+
+  <text class="drop" x="390" y="352" font-size="13" text-anchor="middle">reviewer input 100% from reviewee, 0 own tool_calls, confidence ↑ but information +0</text>
+
+  <text class="ts" x="390" y="382" font-size="13" text-anchor="middle">A single-agent eval checks inside each box; these failures live in the arrows.</text>
+</svg>

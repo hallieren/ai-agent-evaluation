@@ -23,6 +23,10 @@ This wall is called **the multi-agent attribution puzzle**, something went wrong
 
 **Wrong-plan collusion.** To put one more layer of insurance on refunds, the team added a reviewer subagent; the main agent drafts a refund plan, submits it for review, and executes only on approval. On one case, the customer wants to return a custom-made item, and custom-made items are the policy's explicit exclusion. The main agent never checked the item's attributes, and the plan summary read: "Standard item, within 30 days, amount under $500, recommend a full refund." That summary was the entirety of what the reviewer subagent received; it never went to look up the order itself. On the summary alone, the conclusion is airtight, compliant, approved. The main agent got "review passed" and its confidence went up rather than down, after all someone had double-checked. The refund executed, sev-1. Reading the trace afterwards, the reviewer subagent's reasoning is strictly correct, **for the version of the facts it was given**. The two agents treated each other as independent evidence, and neither caught the other's error. The reviewer's input came 100% from the party under review; the second signature added no information, only confidence.
 
+![Both failures live between the agents, not inside them](../assets/images/between-agents-failures.svg)
+
+*Figure 11-1 The chapter's two failures, both between the agents. In the Swiftlink handoff the outbound spawn drops the address-change intent and the 24-hour window, and the return leg drops the ship time, so each agent is right about what it was given and the main agent's wrong answer traces to neither box but to the interface between them. In the collusion loop the reviewer reads only the main agent's summary and signs off, its input entirely from the party under review, so the loop adds confidence but no independent information. A single-agent eval inspects the inside of each box and sees neither.*
+
 ## The Method
 
 ### System-Level Verdicts ≠ the Sum of the Single Agents
@@ -59,6 +63,10 @@ The technical precondition for attribution was planted in the trace schema long 
 1. **Locate at the system level.** Treat each nested trace as one step, run Chapter 3's discipline over the outer trace, and find the system-level `first_bad_step`, the first step where things go wrong; the loudest step is usually downstream, do not be led away by it.
 2. **Boundary check.** See whose boundary the step falls in. On the main agent's own model or tool_call step, the main agent's fault, into its failure mode atlas; on a `subagent` step, drill down.
 3. **Drill down and check the two ends.** Enter the nested trace and do the same thing recursively. A `first_bad_step` inside, the subagent's fault; every step inside correct, look up at the two ends, what the spawn task description left out, and how the returned conclusion got used. Problems at the two ends go down under the handoff's name, fix the contract, do not go touching either agent's prompt.
+
+![Attribution walks a fixed order to one of three exits](../assets/images/attribution-decision-tree.svg)
+
+*Figure 11-2 The attribution procedure as a decision tree, three exits, one per suspect. Locate the outer `first_bad_step`, check whose boundary it falls in, and either blame the main agent (Exit A), or drill into the nested trace and recurse, or find the nested trace clean and check the two handoff ends (Exit C). The drill-down exit is recursive, so a subagent that spawned its own subagent just repeats the walk, and the conclusion becomes a drill-down path rather than a single step number. Only Exit C fixes the contract instead of a prompt.*
 
 The Swiftlink case's attribution lands exactly on step 3's two ends, the first bad step is the spawn step's task description itself. If the postmortem only allows "everyone debugs their own module," this third suspect is forever absent, and everyone is sincerely innocent.
 
