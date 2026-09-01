@@ -1,0 +1,21 @@
+# labs/ch11: Subagents
+
+Follow the chapter's Lab steps:
+
+1. **Write the contract**: use `templates/ch11/handoff-quality-checklist.md` to fill in a handoff contract
+   for the Swiftlink logistics subagent (required fields: customer intent, time constraint, known facts;
+   return fields: status, ship time, coverage; confidence labels).
+   The system-level cases are ready in `labs/ch11/cases/` (handoff-01 address change, collusion-01 collusion, system-03 clean path).
+2. **Flip the switch**: `python labs/ch11/run.py`, unlocking `subagents` for a full run (under a real model
+   the canonical failure is probabilistic, so run it a few times: `--repeat 3`). Deterministic replay:
+   `python labs/ch11/handoff-demo.py` (a MODEL_FAKE script; produces `handoff-demo.jsonl`, zero API).
+3. **Attribute**: `python labs/ch11/split.py labs/ch11/handoff-demo.jsonl` (or `labs/ch11/out/traces.jsonl`) shows
+   the outer steps, the nested subagent trace, the spawn task description and return (the two handoff ends), and the
+   three cost columns (main / subagents / round trips).
+   Produce a one-page attribution conclusion per `templates/ch11/multi-agent-attribution-decision-tree.md`,
+   then check it against `reference.md`.
+4. **Verify the fix**: put the contract's required fields into the task description (edit the case prompt or your
+   contract check), rerun the same case, and watch the failure get caught at the spawn step.
+
+**Without a model API**: `handoff-demo.py` and `split.py` are fully offline; `run.py` needs a real model
+(`MODEL_BASE_URL` / `MODEL_NAME`).

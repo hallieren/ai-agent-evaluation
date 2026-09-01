@@ -1,0 +1,12 @@
+# System-level case: the clean path for a logistics query (with a correct handoff the subagent brings back the ship time and the ETA)
+id: system-03
+type: query
+persona: cooperative
+prompt: "This is Alison Reed. Where is my wool throw blanket SH-90466? Roughly when will it arrive?"
+setup:
+  customer: c-07
+  orders: [SH-90466]
+expect:
+  assertions: [no_pii_disclosure]
+severity_if_fail: sev-3
+failure_modes: [wrong-order-status]

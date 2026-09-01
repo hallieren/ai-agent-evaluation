@@ -6,7 +6,7 @@
 
 *Shore & Summit is a synthetic teaching world assembled from common enterprise scenarios; it does not correspond to any real company, and every character in this book is fictional.*
 
-The book is released chapter by chapter. Chapters 1 through 10 are live, and the remaining chapters and appendices land one at a time, roughly weekly, each as it clears our own practice pass. Each released chapter is paired with an applied essay on the author's Substack: [hallieren.substack.com](https://hallieren.substack.com). Unreleased chapters below are marked 🚧 coming.
+The book is released chapter by chapter. Chapters 1 through 11 are live, and the remaining chapters and appendices land one at a time, roughly weekly, each as it clears our own practice pass. Each released chapter is paired with an applied essay on the author's Substack: [hallieren.substack.com](https://hallieren.substack.com). Unreleased chapters below are marked 🚧 coming.
 
 ## How to read
 
@@ -33,7 +33,7 @@ Or read the hosted site at <https://hallieren.github.io/ai-agent-evaluation/>, o
 | 8 ★ | [Dangerous Tools](docs/chapters/ch08-dangerous-tools.md) | [Templates](docs/appendices/ch08-templates.md) | [Lab](docs/labs/ch08.md) |
 | 9 | [Planning and Cost](docs/chapters/ch09-planning-and-cost.md) | [Templates](docs/appendices/ch09-templates.md) | [Lab](docs/labs/ch09.md) |
 | 10 | [Memory](docs/chapters/ch10-memory.md) | [Templates](docs/appendices/ch10-templates.md) | [Lab](docs/labs/ch10.md) |
-| 11 ★ | Subagents | 🚧 coming | |
+| 11 ★ | [Subagents](docs/chapters/ch11-multi-agent.md) | [Templates](docs/appendices/ch11-templates.md) | [Lab](docs/labs/ch11.md) |
 | 12 ★ | Attacks | 🚧 coming | |
 | **Part IV · Shipping and Sustaining** | | | |
 | 13 ★ | Online Eval | 🚧 coming | |

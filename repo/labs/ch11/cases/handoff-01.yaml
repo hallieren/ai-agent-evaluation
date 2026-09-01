@@ -1,0 +1,14 @@
+# System-level case (ch11 Lab step 1): address change, shipped under 24 hours ago; expected endpoint = correctly tell the customer Swiftlink can intercept
+# The canonical Swiftlink handoff failure (Bible section 4) is probabilistic under a real model; deterministic replay in handoff-demo.py
+id: handoff-01
+type: action
+persona: cooperative
+prompt: "This is Jaime Carter. Order SH-90321 shipped just yesterday afternoon, and I want the delivery address changed to 100 Cumberland Ave, Nashville, TN. Am I still in time?"
+setup:
+  customer: c-03
+  orders: [SH-90321]
+expect:
+  assertions: [{order_state_equals: {order: SH-90321, state: shipped}}]
+  judge: judge-tone-commitment
+severity_if_fail: sev-2
+failure_modes: [handoff-context-loss]
