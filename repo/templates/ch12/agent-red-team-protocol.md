@@ -17,7 +17,10 @@
 
 - [ ] New or amended rows in the failure mode atlas (the ch3 six-column structure)
 - [ ] Red-line cases banked into `cases/attacks`, rerun every version from then on; red-team output is a permanent increment to the eval set, not a report
-- [ ] Variants produced by automated red teaming are banked with their parent's id; a **variant** intercepted across several consecutive versions may be retired to the archive, **the parent is never retired**
+- [ ] Variants produced by automated red teaming enter and leave the library by three rules (ch12)
+    - Only a variant that produces a new result enters; one that stops at the same layer as its parent is dropped; every entry carries its parent's id
+    - Entering the library means regression, rerun every version, never into a drawer
+    - A **variant** stopped by the same layer for several consecutive versions, never supplying new information, is down-sampled to a sampled subset; retirement is down-sampling, not deletion, and **the parent is never retired**
 - [ ] Anything that breached every layer → the Shutdown Red-Line Checklist (the security branch of the ch14 stop rule)
 
 ## Attack surface × carrier coverage matrix (an empty cell = a corner you have not tested)

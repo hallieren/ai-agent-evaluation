@@ -1,0 +1,104 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 780 492" font-family="Inter,-apple-system,sans-serif">
+  <style>
+    .surface{fill:#FAFAF8}.tp{fill:#0A0A0A}.ts{fill:#737373}
+    .band{fill:#FFFFFF;fill-opacity:.55;stroke:#B8B8B4;stroke-width:1.5}
+    .find{fill:#002FA7;fill-opacity:.09;stroke:#002FA7;stroke-width:1.5}
+    .empty{fill:none;stroke:#B8B8B4;stroke-width:1.5;stroke-dasharray:5 4}
+    .rowlab{fill:#F0F0EC;stroke:#B8B8B4;stroke-width:1.5}
+    .rowacc{fill:#002FA7;fill-opacity:.09;stroke:#002FA7;stroke-width:1.5}
+    .accent{fill:#002FA7}
+    .mono{font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+    @media (prefers-color-scheme: dark){
+      .surface{fill:#0A0A0A}.tp{fill:#FAFAF8}.ts{fill:#A8A8A6}
+      .band{fill:#FFFFFF;fill-opacity:.04;stroke:#5A5A58}
+      .find{fill:#7A96E8;fill-opacity:.16;stroke:#7A96E8}
+      .empty{stroke:#5A5A58}
+      .rowlab{fill:#1A1A1A;stroke:#5A5A58}
+      .rowacc{fill:#7A96E8;fill-opacity:.16;stroke:#7A96E8}
+      .accent{fill:#7A96E8}
+    }
+  </style>
+  <rect class="surface" x="0" y="0" width="780" height="492"/>
+
+  <text class="tp" x="24" y="34" font-size="17" font-weight="600">Attack surface × carrier, an empty cell is an untested corner</text>
+  <text class="ts" x="24" y="56" font-size="13">The repo's 15 attack samples fill 13 cells; dashed cells are still open, blue cells are the two canonical samples</text>
+
+  <!-- Column headers (inbound carriers) -->
+  <text class="ts" x="252" y="90" font-size="13" font-weight="600" text-anchor="middle">Web (fetch_url)</text>
+  <text class="ts" x="460" y="90" font-size="13" font-weight="600" text-anchor="middle">Email (inbound body)</text>
+  <text class="ts" x="668" y="90" font-size="13" font-weight="600" text-anchor="middle">Ticket (customer fields)</text>
+
+  <!-- Row 1 Injection -->
+  <rect class="rowlab" x="20" y="102" width="124" height="48" rx="8"/>
+  <text class="tp" x="82" y="131" font-size="15" font-weight="600" text-anchor="middle">Injection</text>
+  <rect class="find" x="152" y="102" width="200" height="48" rx="8"/>
+  <text class="accent" x="252" y="122" font-size="13" font-weight="600" text-anchor="middle">forged policy page</text>
+  <text class="tp mono" x="252" y="141" font-size="13" text-anchor="middle">attack-01</text>
+  <rect class="find" x="360" y="102" width="200" height="48" rx="8"/>
+  <text class="accent" x="460" y="122" font-size="13" font-weight="600" text-anchor="middle">forged customer email</text>
+  <text class="tp mono" x="460" y="141" font-size="13" text-anchor="middle">attack-05 · 04 · 10</text>
+  <rect class="band" x="568" y="102" width="200" height="48" rx="8"/>
+  <text class="tp mono" x="668" y="125" font-size="13" text-anchor="middle">attack-11</text>
+  <text class="ts" x="668" y="142" font-size="13" text-anchor="middle">once empty, filled later</text>
+
+  <!-- Row 2 Tool misuse -->
+  <rect class="rowlab" x="20" y="158" width="124" height="48" rx="8"/>
+  <text class="tp" x="82" y="187" font-size="15" font-weight="600" text-anchor="middle">Tool misuse</text>
+  <rect class="band" x="152" y="158" width="200" height="48" rx="8"/>
+  <text class="tp mono" x="252" y="187" font-size="13" text-anchor="middle">attack-03</text>
+  <rect class="band" x="360" y="158" width="200" height="48" rx="8"/>
+  <text class="tp mono" x="460" y="187" font-size="13" text-anchor="middle">attack-07</text>
+  <rect class="band" x="568" y="158" width="200" height="48" rx="8"/>
+  <text class="tp mono" x="668" y="187" font-size="13" text-anchor="middle">attack-14</text>
+
+  <!-- Row 3 Privilege escalation -->
+  <rect class="rowlab" x="20" y="214" width="124" height="48" rx="8"/>
+  <text class="tp" x="82" y="234" font-size="14" font-weight="600" text-anchor="middle">Privilege</text>
+  <text class="tp" x="82" y="251" font-size="14" font-weight="600" text-anchor="middle">escalation</text>
+  <rect class="band" x="152" y="214" width="200" height="48" rx="8"/>
+  <text class="tp mono" x="252" y="243" font-size="13" text-anchor="middle">attack-02</text>
+  <rect class="find" x="360" y="214" width="200" height="48" rx="8"/>
+  <text class="accent" x="460" y="234" font-size="13" font-weight="600" text-anchor="middle">same email as above</text>
+  <text class="tp mono" x="460" y="253" font-size="13" text-anchor="middle">attack-05</text>
+  <rect class="band" x="568" y="214" width="200" height="48" rx="8"/>
+  <text class="tp mono" x="668" y="243" font-size="13" text-anchor="middle">attack-12</text>
+
+  <!-- Row 4 Data exfiltration -->
+  <rect class="rowlab" x="20" y="270" width="124" height="48" rx="8"/>
+  <text class="tp" x="82" y="290" font-size="14" font-weight="600" text-anchor="middle">Data</text>
+  <text class="tp" x="82" y="307" font-size="14" font-weight="600" text-anchor="middle">exfiltration</text>
+  <rect class="empty" x="152" y="270" width="200" height="48" rx="8"/>
+  <text class="ts" x="252" y="299" font-size="13" text-anchor="middle">empty</text>
+  <rect class="band" x="360" y="270" width="200" height="48" rx="8"/>
+  <text class="tp mono" x="460" y="299" font-size="13" text-anchor="middle">attack-06 · 09</text>
+  <rect class="band" x="568" y="270" width="200" height="48" rx="8"/>
+  <text class="tp mono" x="668" y="299" font-size="13" text-anchor="middle">attack-13</text>
+
+  <!-- Row 5 Autonomy boundary -->
+  <rect class="rowlab" x="20" y="326" width="124" height="48" rx="8"/>
+  <text class="tp" x="82" y="346" font-size="14" font-weight="600" text-anchor="middle">Autonomy</text>
+  <text class="tp" x="82" y="363" font-size="14" font-weight="600" text-anchor="middle">boundary</text>
+  <rect class="empty" x="152" y="326" width="200" height="48" rx="8"/>
+  <text class="ts" x="252" y="355" font-size="13" text-anchor="middle">empty</text>
+  <rect class="band" x="360" y="326" width="200" height="48" rx="8"/>
+  <text class="tp mono" x="460" y="355" font-size="13" text-anchor="middle">attack-08</text>
+  <rect class="band" x="568" y="326" width="200" height="48" rx="8"/>
+  <text class="tp mono" x="668" y="355" font-size="13" text-anchor="middle">attack-15</text>
+
+  <!-- Second group on the horizontal axis: outbound channels (data exfiltration row only) -->
+  <text class="ts" x="152" y="404" font-size="13">Second axis group, outbound channels, data exfiltration row only</text>
+  <rect class="rowacc" x="20" y="414" width="124" height="48" rx="8"/>
+  <text class="accent" x="82" y="434" font-size="14" font-weight="600" text-anchor="middle">Outbound</text>
+  <text class="accent" x="82" y="451" font-size="14" font-weight="600" text-anchor="middle">channel</text>
+  <rect class="band" x="152" y="414" width="200" height="48" rx="8"/>
+  <text class="tp" x="252" y="434" font-size="13" font-weight="600" text-anchor="middle">email body, guarded</text>
+  <text class="ts mono" x="252" y="453" font-size="13" text-anchor="middle">no_pii_disclosure</text>
+  <rect class="empty" x="360" y="414" width="200" height="48" rx="8"/>
+  <text class="tp" x="460" y="434" font-size="13" font-weight="600" text-anchor="middle">report citation</text>
+  <text class="ts" x="460" y="453" font-size="13" text-anchor="middle">empty, your first sample</text>
+  <rect class="empty" x="568" y="414" width="200" height="48" rx="8"/>
+  <text class="tp" x="668" y="434" font-size="13" font-weight="600" text-anchor="middle">ticket notes</text>
+  <text class="ts" x="668" y="453" font-size="13" text-anchor="middle">empty</text>
+
+  <text class="ts" x="20" y="484" font-size="13"><tspan class="accent" font-weight="600">Empty = untested</tspan>, not risk-free  ·  every new entrance or exit adds a column</text>
+</svg>

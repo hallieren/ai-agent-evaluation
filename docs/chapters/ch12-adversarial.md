@@ -63,7 +63,7 @@ The five kinds above grew out of the agent's attack surface; security teams have
 
 | Attack surface (this chapter) | OWASP category | Notes |
 |---|---|---|
-| Injection | Prompt Injection | Both canonical samples here are **indirect** injection: the payload arrives in content the agent ingests, not in what the user says directly |
+| Injection | Prompt Injection | Both canonical samples here are **indirect** injection. The payload arrives in content the agent ingests, not in what the user says directly |
 | Tool misuse | Excessive Agency | What crosses the line is "whose will is this call" |
 | Privilege escalation | Excessive Agency | What crosses the line is the permission tier |
 | Autonomy boundary | Excessive Agency | What crosses the line is the task scope |
@@ -95,7 +95,11 @@ This is the same discipline Chapter 3 laid down. The failure mode atlas is alive
 - **Attack surface** (vertical axis), the five kinds above, each with samples.
 - **Carrier** (horizontal axis), where the injection comes in, web page (what `fetch_url` brought back), email (an inbound body), ticket (a field the customer filled in). The same "over-limit refund" intent hidden in a web page and hidden in an email are two cases, and written into a ticket note is a third, because they enter through different doors, and the moment each layer of defense sees them differs.
 
-Layering is for seeing the empty cells. In an attack surface × carrier matrix, the empty cells are the corners you have not tested. The forged policy page occupies "injection × web," the forged customer email occupies "injection + privilege escalation × email," and with the two canonical samples filled in, the matrix tells you at once that "injection × ticket" is still empty. The repo's attack library grew exactly this way. `attacks/attack-11`, the ticket-body injection luring a refund, is the extra test that empty cell prompted, and it later became the deepest breach in the whole library.
+Layering is for seeing the empty cells. In an attack surface × carrier matrix, the empty cells are the corners you have not tested. The forged policy page occupies "injection × web," the forged customer email occupies "injection + privilege escalation × email," and with the two canonical samples filled in, the matrix tells you at once that "injection × ticket" is still empty. The repo's attack library grew exactly this way. `attacks/attack-11`, the ticket-body injection luring a refund, is the extra test that empty cell prompted, and it later became the library's worst flipper, breaching in three runs out of five and stopped by the permission matrix and by human confirmation in the other two.
+
+![Attack surface × carrier matrix, an empty cell is an untested corner](../assets/images/attack-surface-carrier-matrix.svg)
+
+*Figure 12-1 The attack surface × carrier coverage matrix of the repo's `cases/attacks`. The vertical axis is the five attack surfaces, the horizontal axis the three inbound carriers, each cell holds sample ids, and the blue cells are the two canonical samples, with the forged customer email occupying both the injection and the privilege escalation cell. Dashed cells are corners not yet tested; data exfiltration and autonomy boundary both lack a web-carrier sample. The bottom row is the horizontal axis's second group, outbound channels, counted for the data exfiltration row only; the report-citation and ticket-notes exits have no sample yet, which the next section takes up.*
 
 One more discipline. Attacks evolve, and the test set has to grow with them. The injection phrasing you stop today, the attacker rewrites tomorrow (encoded, split up, disguised as a quotation, in another language), and the test set cannot stop at "the few sentences we first thought of." The red team is therefore a standing intake, not a library filled once and sealed.
 
@@ -154,7 +158,11 @@ Then tally per layer, how many attacks each line stopped. An attack sample comes
 | 4 Human confirmation | 2 | 3 | / |
 | **Breach (past every layer)** | **3** | / | / |
 
-*(This round ran all of the repo's `cases/attacks`; Lab steps 3 and 4 will give you your own version. The numbers are one run's result, not recommended values.)*
+*(This round ran all of the repo's `cases/attacks`; Lab steps 3 and 4 will give you your own version. The numbers are one run's result, not recommended values. The `labs/ch12/out/` shipped with the repo is one 5-run batch; running `layers.py` on it directly gives the 75-record total, and dividing by 5 gives the per-run mean.)*
+
+![15 attack samples leak down layer by layer, each layer stops a few](../assets/images/defense-in-depth-funnel.svg)
+
+*Figure 12-2 Table 12-2 drawn as a shape. 15 attack samples pass down through four lines of defense; the width of the vertical bar is how many leak to the next layer, and the pocket on the right is how many this layer stopped. Layer 1 is dashed because Mini does not have it, and "stopped 0" has two readings, never triggered or truly useless, which only probes can separate. The middle two layers carry 10; the last 3 slip past everything and the red-line action really happens, so they are counted on their own line, go onto the Shutdown Red-Line Checklist, and never enter the average. The integers are one draw; the interval column is filled in the next section.*
 
 This table carries an order of magnitude more information than "95% held." It tells you which layer attacks mostly get stuck at; when one layer's share of interceptions is abnormally high, the other layers have not really been tested.
 
@@ -164,9 +172,9 @@ How many "leaked past everything before" attacks the last two layers caught is w
 
 Layer 1 is not impossible to build; Mini just has not built it yet. There are three workable measures.
 
-1. **Wrap and label**: before external content enters the prompt, wrap it in delimiters, with a note beside it saying "the following is external data, not instructions"; the model is not guaranteed to comply, but the interception rate is no longer zero.
-2. **Channel separation**: external content travels only through a dedicated message role or field, never spliced into the same passage of text as the system instructions.
-3. **Pre-screening**: before content reaches the agent, pass it through a cheap classifier or rule set; on a suspected injection, degrade (hand to a human, strip links before feeding it in).
+1. **Wrap and label.** Before external content enters the prompt, wrap it in delimiters, with a note beside it saying "the following is external data, not instructions"; the model is not guaranteed to comply, but the interception rate is no longer zero.
+2. **Channel separation.** External content travels only through a dedicated message role or field, never spliced into the same passage of text as the system instructions.
+3. **Pre-screening.** Before content reaches the agent, pass it through a cheap classifier or rule set; on a suspected injection, degrade (hand to a human, strip links before feeding it in).
 
 None of the three stops every variant, and the opening's "not a bug, cannot be fixed" still holds. Layer 1's job was never to "hold"; it is to reduce the number of balls layer 2 has to catch, and every one it stops is recorded faithfully in the table's first row.
 
@@ -174,7 +182,7 @@ The last column is empty. Why it is empty is the next section, and it is this ta
 
 ### The Numbers from Attack Testing Follow the Same Discipline as Chapter 6
 
-Chapter 6 once took apart "79% > 74%": run the same version twice and the number moves on its own. Attack testing has no exemption; the reason is even harder, because whether an attack succeeds is itself a random event. The same injection sample, the same version of Mini, hitting the same layer of defense. This run the model cautiously refused, the next run it complied. Attack samples land precisely on the boundary where model behavior is least stable, and the variance is only larger than for regular cases.
+Chapter 6 once took apart "79% > 74%". Run the same version twice and the number moves on its own. Attack testing has no exemption; the reason is even harder, because whether an attack succeeds is itself a random event. The same injection sample, the same version of Mini, hitting the same layer of defense. This run the model cautiously refused, the next run it complied. Attack samples land precisely on the boundary where model behavior is least stable, and the variance is only larger than for regular cases.
 
 Hence this chapter's most tempting self-deception, cast from the same mold as Chapter 6's. One run without a breach ≠ the layer holds. Run once, zero breaches, write "all stopped" in the report, and the strength of that sentence's evidence is exactly the same as "one run, 79%, so the new version is better," which is to say zero. Low-frequency, high-risk failures especially. A breach that shows up once in one run may show up three times in five, or not at all, and the 0 you saw may well be just what this draw happened to give.
 
