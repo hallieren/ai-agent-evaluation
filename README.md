@@ -34,7 +34,7 @@ Or read the hosted site at <https://hallieren.github.io/ai-agent-evaluation/>, o
 | 9 | [Planning and Cost](docs/chapters/ch09-planning-and-cost.md) | [Templates](docs/appendices/ch09-templates.md) | [Lab](docs/labs/ch09.md) |
 | 10 | [Memory](docs/chapters/ch10-memory.md) | [Templates](docs/appendices/ch10-templates.md) | [Lab](docs/labs/ch10.md) |
 | 11 ★ | [Subagents](docs/chapters/ch11-multi-agent.md) | [Templates](docs/appendices/ch11-templates.md) | [Lab](docs/labs/ch11.md) |
-| 12 ★ | Attacks | 🚧 coming | |
+| 12 ★ | [Attacks](docs/chapters/ch12-adversarial.md) | [Templates](docs/appendices/ch12-templates.md) | [Lab](docs/labs/ch12.md) |
 | **Part IV · Shipping and Sustaining** | | | |
 | 13 ★ | Online Eval | 🚧 coming | |
 | 14 | Regression and Gates | 🚧 coming | |

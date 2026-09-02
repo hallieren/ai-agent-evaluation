@@ -81,7 +81,7 @@ Reading Chapter 1 straight through to Chapter 16 is only one of three paths. Pic
 | 9 | The endpoint is still right; the bill has already doubled | [Plan Quality Rubric + Cost/Latency Report Template](appendices/ch09-templates.md) | [ch09](chapters/ch09-planning-and-cost.md) | [lab](labs/ch09.md) |
 | 10 | It digs up last month's history to apologize to a customer | [Memory Eval Matrix + Long-Task Attribution Protocol](appendices/ch10-templates.md) | [ch10](chapters/ch10-memory.md) | [lab](labs/ch10.md) |
 | 11 ★ | End-to-end failed; both agents say it wasn't them | [Multi-Agent Attribution Decision Tree + Handoff Checklist](appendices/ch11-templates.md) | [ch11](chapters/ch11-multi-agent.md) | [lab](labs/ch11.md) |
-| 12 ★ | A piece of external content says "ignore previous instructions," and it does | Red Team Protocol + Shutdown Red-Line Checklist | Attacks 🚧 | 🚧 |
+| 12 ★ | A piece of external content says "ignore previous instructions," and it does | [Red Team Protocol + Shutdown Red-Line Checklist](appendices/ch12-templates.md) | [ch12](chapters/ch12-adversarial.md) | [lab](labs/ch12.md) |
 | 13 ★ | 91% offline, wrecked in week two of production | Evidence Ladder + Monitoring Signal Spec | Online Eval 🚧 | 🚧 |
 | 14 | You fixed scenario A; scenario B quietly regressed | Release Gate + Change-Tier Matrix + Stop Rule | Regression and Gates 🚧 | 🚧 |
 | 15 | You have all the data and still don't know what to change | Failure Mining Protocol + Bottleneck-to-Lever Mapping | The Improvement Loop 🚧 | 🚧 |
