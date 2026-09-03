@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 780 340" font-family="Inter,-apple-system,sans-serif">
+  <style>
+    .surface{fill:#FAFAF8}.tp{fill:#0A0A0A}.ts{fill:#737373}
+    .s25{fill:#002FA7;fill-opacity:.25}.s45{fill:#002FA7;fill-opacity:.45}
+    .s70{fill:#002FA7;fill-opacity:.70}.s100{fill:#002FA7}
+    .edge{stroke:#737373;stroke-width:1.5;fill:none}
+    .onfill{fill:#FAFAF8}
+    @media (prefers-color-scheme: dark){
+      .surface{fill:#0A0A0A}.tp{fill:#FAFAF8}.ts{fill:#A8A8A6}
+      .s25{fill:#7A96E8;fill-opacity:.30}.s45{fill:#7A96E8;fill-opacity:.50}
+      .s70{fill:#7A96E8;fill-opacity:.72}.s100{fill:#7A96E8}
+      .edge{stroke:#A8A8A6}
+      .onfill{fill:#0A0A0A}
+    }
+  </style>
+  <rect class="surface" x="0" y="0" width="780" height="340"/>
+  <text class="tp" x="24" y="38" font-size="17" font-weight="600">Evidence Ladder, a climb rather than a switch</text>
+  <text class="ts" x="24" y="60" font-size="12">Each rung trades controlled consequences for new evidence; an all-green offline run is only the ticket in at rung 0</text>
+
+  <rect class="s25" x="24" y="240" width="170" height="60" rx="4"/>
+  <text class="tp" x="109" y="228" font-size="13" font-weight="600" text-anchor="middle">1 Replay</text>
+  <text class="ts" x="109" y="266" font-size="11" text-anchor="middle">real traffic, offline harness</text>
+  <text class="ts" x="109" y="284" font-size="11" text-anchor="middle">zero consequences</text>
+
+  <rect class="s45" x="218" y="200" width="170" height="100" rx="4"/>
+  <text class="tp" x="303" y="188" font-size="13" font-weight="600" text-anchor="middle">2 silent / shadow</text>
+  <text class="ts" x="303" y="240" font-size="11" text-anchor="middle">runs online, output inert</text>
+  <text class="ts" x="303" y="258" font-size="11" text-anchor="middle">real distribution, no consequences</text>
+
+  <rect class="s70" x="412" y="160" width="170" height="140" rx="4"/>
+  <text class="tp" x="497" y="148" font-size="13" font-weight="600" text-anchor="middle">3 Canary</text>
+  <text class="ts" x="497" y="215" font-size="11" text-anchor="middle">real consequences, controlled scale</text>
+  <text class="ts" x="497" y="233" font-size="11" text-anchor="middle">rollback signals before widening</text>
+
+  <rect class="s100" x="606" y="120" width="150" height="180" rx="4"/>
+  <text class="tp" x="681" y="108" font-size="13" font-weight="600" text-anchor="middle">4 Full traffic</text>
+  <text class="onfill" x="681" y="200" font-size="11" text-anchor="middle">no new evidence,</text>
+  <text class="onfill" x="681" y="218" font-size="11" text-anchor="middle">only scale</text>
+
+  <g class="edge">
+    <path d="M40 320 H 720"/><path d="M712 315 L 722 320 L 712 325"/>
+  </g>
+  <text class="ts" x="390" y="336" font-size="11" text-anchor="middle">consequence scale and evidence strength →</text>
+</svg>

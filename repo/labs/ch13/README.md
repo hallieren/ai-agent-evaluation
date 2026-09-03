@@ -1,0 +1,31 @@
+# labs/ch13: Online Eval (evidence ladder)
+
+Following the chapter's Lab steps:
+
+1. **Meet "production"**: `python labs/ch13/traffic.py`, a deterministic traffic stream whose
+   distribution deliberately departs from the offline set (persona reweighting + fragmented
+   visits and two other "usages you couldn't think of"), printed side by side with the
+   `cases-50` persona distribution; `production-log.jsonl` is the real systems' behavior log
+   from the period when humans were handling (aligned by `source`).
+2. **Replay rung**: `python labs/ch13/run.py --stage replay`, the traffic pours into the ch7
+   harness and out comes the layered report; then reconcile the fidelity gap register row by
+   row against the production-side record (confirmed / refuted / no evidence), fix the stub
+   and rerun for every refuted row.
+3. **Shadow rung**: `python labs/ch13/run.py --stage shadow`, compared entry by entry against
+   the human decisions, out comes the disagreement rate; the ones where the human was wrong,
+   harvest them.
+4. **Canary rung**: `python labs/ch13/run.py --stage canary`, a slice of traffic executes for
+   real, `monitor.py`'s signals go live (red-line assertions / escalation rate / the three
+   cost columns), see which signal trips first; read the tripped trace to the end before
+   deciding: roll back, or harvest, fix, and climb again.
+5. **Harvest 10**: pick 10 from the red-line hits, the disagreements, the tripped traces,
+   write them into the eval set, rerun the offline full suite,
+   and watch the 91% drop, the receipt for an eval set catching up to reality.
+
+Output lands in `labs/ch13/out/` (`{replay,shadow,canary}-{traces,verdicts}.jsonl`);
+Chapter 15's failure mining draws its pool from here by default.
+
+**Without a model API**: the three stages of `run.py` need a real model
+(`MODEL_BASE_URL` / `MODEL_NAME`); `traffic.py` runs fully offline on its own;
+`monitor.py` runs offline but needs explicit inputs, for example:
+`python labs/ch13/monitor.py --traces labs/ch13/out/canary-traces.jsonl --verdicts labs/ch13/out/canary-verdicts.jsonl`.

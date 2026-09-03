@@ -63,6 +63,7 @@ nav:
       - "Ch 10 · Memory": chapters/ch10-memory.md
       - "Ch 11 · Subagents ★": chapters/ch11-multi-agent.md
       - "Ch 12 · Attacks ★": chapters/ch12-adversarial.md
+      - "Ch 13 · Online Eval ★": chapters/ch13-online-eval.md
   - Labs:
       - "Ch 1 Lab": labs/ch01.md
       - "Ch 2 Lab": labs/ch02.md
@@ -76,6 +77,7 @@ nav:
       - "Ch 10 Lab": labs/ch10.md
       - "Ch 11 Lab": labs/ch11.md
       - "Ch 12 Lab": labs/ch12.md
+      - "Ch 13 Lab": labs/ch13.md
   - Template appendix:
       - "Ch 1 templates": appendices/ch01-templates.md
       - "Ch 2 templates": appendices/ch02-templates.md
@@ -89,3 +91,4 @@ nav:
       - "Ch 10 templates": appendices/ch10-templates.md
       - "Ch 11 templates": appendices/ch11-templates.md
       - "Ch 12 templates": appendices/ch12-templates.md
+      - "Ch 13 templates": appendices/ch13-templates.md

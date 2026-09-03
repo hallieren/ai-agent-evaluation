@@ -36,7 +36,7 @@ Or read the hosted site at <https://hallieren.github.io/ai-agent-evaluation/>, o
 | 11 ★ | [Subagents](docs/chapters/ch11-multi-agent.md) | [Templates](docs/appendices/ch11-templates.md) | [Lab](docs/labs/ch11.md) |
 | 12 ★ | [Attacks](docs/chapters/ch12-adversarial.md) | [Templates](docs/appendices/ch12-templates.md) | [Lab](docs/labs/ch12.md) |
 | **Part IV · Shipping and Sustaining** | | | |
-| 13 ★ | Online Eval | 🚧 coming | |
+| 13 ★ | [Online Eval](docs/chapters/ch13-online-eval.md) | [Templates](docs/appendices/ch13-templates.md) | [Lab](docs/labs/ch13.md) |
 | 14 | Regression and Gates | 🚧 coming | |
 | 15 | The Improvement Loop | 🚧 coming | |
 | 16 | Eval Culture | 🚧 coming | |
