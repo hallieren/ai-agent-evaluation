@@ -33,7 +33,7 @@ Now hold the Week 15 launch against the ladder. It skipped rungs. Replay was don
 
 ![Evidence ladder](../assets/images/evidence-ladder.svg)
 
-*A four-rung ladder. Each rung trades controlled consequences for a new grade of evidence.*
+*Figure 13-1 Launch is not one switch but a four-rung climb, replay → silent/shadow → canary → full traffic. Replay has zero consequences, shadow runs online but its output is inert, the canary has real consequences at controlled scale, and full traffic adds no new evidence, only scale. Each rung up, consequence and evidence both turn one notch more real, and an all-green offline run is only the ticket in.*
 
 ### Rung 1 is replay. Real traffic enters the offline harness, and Chapter 7's register comes due
 
@@ -79,6 +79,10 @@ Controlled means three things.
 
 Beyond the slicing dimension there is one hard operational detail unique to conversational agents. The unit of slicing must be the customer. Not the message, not even the session. Hash the customer ID into a bucket, and once a customer is in the agent bucket, the whole person stays in it, no handoff mid-session, still there on the next visit. The anti-pattern is slicing by message or by random percentage. The same customer gets a human for one line and Mini for the next. Whose repeat contact is it? Whose overturn? Two service styles alternate inside a single conversation, the customer's next flash of temper comes from that whiplash, and the ledger cannot say whose it is. Every online signal is contaminated, and the canary ran for nothing. Bucketing keeps exactly one one-way exception, rollback. Customers in the agent bucket may be cut back to humans, whole bucket, any time. Moving human-bucket customers over to the agent mid-stream is never allowed.
 
+![Bucket by customer, not by message or session](../assets/images/bucket-by-customer.svg)
+
+*Figure 13-2 The unit of slicing must be the customer. Top, slicing by message or random percentage bounces one customer between human and agent, and neither the overturn nor the repeat contact can be attributed, so every online signal is contaminated. Bottom, hashing the customer ID into a bucket keeps the whole person in it with no mid-session handoff; the one one-way exception is rollback, a whole bucket back to humans anytime, while moving a human-bucket customer to the agent mid-stream is never allowed.*
+
 #### Why not an A/B test
 
 Readers with experiment-platform experience will frown here. Why is the canary criterion "no worse than the human baseline" instead of a proper A/B test? Three reasons, all structural facts of the agent setting.
@@ -115,6 +119,10 @@ Online verdict blindness is structural. Nobody will ever write an expect for pro
 **Class three, the customer repeat-contact rate.** The same customer coming back about the same matter within a short window is the cheapest proxy for "problem not solved." The customer is labeling for you, and the label's name is dissatisfied. The human-support era's repeat-contact rate is a ready-made baseline.
 
 **Class four, overturn-type signals.** Conclusions and actions later reversed by a person. Human reversal after a customer appeal. The human rejection rate on "needs confirmation" actions, the permission matrix's needs-confirmation column produces this signal in production for free, every rejection a vote of no confidence. And shadow-period disagreement postmortems. An overturn is the closest thing production has to a gold label, a human looked at this specific one and said it was wrong.
+
+![Four signal classes you can judge with no gold label](../assets/images/monitor-without-gold-label.svg)
+
+*Figure 13-3 Production has no gold label, yet four classes of signal can be judged without a reference answer, laid left to right by how much a human had to look. Red-line assertions are fully deterministic and automatic, judging "did the forbidden thing happen"; the escalation rate and the repeat-contact rate are cheap but noisy proxies; an overturn is a person having looked and reversed the call, the closest thing to a gold label. The further right, the costlier and the more human-judged, but also the closer to the truth.*
 
 Cost and latency stay resident as Chapter 9 first-class metrics. With subagents present the accounting basis follows Chapter 11, **system cost = outer usage + the sum of every nested trace's usage**, reported in the three columns, main agent / subagents / round trips. The production bill offers no outer-layer-only discount.
 

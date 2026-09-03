@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 780 274" font-family="Inter,-apple-system,sans-serif">
+  <style>
+    .surface{fill:#FAFAF8}.tp{fill:#0A0A0A}.ts{fill:#737373}
+    .band{fill:#FFFFFF;fill-opacity:.55;stroke:#B8B8B4;stroke-width:1.5}
+    .find{fill:#002FA7;fill-opacity:.09;stroke:#002FA7;stroke-width:1.5}
+    .edge{stroke:#737373;stroke-width:1.5;fill:none}
+    .arw{fill:#737373}
+    .accent{fill:#002FA7}
+    .mono{font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+    @media (prefers-color-scheme: dark){
+      .surface{fill:#0A0A0A}.tp{fill:#FAFAF8}.ts{fill:#A8A8A6}
+      .band{fill:#FFFFFF;fill-opacity:.04;stroke:#5A5A58}
+      .find{fill:#7A96E8;fill-opacity:.16;stroke:#7A96E8}
+      .edge{stroke:#A8A8A6}.arw{fill:#A8A8A6}
+      .accent{fill:#7A96E8}
+    }
+  </style>
+  <defs>
+    <marker id="m1" markerWidth="8" markerHeight="8" refX="6.5" refY="3.5" orient="auto"><path d="M0 0 L7 3.5 L0 7 Z" class="arw"/></marker>
+  </defs>
+  <rect class="surface" x="0" y="0" width="780" height="274"/>
+
+  <text class="tp" x="24" y="34" font-size="17" font-weight="600">With no gold label, four signal classes you can still judge</text>
+  <text class="ts" x="24" y="56" font-size="13">None needs an expect per unit of traffic; the further right, the closer to a gold label</text>
+
+  <text class="ts" x="24" y="84" font-size="13">no human needed (deterministic)</text>
+  <text class="ts" x="756" y="84" font-size="13" text-anchor="end">a human looked (human-judged)</text>
+  <line class="edge" x1="24" y1="94" x2="748" y2="94" marker-end="url(#m1)"/>
+
+  <line class="edge" x1="105" y1="94" x2="105" y2="112"/>
+  <line class="edge" x1="295" y1="94" x2="295" y2="112"/>
+  <line class="edge" x1="485" y1="94" x2="485" y2="112"/>
+  <line class="edge" x1="675" y1="94" x2="675" y2="112"/>
+
+  <rect class="band" x="20" y="112" width="170" height="132" rx="8"/>
+  <text class="accent" x="105" y="138" font-size="14" font-weight="600" text-anchor="middle">Red-line assertions</text>
+  <text class="ts" x="105" y="164" font-size="13" text-anchor="middle">judges "did the</text>
+  <text class="ts" x="105" y="184" font-size="13" text-anchor="middle">forbidden happen"</text>
+  <text class="ts mono" x="105" y="212" font-size="12" text-anchor="middle">no_pii_disclosure</text>
+  <text class="ts" x="105" y="232" font-size="13" text-anchor="middle">deterministic, top trust</text>
+
+  <rect class="band" x="210" y="112" width="170" height="132" rx="8"/>
+  <text class="tp" x="295" y="138" font-size="14" font-weight="600" text-anchor="middle">escalation rate</text>
+  <text class="ts" x="295" y="164" font-size="13" text-anchor="middle">rate of asking</text>
+  <text class="ts" x="295" y="184" font-size="13" text-anchor="middle">humans for help</text>
+  <text class="ts" x="295" y="222" font-size="13" text-anchor="middle">cheap, noisy proxy</text>
+
+  <rect class="band" x="400" y="112" width="170" height="132" rx="8"/>
+  <text class="tp" x="485" y="138" font-size="14" font-weight="600" text-anchor="middle">repeat-contact rate</text>
+  <text class="ts" x="485" y="164" font-size="13" text-anchor="middle">same matter, short</text>
+  <text class="ts" x="485" y="184" font-size="13" text-anchor="middle">window, comes back</text>
+  <text class="ts" x="485" y="222" font-size="13" text-anchor="middle">cheap, noisy proxy</text>
+
+  <rect class="find" x="590" y="112" width="170" height="132" rx="8"/>
+  <text class="accent" x="675" y="138" font-size="14" font-weight="600" text-anchor="middle">overturn</text>
+  <text class="ts" x="675" y="164" font-size="13" text-anchor="middle">a person reversed</text>
+  <text class="ts" x="675" y="184" font-size="13" text-anchor="middle">the call or action</text>
+  <text class="accent" x="675" y="222" font-size="13" font-weight="600" text-anchor="middle">closest to gold label</text>
+</svg>

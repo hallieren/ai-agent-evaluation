@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 780 404" font-family="Inter,-apple-system,sans-serif">
+  <style>
+    .surface{fill:#FAFAF8}.tp{fill:#0A0A0A}.ts{fill:#737373}
+    .band{fill:#FFFFFF;fill-opacity:.55;stroke:#B8B8B4;stroke-width:1.5}
+    .find{fill:#002FA7;fill-opacity:.09;stroke:#002FA7;stroke-width:1.5}
+    .edge{stroke:#737373;stroke-width:1.5;fill:none}
+    .arw{fill:#737373}
+    .accent{fill:#002FA7}.dot{fill:#737373}.dotb{fill:#002FA7}.drop{fill:#B23A48}
+    @media (prefers-color-scheme: dark){
+      .surface{fill:#0A0A0A}.tp{fill:#FAFAF8}.ts{fill:#A8A8A6}
+      .band{fill:#FFFFFF;fill-opacity:.04;stroke:#5A5A58}
+      .find{fill:#7A96E8;fill-opacity:.16;stroke:#7A96E8}
+      .edge{stroke:#A8A8A6}.arw{fill:#A8A8A6}
+      .accent{fill:#7A96E8}.dot{fill:#A8A8A6}.dotb{fill:#7A96E8}.drop{fill:#E88A94}
+    }
+  </style>
+  <defs>
+    <marker id="b1" markerWidth="8" markerHeight="8" refX="6.5" refY="3.5" orient="auto"><path d="M0 0 L7 3.5 L0 7 Z" class="arw"/></marker>
+  </defs>
+  <rect class="surface" x="0" y="0" width="780" height="404"/>
+
+  <text class="tp" x="24" y="34" font-size="17" font-weight="600">The unit of slicing must be the customer, not the message, not the session</text>
+  <text class="ts" x="24" y="56" font-size="13">One customer bounced between human and agent contaminates every online signal, and the canary runs for nothing</text>
+
+  <!-- panel 1: random slice, contaminated -->
+  <text class="drop" x="24" y="92" font-size="13" font-weight="600">✕ Slice by message or random percentage</text>
+
+  <rect class="band" x="24" y="106" width="110" height="52" rx="8"/>
+  <text class="tp" x="79" y="128" font-size="13" font-weight="600" text-anchor="middle">Same customer</text>
+  <text class="ts" x="79" y="147" font-size="13" text-anchor="middle">one thread</text>
+
+  <rect class="band" x="150" y="106" width="130" height="52" rx="8"/>
+  <text class="ts" x="215" y="128" font-size="13" text-anchor="middle">Line 1</text>
+  <text class="tp" x="215" y="147" font-size="13" font-weight="600" text-anchor="middle">Human</text>
+
+  <rect class="find" x="300" y="106" width="130" height="52" rx="8"/>
+  <text class="ts" x="365" y="128" font-size="13" text-anchor="middle">Line 2</text>
+  <text class="accent" x="365" y="147" font-size="13" font-weight="600" text-anchor="middle">Mini</text>
+
+  <rect class="band" x="450" y="106" width="130" height="52" rx="8"/>
+  <text class="ts" x="515" y="128" font-size="13" text-anchor="middle">Line 3</text>
+  <text class="tp" x="515" y="147" font-size="13" font-weight="600" text-anchor="middle">Human</text>
+
+  <rect class="find" x="600" y="106" width="130" height="52" rx="8"/>
+  <text class="ts" x="665" y="128" font-size="13" text-anchor="middle">Line 4</text>
+  <text class="accent" x="665" y="147" font-size="13" font-weight="600" text-anchor="middle">Mini</text>
+
+  <line class="edge" x1="134" y1="132" x2="148" y2="132" marker-end="url(#b1)"/>
+  <line class="edge" x1="280" y1="132" x2="298" y2="132" marker-end="url(#b1)"/>
+  <line class="edge" x1="430" y1="132" x2="448" y2="132" marker-end="url(#b1)"/>
+  <line class="edge" x1="580" y1="132" x2="598" y2="132" marker-end="url(#b1)"/>
+
+  <text class="drop" x="24" y="186" font-size="13">Two styles in one thread, whose overturn, whose repeat contact? Every online signal contaminated.</text>
+
+  <line class="edge" x1="24" y1="204" x2="756" y2="204" stroke-dasharray="4 4"/>
+
+  <!-- panel 2: bucket, clean -->
+  <text class="accent" x="24" y="238" font-size="13" font-weight="600">✓ Bucket by customer, hash the ID, the whole person stays</text>
+
+  <rect class="band" x="30" y="252" width="200" height="100" rx="8"/>
+  <text class="tp" x="130" y="278" font-size="14" font-weight="600" text-anchor="middle">Human bucket</text>
+  <circle class="dot" cx="62" cy="314" r="9"/><circle class="dot" cx="100" cy="314" r="9"/>
+  <circle class="dot" cx="138" cy="314" r="9"/><circle class="dot" cx="176" cy="314" r="9"/>
+  <circle class="dot" cx="214" cy="314" r="9"/>
+  <text class="ts" x="130" y="342" font-size="13" text-anchor="middle">no handoff mid-session</text>
+
+  <rect class="find" x="550" y="252" width="200" height="100" rx="8"/>
+  <text class="tp" x="650" y="278" font-size="14" font-weight="600" text-anchor="middle">Mini bucket (agent)</text>
+  <circle class="dotb" cx="590" cy="314" r="9"/><circle class="dotb" cx="650" cy="314" r="9"/>
+  <circle class="dotb" cx="710" cy="314" r="9"/>
+  <text class="ts" x="650" y="342" font-size="13" text-anchor="middle">the whole person stays</text>
+
+  <text class="accent" x="390" y="284" font-size="13" text-anchor="middle">Rollback: whole bucket back, anytime</text>
+  <line class="edge" x1="548" y1="296" x2="232" y2="296" marker-end="url(#b1)"/>
+
+  <line class="edge" x1="232" y1="318" x2="548" y2="318" stroke-dasharray="4 4"/>
+  <text class="drop" x="390" y="336" font-size="13" text-anchor="middle">✕ never the reverse mid-stream</text>
+
+  <text class="ts" x="390" y="388" font-size="13" text-anchor="middle">Unit is the customer and signals stay clean; rollback is the one one-way exception.</text>
+</svg>
