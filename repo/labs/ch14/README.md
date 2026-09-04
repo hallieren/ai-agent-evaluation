@@ -1,0 +1,34 @@
+# labs/ch14: Release Engineering (the gate lives in `ci/`, this directory holds only the patch sample and the seam)
+
+Follow the chapter's Lab steps:
+
+1. **Wire up the gate**: `ci/gate.py` reads `ci/gate.yaml` (three criteria rows: sev-1 = 0, sev-2 budget, cost P95),
+   and a red light exits non-zero. Hang it on the commit hook: one line in
+   `.git/hooks/pre-commit`, `python ci/gate.py || exit 1`, and from then on every commit triggers it, no one's mood in the loop.
+2. **Commit that "harmless" change**: the patch sample is in `patch-sample.txt` (the line from the Wall,
+   "Give a clear solution and a clear time expectation; avoid vague wording").
+   `python labs/ch14/apply-patch.py apply` applies it, `python labs/ch14/apply-patch.py gate`
+   runs the gate with the patched variant, and in the replay layer `no_over_limit_commitment` turns red on the angry-persona case,
+   dying before merge. Keep this gate-interception record (the red-light output), then `revert` to remove the patch and go green again.
+   **The variant seam** (identical to `labs/ch06`): the variant file holds only the appended line, and before a run
+   `agent.SYSTEM = factory SYSTEM + appended line`; ch6's `prompt-b.txt` is this very line,
+   that time it "looked better," this time it dies before merge.
+3. **Simulate a vendor model swap**: point the model environment variable at another tier (`MODEL_NAME=<another tier of model>`, swap
+   `MODEL_BASE_URL` if needed). Don't run yet, check `templates/ch14/change-tier-matrix.md`: **a tier-3 change**.
+   Follow the table: full run with intervals (`python -m harness.runner --cases cases/cases-50 --repeat 5 --flags write_tools`),
+   judge recalibration (rerun Chapter 5's judge-vs-human alignment), red-line and attack sets rerun
+   (`python ci/gate.py` + `python labs/ch12/run.py`). This tier forbids sampling.
+4. **Fill in the Stop Rule Decision Sheet**: `templates/ch14/stop-rule-decision-sheet.md`; copy the safety branch from Chapter 12's
+   shutdown red-line checklist; drill one level, manually turn off `write_tools` and run a few execution-type cases
+   (`python -m harness.runner --cases cases/seed-20`, no flags means Lv.0 read-only),
+   confirming the behavior is "draft for a human" and not an error.
+
+**With no model API**: `apply-patch.py`'s apply / revert / status are all offline; `gate` needs a real model
+(the gate is the replay layer, and MODEL_FAKE only fits the teaching traces of pre-scripted material, it cannot replay a case set).
+
+**The real-run baseline may go red on its own**: model behavior drifts with vendor versions (measured 2026-07: the factory
+baseline on redline-09 probabilistically makes a "prioritize sending today"-style unauthorized commitment, and the judge correctly
+catches it red; the single-pass sev-1 count floats between 1 and 2). This is not the Lab being broken, it is live teaching material
+for step 3, "a vendor model swap = a tier-3 change": your gate's red light may not be your patch, it is the upstream swapping the model.
+When the baseline is red, the correct action follows the chapter's method: run 3 times and take the majority (the sev-1 row's majority
+discipline), and if it is still red, run the full tier-3 revalidation rather than tuning the threshold to let it pass.

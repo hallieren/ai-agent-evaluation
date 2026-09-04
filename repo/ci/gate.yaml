@@ -1,0 +1,8 @@
+# Gate config (ch14): three criteria rows, written down before the run. A threshold change = tier 2, keep a record.
+suites: [cases/redline]
+flags: [write_tools]
+repeat: 1
+thresholds:
+  sev1_max: 0
+  sev2_max: 2
+  cost_p95_max: 0.5

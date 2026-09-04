@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 780 416" font-family="Inter,-apple-system,sans-serif">
+  <style>
+    .surface{fill:#FAFAF8}.tp{fill:#0A0A0A}.ts{fill:#737373}
+    .band{fill:#FFFFFF;fill-opacity:.55;stroke:#B8B8B4;stroke-width:1.5}
+    .off{fill:#B23A48;fill-opacity:.07}
+    .div{stroke:#B8B8B4;stroke-width:1}
+    .keep{fill:#002FA7}
+    .drop{fill:#B23A48}
+    .accent{fill:#002FA7}
+    .mono{font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+    @media (prefers-color-scheme: dark){
+      .surface{fill:#0A0A0A}.tp{fill:#FAFAF8}.ts{fill:#A8A8A6}
+      .band{fill:#FFFFFF;fill-opacity:.04;stroke:#5A5A58}
+      .off{fill:#E88A94;fill-opacity:.12}
+      .div{stroke:#5A5A58}
+      .keep{fill:#7A96E8}
+      .drop{fill:#E88A94}
+      .accent{fill:#7A96E8}
+    }
+  </style>
+  <rect class="surface" x="0" y="0" width="780" height="416"/>
+
+  <text class="tp" x="24" y="34" font-size="17" font-weight="600">Pause has three levels, not one switch</text>
+  <text class="ts" x="24" y="56" font-size="13">Capability was unlocked one layer at a time, so it locks back one layer at a time.</text>
+
+  <!-- column headers -->
+  <text class="ts" x="319" y="100" font-size="13" text-anchor="middle">look up</text>
+  <text class="ts" x="417" y="100" font-size="13" text-anchor="middle">answer</text>
+  <text class="ts" x="515" y="100" font-size="13" text-anchor="middle">draft</text>
+  <text class="ts" x="613" y="100" font-size="13" text-anchor="middle">auto-send</text>
+  <text class="ts" x="711" y="100" font-size="13" text-anchor="middle">write action</text>
+
+  <!-- Lv.1 -->
+  <rect class="band" x="20" y="112" width="740" height="76" rx="8"/>
+  <rect class="off" x="662" y="112" width="98" height="76"/>
+  <text class="accent" x="40" y="146" font-size="15" font-weight="600">Lv.1 Execution to human</text>
+  <text class="ts" x="40" y="168" font-size="13">turn off <tspan class="mono">write_tools</tspan></text>
+  <text class="keep" x="319" y="156" font-size="17" text-anchor="middle">✓</text>
+  <text class="keep" x="417" y="156" font-size="17" text-anchor="middle">✓</text>
+  <text class="keep" x="515" y="156" font-size="17" text-anchor="middle">✓</text>
+  <text class="keep" x="613" y="156" font-size="17" text-anchor="middle">✓</text>
+  <text class="drop" x="711" y="156" font-size="17" text-anchor="middle">✕</text>
+
+  <!-- Lv.2 -->
+  <rect class="band" x="20" y="196" width="740" height="76" rx="8"/>
+  <rect class="off" x="564" y="196" width="196" height="76"/>
+  <text class="accent" x="40" y="230" font-size="15" font-weight="600">Lv.2 Read-only downgrade</text>
+  <text class="ts" x="40" y="252" font-size="13">the reply is a draft only</text>
+  <text class="keep" x="319" y="240" font-size="17" text-anchor="middle">✓</text>
+  <text class="keep" x="417" y="240" font-size="17" text-anchor="middle">✓</text>
+  <text class="keep" x="515" y="240" font-size="17" text-anchor="middle">✓</text>
+  <text class="drop" x="613" y="240" font-size="17" text-anchor="middle">✕</text>
+  <text class="drop" x="711" y="240" font-size="17" text-anchor="middle">✕</text>
+
+  <!-- Lv.3 -->
+  <rect class="band" x="20" y="280" width="740" height="76" rx="8"/>
+  <rect class="off" x="270" y="280" width="490" height="76"/>
+  <text class="accent" x="40" y="314" font-size="15" font-weight="600">Lv.3 Full stop</text>
+  <text class="ts" x="40" y="336" font-size="13">traffic back to pure human</text>
+  <text class="drop" x="319" y="324" font-size="17" text-anchor="middle">✕</text>
+  <text class="drop" x="417" y="324" font-size="17" text-anchor="middle">✕</text>
+  <text class="drop" x="515" y="324" font-size="17" text-anchor="middle">✕</text>
+  <text class="drop" x="613" y="324" font-size="17" text-anchor="middle">✕</text>
+  <text class="drop" x="711" y="324" font-size="17" text-anchor="middle">✕</text>
+
+  <text class="ts" x="24" y="392" font-size="13"><tspan class="accent" font-weight="600">The flags you flipped open through Part III are the actuators.</tspan> Recovery after a stop is a tier-3 change (Table 14-1).</text>
+</svg>

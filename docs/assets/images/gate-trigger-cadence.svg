@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 780 452" font-family="Inter,-apple-system,sans-serif">
+  <style>
+    .surface{fill:#FAFAF8}.tp{fill:#0A0A0A}.ts{fill:#737373}
+    .band{fill:#FFFFFF;fill-opacity:.55;stroke:#B8B8B4;stroke-width:1.5}
+    .div{stroke:#B8B8B4;stroke-width:1.5}
+    .edge{stroke:#737373;stroke-width:1.5;fill:none}
+    .arw{fill:#737373}
+    .accent{fill:#002FA7}
+    .mono{font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+    @media (prefers-color-scheme: dark){
+      .surface{fill:#0A0A0A}.tp{fill:#FAFAF8}.ts{fill:#A8A8A6}
+      .band{fill:#FFFFFF;fill-opacity:.04;stroke:#5A5A58}
+      .div{stroke:#5A5A58}
+      .edge{stroke:#A8A8A6}.arw{fill:#A8A8A6}
+      .accent{fill:#7A96E8}
+    }
+  </style>
+  <defs>
+    <marker id="m1" markerWidth="8" markerHeight="8" refX="6.5" refY="3.5" orient="auto"><path d="M0 0 L7 3.5 L0 7 Z" class="arw"/></marker>
+  </defs>
+  <rect class="surface" x="0" y="0" width="780" height="452"/>
+
+  <text class="tp" x="24" y="34" font-size="17" font-weight="600">One gate, three cadences</text>
+  <text class="ts" x="24" y="56" font-size="13">Trigger by frequency, not by mood. What retreats is the frequency, not the promise.</text>
+
+  <!-- frequency axis -->
+  <line class="edge" x1="46" y1="98" x2="46" y2="392" marker-end="url(#m1)"/>
+  <text class="ts" x="34" y="240" font-size="13" text-anchor="middle" transform="rotate(-90 34 240)">frequent  →  sparse</text>
+
+  <!-- Band A: every commit -->
+  <rect class="band" x="78" y="94" width="682" height="92" rx="8"/>
+  <text class="accent" x="98" y="146" font-size="16" font-weight="600">every commit</text>
+  <line class="div" x1="238" y1="110" x2="238" y2="170"/>
+  <text class="tp" x="258" y="134" font-size="15">Assertion subset + <tspan class="mono">cases/redline</tspan> + <tspan class="mono">cases/attacks</tspan></text>
+  <text class="ts" x="258" y="160" font-size="13">the cheapest verdicts that also cannot be skipped</text>
+
+  <!-- Band B: every PR merge -->
+  <rect class="band" x="78" y="198" width="682" height="92" rx="8"/>
+  <text class="accent" x="98" y="250" font-size="16" font-weight="600">every PR merge</text>
+  <line class="div" x1="238" y1="214" x2="238" y2="274"/>
+  <text class="tp" x="258" y="238" font-size="15">Full replay</text>
+  <text class="ts" x="258" y="264" font-size="13">before any change enters main, this one cannot be gone around</text>
+
+  <!-- Band C: nightly -->
+  <rect class="band" x="78" y="302" width="682" height="92" rx="8"/>
+  <text class="accent" x="98" y="354" font-size="16" font-weight="600">nightly</text>
+  <line class="div" x1="238" y1="318" x2="238" y2="378"/>
+  <text class="tp" x="258" y="342" font-size="15">Simulation layer, <tspan class="mono">--repeat</tspan> with intervals</text>
+  <text class="ts" x="258" y="368" font-size="13">Chapter 6's discipline, not one of them dropped</text>
+
+  <text class="ts" x="24" y="428" font-size="13"><tspan class="accent" font-weight="600">Full replay retreats from every-commit to every-merge.</tspan> The frequency retreats, the promise does not.</text>
+</svg>

@@ -6,7 +6,7 @@
 
 *Shore & Summit is a synthetic teaching world assembled from common enterprise scenarios; it does not correspond to any real company, and every character in this book is fictional.*
 
-The book is released chapter by chapter. Chapters 1 through 11 are live, and the remaining chapters and appendices land one at a time, roughly weekly, each as it clears our own practice pass. Each released chapter is paired with an applied essay on the author's Substack: [hallieren.substack.com](https://hallieren.substack.com). Unreleased chapters below are marked 🚧 coming.
+The book is released chapter by chapter. Chapters 1 through 14 are live, and the remaining chapters and appendices land one at a time, roughly weekly, each as it clears our own practice pass. Each released chapter is paired with an applied essay on the author's Substack: [hallieren.substack.com](https://hallieren.substack.com). Unreleased chapters below are marked 🚧 coming.
 
 ## How to read
 
@@ -37,7 +37,7 @@ Or read the hosted site at <https://hallieren.github.io/ai-agent-evaluation/>, o
 | 12 ★ | [Attacks](docs/chapters/ch12-adversarial.md) | [Templates](docs/appendices/ch12-templates.md) | [Lab](docs/labs/ch12.md) |
 | **Part IV · Shipping and Sustaining** | | | |
 | 13 ★ | [Online Eval](docs/chapters/ch13-online-eval.md) | [Templates](docs/appendices/ch13-templates.md) | [Lab](docs/labs/ch13.md) |
-| 14 | Regression and Gates | 🚧 coming | |
+| 14 | [Regression and Gates](docs/chapters/ch14-release-engineering.md) | [Templates](docs/appendices/ch14-templates.md) | [Lab](docs/labs/ch14.md) |
 | 15 | The Improvement Loop | 🚧 coming | |
 | 16 | Eval Culture | 🚧 coming | |
 
