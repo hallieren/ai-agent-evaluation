@@ -178,6 +178,23 @@ A word on the fourth item's use in the room. The last step of a launch decision 
 
 ## Lab
 
+**Let an agent run it for you.** Step 4's Stop Rule Decision Sheet and the reading of every red light are yours to do by hand; `apply-patch.py`'s apply / revert / status are fully offline, and `gate` and step 3's full rerun need a model API. In a repo set up per the [home page](../index.md), paste this to your coding agent:
+
+```text
+In the ai-agent-evaluation repo, run the Chapter 14 lab. First the Chapter 10 homework:
+show me cases/redline/redline-11.yaml and redline-12.yaml and wait for me to add the
+no_pii_disclosure assertion myself; do not write it for me. Then wire the gate: add the
+line python ci/gate.py || exit 1 to .git/hooks/pre-commit and make the hook executable.
+Run python labs/ch14/apply-patch.py apply and show me the status. If I have a model API
+configured, run python labs/ch14/apply-patch.py gate and show me the red-light output as
+is, then stop: which case and which assertion turned red is mine to read before you
+explain it. Keep that output, it is the interception record, and only then run
+python labs/ch14/apply-patch.py revert. For step 3, do not run the tier-3 rerun yet;
+open templates/ch14/change-tier-matrix.md for me and wait for my go. The Stop Rule
+Decision Sheet is mine to fill by hand. No model API? Do apply / status / revert only
+and tell me what gate would have run. Stop and show me the output if any command errors.
+```
+
 **Follow-along track (default).**
 
 1. **Wire up the gate.** `ci/gate` is a ready-made gate script, it reads the gate config under `ci/`, runs the replay layer on the current commit, and a red light exits non-zero. Follow the notes in [`labs/ch14/`](../labs/ch14.md) to hang it on the commit hook, and from then on every commit triggers it automatically, no one's mood in the loop.

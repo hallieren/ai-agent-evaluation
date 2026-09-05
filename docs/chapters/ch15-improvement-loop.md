@@ -128,6 +128,22 @@ Three pieces, together the operating system of the improvement cycle (in the rep
 
 ## Lab
 
+**Let an agent run it for you.** Step 1's hand coding, step 2's atlas row, and step 3's two hypotheses are yours to do by hand; `cluster.py` is fully offline, and steps 4 and 5, the fix and the verification, need a model API. In a repo set up per the [home page](../index.md), paste this to your coding agent:
+
+```text
+In the ai-agent-evaluation repo, run the Chapter 15 lab. Run python labs/ch15/cluster.py
+(by default it pools the verdicts and traces under labs/ch13/out/; if that directory is
+empty, point --verdicts and --traces at labs/ch16/material/incident-verdict.jsonl and
+incident-trace.jsonl) and show me the pre-sorted piles as is. Then stop: the stratified
+sample is mine to read and code by hand, the new atlas row is mine to write, and the two
+falsifiable hypotheses are mine to write down before anything changes; do not name the
+failure mode or pick the bottleneck for me, and do not open labs/ch15/cycle-demo.md until
+I say my hypotheses are written. When I give you the revised tool description, change only
+that description in mini/tools.py, not one word of the prompt, and if I have a model API
+configured run the paired comparison with --repeat 5 and show me the target mode's count
+and the sev tiers as is. Stop and show me the output if any command errors.
+```
+
 **Follow-along track (default).**
 
 1. Circle the pool and cluster. In Chapter 13 you already harvested 10 cases; the clustering script under [`labs/ch15/`](../labs/ch15.md) pools them with newly produced suspected-failure traces from the "production traffic" simulator and pre-sorts by failure description. After stratified sampling, read and code each one by hand, the craft trained in Chapter 3, this time on dirty data.

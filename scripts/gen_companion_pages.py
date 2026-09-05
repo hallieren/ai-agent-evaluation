@@ -50,7 +50,11 @@ def gen_lab(ch: str) -> None:
                    if p.is_file() and p.name != "README.md")
     listing = "\n".join(
         f"- [`{name}`]({GH}/repo/labs/{ch}/{name})" for name in files)
-    body = (BANNER + readme.rstrip() + "\n\n---\n\n## Files in this lab\n\n"
+    n = int(ch[2:])
+    chapter = next((ROOT / "docs" / "chapters").glob(f"{ch}-*.md")).name
+    agent_note = (f'!!! tip ""\n    Rather hand this lab to a coding agent? The Lab section of '
+                  f'[Chapter {n}](../chapters/{chapter}) opens with a prompt to paste.\n\n')
+    body = (BANNER + agent_note + readme.rstrip() + "\n\n---\n\n## Files in this lab\n\n"
             + f"Full directory: [`repo/labs/{ch}/`]({GH_TREE}/repo/labs/{ch}/)\n\n"
             + listing + "\n")
     out = ROOT / "docs" / "labs" / f"{ch}.md"
