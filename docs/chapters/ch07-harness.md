@@ -70,7 +70,7 @@ Running it is just as plain. Each turn, feed the four-line script plus the conve
 
 ### Synthetic-User Fidelity, Calibrating the Third LLM
 
-Distortion has to be faced head on. **The synthetic user is itself an LLM**, with failure modes of its own: too cooperative (the angry persona cools off after two turns), too dramatic (real users don't rage like they are reciting lines), talked out of its own position (one explanation from Mini and it abandons the demand). Your system now holds three LLMs: the agent under test, the judge that scores (calibrated in Chapter 5), and the synthetic user that acts. Don't calibrate only the first two.
+Distortion has to be faced head on. **The synthetic user is itself an LLM**, with failure modes of its own: too cooperative (the angry persona cools off after two turns), too dramatic (real users don't rage like they are reciting lines), talked out of its own position (one explanation from Mini and it abandons the demand). Your system now holds three LLMs: the agent under test, the judge that scores (calibrated in Chapter 5), and the synthetic user that acts. Don't calibrate only the first two. Calibration only guarantees that it matches the script, not that it matches your real user population. The synthetic user is an adversary that puts pressure on the agent, not a tool for estimating how real users will react; only the signals you collect after launch can answer that (Chapter 13).
 
 Calibrating the third is isomorphic to the first two: find a reference, measure the disagreement, fix until the disagreement is acceptable. It lands as a minimal executable protocol.
 
