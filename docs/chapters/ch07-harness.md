@@ -11,9 +11,9 @@ Then you discover it has nowhere to run.
 
 An action case in the eval set reads "customer demands a $680 refund". To judge whether Mini handles it correctly, someday it has to actually walk the refund flow, and Chapter 8 is about to unlock write operations. But you cannot refund real money. One test costs $680; run the full set, then repeat it 5 times per Chapter 6's discipline, and you are funding regression tests with the company's cash.
 
-The eval set's persona field reads angry, vague, multi. You set that yourself in Chapter 4, because real users get angry, get vague, and ask three things at once. Yet these cases are all single prompts right now. A real angry customer changes their story in turn 2 and raises the stakes in turn 3; a vague customer surrenders the order ID only after several rounds of follow-up. To test multi-turn dialogue, someone has to sit on the other side. You should have seen this day coming when the eval set hit 300 cases in Chapter 5; you cannot hire 300 actors, much less hire them to spar a nightly regression.
+The eval set's persona field reads angry, vague, multi. You set that yourself in Chapter 4, because real users get angry, get vague, and ask three things at once. Yet these cases are all single prompts right now. A real angry customer changes their story in turn 2 and raises the stakes in turn 3; a vague customer surrenders the order ID only after several rounds of follow-up. To test multi-turn dialogue, someone has to sit on the other side. You should have seen this day coming when the eval set grew to a few hundred cases in Chapter 5; you cannot hire a few hundred actors, much less hire them to spar a nightly regression.
 
-And then there is send_email. Outbound email is the most underestimated irreversible action there is. One slip during testing and a real customer receives a baffling email; that alone is an incident.
+And then there is sending email (the send_email tool). Outbound email is the most underestimated irreversible action there is. One slip during testing and a real customer receives a baffling email; that alone is an incident.
 
 So the team settles into a quiet stalemate. The eval system stands finished and runs only on the "safe" read-only cases. Writes, multi-turn, outbound mail: the highest-risk places, the ones that need evaluating most, are exactly where nobody dares test. The wall is called **you don't dare test in the real environment**.
 
@@ -35,17 +35,17 @@ In one sentence, the core problem of eval infrastructure moves from "preparing i
 
 ### A Resettable World, the Sandbox and Tool Stubs
 
-The repo has carried a minimal world all along; what else was Chapter 1's get_order querying? Read-only Mini could not dirty it. Now, to receive write operations, the world upgrades to a three-piece kit (`world/`).
+The repo has carried a minimal world all along; what else was Chapter 1's read-only order lookup, get_order, querying? Read-only Mini could not dirty it. Now, to receive write operations, the world upgrades to a three-piece kit (`world/`).
 
-**The seed.** The SQLite order database rebuilds from a seed file; each case's setup field declares the world state it needs before running. The setup in Chapter 4's case schema is honored here.
+**The seed.** The SQLite order database rebuilds from a seed file; the seed is the database's initial snapshot, and every reset grows an identical order database from it. Each case declares the world state it needs before running in its setup field, a field planted when Chapter 4 defined the case schema and put to use now.
 
-**Stubs (the mock/stub you already know).** Write tools never touch real systems. refund edits the sandbox order database; send_email sends nothing and writes into the outbox stub, a mailbox with an entrance and no exit. The point of stubs is not only safety but **observability**. The order's post-refund state is one order_state_equals lookup away; outbound content lies in the outbox, where no_pii_disclosure inspects it message by message. The side effects that are hard to capture in a real system all become assertable evidence in the sandbox.
+**Stubs (the mock/stub of testing, a fake and controllable stand-in for a real system).** Write tools never touch real systems. refund edits the sandbox order database; send_email sends nothing and writes into the outbox stub, a mailbox with an entrance and no exit. The point of stubs is not only safety but **observability**. The order's post-refund state is one lookup away (the assertion order_state_equals, which checks whether the order's end state is right); outbound content lies in the outbox and gets inspected message by message (the assertion no_pii_disclosure, which checks whether details went to someone who should not receive them). The side effects that are hard to capture in a real system all become assertable evidence in the sandbox.
 
 **Reset.** Before every case runs, the world rebuilds from the seed, the starting point strictly identical. Chapter 6 taught you to account for variance; the sandbox's job is to delete "the environment differed" from the list of variance sources, so that whatever variance remains is the agent's own.
 
-Mind the order. write_tools stays sealed (Chapter 8 unlocks it), and the stubs get built first. Eval before build, landed at the infrastructure layer, is **the world before the capability**.
+Mind the order. write_tools stays sealed (Chapter 8 unlocks it), and the stubs get built first. Eval before build, stubs before write_tools, landed at the infrastructure layer, is **the world before the capability**.
 
-Which tools must be stubbed? Two criteria, **irreversibility** and **a real counterparty**. refund, send_email, update_order, escalate: anything irreversible, or involving a real other person, gets stubbed. Read-only tools like get_order and search_kb read sandbox data anyway, and the stub-versus-real line dissolves. The one thing that must never be stubbed is the model API. The model is the thing under test; stub it and the eval is testing itself.
+Which tools must be stubbed? Two criteria, **irreversibility** and **a real counterparty**. refund, send_email, update_order, escalate: anything irreversible, or involving a real other person, gets stubbed. Read-only tools like get_order and search_kb read sandbox data anyway, and the stub-versus-real line dissolves. The one thing that must never be stubbed is the model API. The model is the thing under test; stub it and the replies you see are fake data you wrote in advance, so what gets judged is whether your own writing is right, not whether the model is any good; the eval is testing itself.
 
 ### Synthetic Users, an LLM Playing the Counterparty
 
@@ -55,7 +55,7 @@ Multi-turn dialogue needs someone on the other side, and the answer is **an LLM 
 - **vague**: cannot produce the order ID, describes things inconsistently; purpose-built to test follow-up and verification discipline. What it guards against is "just guess one".
 - **multi**: asks three things at once and drops in a fourth midstream; purpose-built to test task tracking and omissions.
 
-Each persona is a script, persona + demand + **held-back info** (which facts surrender only in which turn) + end condition. The held-back info is the load-bearing design. The vague persona's entire value lives in "the order ID must not arrive in turn 1"; without that, it is cooperative with different phrasing.
+Each persona is a script, persona + demand + **held-back info** (which facts surrender only in which turn) + end condition. The held-back info is the load-bearing design. The vague persona's entire value lives in "the order ID must not arrive in turn 1"; without that, it is cooperative (Chapter 4's default compliant customer, an ordinary user who makes no trouble, and one the eval set keeps a share of too) with different phrasing.
 
 The script really is four lines, not even pseudocode. The angry persona's script verbatim from the repo (`synth/synth.py`):
 
@@ -76,35 +76,42 @@ Calibrating the third is isomorphic to the first two: find a reference, measure 
 
 - **Sampling.** After every full simulation, sample 5 conversations per persona (raise it to 10 whenever the script or the actor's base model changes). The sample needn't be large; you are hunting bugs in a script, not estimating a rate.
 - **The reference.** The user messages in the real tickets and traces you read in Chapter 3. They are the only words in this world a real person ever said.
-- **Three distortions, three checks.**
-    - Too cooperative reads **turn counts**. In which turn does angry relent? Compare against how many turns customers hold out in real complaint tickets; cooling off after two turns is distortion.
-    - Too dramatic runs a **blind mix**. Shuffle synthetic messages in with real ticket messages and have a colleague pick out which ones are acted; if they beat chance by a clear margin, the tone gave itself away.
-    - Talked out of its position reads **endings**. Count the share of conversations where the synthetic user abandons its original demand, then read each abandonment: did Mini actually solve it, or did one explanation disarm it?
+- **Three distortions, three checks.** Each watches one signal, turn counts, a blind mix, endings; see the table below.
 - **Frequency and disposition.** Change the script or swap the actor's base model, and the checks must rerun; otherwise spot-check per release. Faults found go into the persona library's fidelity spot-check table ([`templates/ch07/`](../appendices/ch07-templates.md)), and what gets fixed is the **script**: the turn a held-back fact surrenders, the tightness of the end condition. Adding "be angrier" to the actor's prompt does not count as a fix. After the fix, resample until the blind mix's hit rate falls back to chance.
 
-This spot-check table and the stub fidelity gap register are the same family of document, both inventories of the simulated world's assumptions about the real one. Assumptions get reconciled. Once real traffic arrives (Chapter 13), how real people talk is simply there on the table, and whether the acting passes stops being a matter of taste.
+| Distortion | Check | Criterion |
+|---|---|---|
+| Too cooperative | Read **turn counts**, in which turn does angry relent | Compare against how many turns customers hold out in real complaint tickets; cooling off after two turns is distortion |
+| Too dramatic | Run a **blind mix**, shuffle synthetic messages in with real ticket messages and have a colleague pick out which ones are acted | If they beat chance by a clear margin, the tone gave itself away |
+| Talked out of its position | Read **endings**, count the share of conversations where the synthetic user abandons its original demand, then read each abandonment | Did Mini actually solve it, or did one explanation disarm it |
+
+This spot-check table and the stub fidelity gap register (the table the later section "Stub Fidelity Itself Must Be Evaluated" describes) are the same family of document, both inventories of the simulated world's assumptions about the real one. Assumptions get reconciled. Once real traffic arrives (Chapter 13), how real people talk is simply there on the table, and whether the acting passes stops being a matter of taste.
 
 ### Deterministic Replay vs Free Simulation
 
-The sandbox plus synthetic users gives you **free simulation**: the agent genuinely reasons every time, the world genuinely reacts, and the price is variance and cost. The other pole is **deterministic replay**: the inputs, the world seed, and the user's lines all frozen, the agent rerunning on a fixed track. Most deterministic, cheapest, made for regression; but it cannot surface new branches, and once the agent leaves the recorded track, the replay stops being faithful. What exactly "deterministic" fixes, and whether the model re-reasons, the next section nails down.
+The sandbox plus synthetic users gives you **free simulation**: the agent genuinely reasons every time, the world genuinely reacts, and the price is variance and cost.
+
+The other pole is **deterministic replay**: the inputs, the world seed, and the user's lines all frozen, the agent rerunning on a fixed track. Most deterministic, cheapest, made for regression; but it cannot surface new branches, and once the agent leaves the recorded track, the replay stops being faithful.
+
+What exactly "deterministic" fixes, and whether the model re-reasons, the next section nails down.
 
 The tradeoff requires no either-or; layer it. **A large volume of replay as the floor, a small volume of free simulation as the ceiling.** Replay runs on every commit (Chapter 14's gate uses it); free simulation runs on every version (with Chapter 6's intervals). Rule of thumb: verifying "no regression" takes replay; verifying "conversational resilience and new branches" is what free simulation's money is for.
 
 ### The Semantics of Deterministic Replay, Does the Model Re-Reason or Not
 
-If the word "replay" isn't nailed down, the layering strategy above is empty talk. Especially the clause "replay runs on every commit": Chapter 14 makes it the enforcement layer of the CI gate, and the gate's credibility rides entirely on replay's semantics. Said in full, sorted by what gets frozen, replay has three fidelity levels.
+This section is theoretical groundwork for Chapter 14; it does not affect running the Lab now, and you can skip ahead to "The Minimal Harness Architecture" first. If the word "replay" isn't nailed down, the layering strategy above is empty talk. Especially the clause "replay runs on every commit": Chapter 14 makes it the enforcement layer of the CI gate, and the gate's credibility rides entirely on replay's semantics. Said in full, sorted by what gets frozen, replay has three fidelity levels.
 
 **Level 1, verdict-layer replay, the model untouched.** The trace already exists (the JSONL a previous run wrote to disk), and what reruns is only the verdict layer: assertions, diffs, stats, report. Zero model calls; results deterministic to the byte.
 
-The repo is full of it. A verdict function's input is a trace plus world snapshots, so stored traces can be rejudged again and again; the plan-trace alignment tool (mapping a trace step by step back onto its plan to find deviations, Chapter 9) reads trace files and never touches the model; in the teaching trace library (the t-0007 batch of example traces), even the model turns are pre-scripted, and regenerating them is byte-for-byte identical.
+The repo is full of it. A verdict function's input is a trace plus world snapshots, so stored traces can be rejudged again and again; the plan-trace alignment tool (mapping a trace step by step back onto its plan to find deviations, Chapter 9) reads trace files and never touches the model; in the teaching trace library (Chapter 2's batch of example traces), even the model turns are pre-scripted, and regenerating them is byte-for-byte identical.
 
-What it tests is **the verdict logic itself**. Changed an assertion, changed the differ: rejudge the old traces and see whether verdicts moved. It cannot test the agent; the agent never takes the field.
+What it tests is **the verdict logic itself**. Changed an assertion, changed the differ (the tool that compares two traces for differences): rejudge the old traces and see whether verdicts moved. It cannot test the agent; the agent never takes the field.
 
-**Level 2, fixed-input rerun: the model re-reasons, the environment contributes zero variance.** The case, the world seed, the stub returns, and the user's lines (a single prompt, or a frozen message sequence) are all fixed; the model genuinely re-reasons every time. The repo's gate script (`ci/gate.py`) does exactly this to the red-line cases: on every commit, start Mini fresh and run them again. What this level promises is **a deterministic environment**. The model is non-deterministic, and traces will never be byte-identical; but with the environment nailed down, a verdict turning red can only come from the agent's side. The agent's side includes the model's sampling luck, so the same commit can run red once and green once; that variance bill is settled at Chapter 14's gate. In "deterministic replay runs on every commit", the "deterministic" refers to the environment half.
+**Level 2, fixed-input rerun: the model re-reasons, the environment contributes zero variance.** The case, the world seed, the stub returns, and the user's lines (a single prompt, or a frozen message sequence) are all fixed; the model genuinely re-reasons every time. The repo's gate script (`ci/gate.py`) does exactly this to the red-line cases: on every commit, start Mini fresh and run them again. What this level promises is **a deterministic environment**. The model is non-deterministic, and traces will never be byte-identical; but with the environment nailed down, the only thing left that can vary is the agent's side, so a verdict turning red (CI's phrase for a test going from passing to failing) can only come from there. The agent's side includes the model's sampling luck, so the same commit can run red once and green once; that variance bill is settled at Chapter 14's gate. In "deterministic replay runs on every commit", the "deterministic" refers to the environment half.
 
 **Level 3, free simulation, the counterparty improvises.** Synthetic users take the field and the world genuinely reacts, as described above. Highest variance and cost, and the only level that can surface new branches.
 
-One iron rule spans all three levels: **deviation raises an alarm, never a forced verdict**. Each level's verdicts are valid only while the behavior stays inside the assumptions that level froze. Level 1 assumes the trace hasn't changed; level 2 assumes the agent stays roughly on the recorded track. The moment it steps out, calling a tool the recording never expected, or walking into a branch the recording doesn't contain, the lower level's verdict is void. That case gets flagged and escalated one fidelity level up for rejudging; grinding out a verdict anyway is pointless, because frozen tool returns have no answer for a new branch, and what comes out is noise. Chapter 14's derail rate is this rule turned into a metric. Derailing is not automatically wrong; a derailed case must change examination halls.
+One iron rule spans all three levels: **deviation raises an alarm, never a forced verdict**. Each level's verdicts are valid only while the behavior stays inside the assumptions that level froze. To recap, level 1 freezes the trace itself (the model does not run), and level 2 freezes the environment (the model runs as usual). Level 1 assumes the trace hasn't changed; level 2 assumes the agent stays roughly on the recorded track. The moment it steps out, calling a tool the recording never expected, or walking into a branch the recording doesn't contain, the lower level's verdict is void. That case gets flagged and escalated one fidelity level up for rejudging; grinding out a verdict anyway is pointless, because frozen tool returns have no answer for a new branch, and what comes out is noise. Chapter 14's derail rate is this rule turned into a metric. Derailing is not automatically wrong; a derailed case must change examination halls.
 
 This half page is prepaid for Chapter 14. "Every commit clears the gate" holds because level 2 is the cheapest floor of the three (how cheap, and how often each layer triggers, is Chapter 14's cost ledger), and deviation-raises-an-alarm guarantees the cheapness was never bought with infidelity.
 
@@ -115,7 +122,7 @@ Now assemble the machine (`harness/`). Six components, each one loot from an ear
 - **runner** reads cases, resets the world, starts Mini (wiring in a synthetic user when needed), collects traces; `--repeat` comes from Chapter 6.
 - **trace** writes trajectories to disk per the schema, the same format that debuted in Chapter 2 and that you read line by line in Chapter 3.
 - **assertions** is Chapter 5's assertion library, the floor of the judgment ladder.
-- **judge** is the judge-tone-commitment and judge-report-rubric calibrated in Chapter 5.
+- **judge** is the two judges calibrated in Chapter 5, judge-tone-commitment ruling on whether tone and commitments cross the line, judge-report-rubric ruling on whether an investigation report holds up.
 - **stats** is Chapter 6's intervals and significance.
 - **report** enforces Chapter 2's discipline: layered by sev, never only the average.
 
