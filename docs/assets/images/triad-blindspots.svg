@@ -33,10 +33,10 @@
 
     <rect class="blind" x="344" y="160" width="472" height="42" rx="6"/>
     <text class="tp" x="360" y="177" font-size="13" font-weight="600">2 What it cost</text>
-    <text class="ts" x="360" y="195" font-size="13">Cost, latency, dangerous actions. Correct end state ≠ harmless path</text>
+    <text class="ts" x="360" y="195" font-size="13">Account for the side effects: cost, latency, dangerous actions</text>
 
     <rect class="blind" x="344" y="210" width="472" height="42" rx="6"/>
-    <text class="tp" x="360" y="227" font-size="13" font-weight="600">3 Side effects</text>
-    <text class="ts" x="360" y="245" font-size="13">The answer was right, and the refund went out twice</text>
+    <text class="tp" x="360" y="227" font-size="13" font-weight="600">3 No gold answer</text>
+    <text class="ts" x="360" y="245" font-size="13">A different kind of judgment: the judge (Chapter 5)</text>
   </g>
 </svg>

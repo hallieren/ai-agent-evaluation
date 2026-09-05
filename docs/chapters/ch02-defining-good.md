@@ -61,7 +61,7 @@ The cost is not just step count. Every step's `tool_result` rolls into the conte
 
 ![The triad and its blind spots](../assets/images/triad-blindspots.svg)
 
-*The endpoint is the primary criterion; the path and the ledger cover its three blind spots, why it failed, what it cost, and side effects.*
+*The endpoint is the primary criterion, and it has three blind spots. Why it failed goes to path attribution; what it cost, side effects included, goes to the side-effect ledger, and a correct end state is not a harmless path; no gold answer goes to Chapter 5's judge.*
 
 ### The three-axis self-check
 
