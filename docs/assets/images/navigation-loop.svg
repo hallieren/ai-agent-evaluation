@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 780 322" font-family="Inter,-apple-system,sans-serif">
+  <style>
+    .surface{fill:#FAFAF8}.tp{fill:#0A0A0A}.ts{fill:#737373}
+    .band{fill:#FFFFFF;fill-opacity:.55;stroke:#B8B8B4;stroke-width:1.5}
+    .edge{stroke:#737373;stroke-width:1.5;fill:none}
+    .arw{fill:#737373}
+    .accent{fill:#002FA7}
+    .loop{stroke:#002FA7;stroke-width:1.5;fill:none}
+    .larw{fill:#002FA7}
+    .mono{font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+    @media (prefers-color-scheme: dark){
+      .surface{fill:#0A0A0A}.tp{fill:#FAFAF8}.ts{fill:#A8A8A6}
+      .band{fill:#FFFFFF;fill-opacity:.04;stroke:#5A5A58}
+      .edge{stroke:#A8A8A6}.arw{fill:#A8A8A6}
+      .accent{fill:#7A96E8}
+      .loop{stroke:#7A96E8}.larw{fill:#7A96E8}
+    }
+  </style>
+  <defs>
+    <marker id="m1" markerWidth="8" markerHeight="8" refX="6.5" refY="3.5" orient="auto"><path d="M0 0 L7 3.5 L0 7 Z" class="arw"/></marker>
+    <marker id="m2" markerWidth="8" markerHeight="8" refX="6.5" refY="3.5" orient="auto"><path d="M0 0 L7 3.5 L0 7 Z" class="larw"/></marker>
+  </defs>
+  <rect class="surface" x="0" y="0" width="780" height="322"/>
+
+  <text class="tp" x="24" y="34" font-size="17" font-weight="600">Once it turns, the book's three jobs are one loop</text>
+  <text class="ts" x="24" y="56" font-size="13">A report card shows up at term end; a navigation system talks at every intersection.</text>
+
+  <!-- Know -->
+  <rect class="band" x="24" y="88" width="224" height="128" rx="8"/>
+  <text class="accent" x="136" y="122" font-size="16" font-weight="600" text-anchor="middle">Know</text>
+  <text class="tp" x="136" y="152" font-size="14" text-anchor="middle">Full report + the gate</text>
+  <text class="ts" x="136" y="182" font-size="13" text-anchor="middle">the current state</text>
+  <text class="ts" x="136" y="202" font-size="13" text-anchor="middle">and the floor</text>
+
+  <!-- Diagnose -->
+  <rect class="band" x="278" y="88" width="224" height="128" rx="8"/>
+  <text class="accent" x="390" y="122" font-size="16" font-weight="600" text-anchor="middle">Diagnose</text>
+  <text class="tp" x="390" y="152" font-size="14" text-anchor="middle">Mining + bottleneck</text>
+  <text class="ts" x="390" y="182" font-size="13" text-anchor="middle">where the next</text>
+  <text class="ts" x="390" y="202" font-size="13" text-anchor="middle">cut goes</text>
+
+  <!-- Sustain -->
+  <rect class="band" x="532" y="88" width="224" height="128" rx="8"/>
+  <text class="accent" x="644" y="122" font-size="16" font-weight="600" text-anchor="middle">Sustain</text>
+  <text class="tp" x="644" y="152" font-size="14" text-anchor="middle">Fix + regression</text>
+  <text class="ts" x="644" y="182" font-size="13" text-anchor="middle">each cut lands,</text>
+  <text class="ts" x="644" y="202" font-size="13" text-anchor="middle">no side effects</text>
+
+  <!-- forward arrows -->
+  <line class="edge" x1="250" y1="152" x2="276" y2="152" marker-end="url(#m1)"/>
+  <line class="edge" x1="504" y1="152" x2="530" y2="152" marker-end="url(#m1)"/>
+
+  <!-- return loop: Sustain back to Know -->
+  <path class="loop" d="M644 216 L644 268 L136 268 L136 218" marker-end="url(#m2)"/>
+  <text class="accent" x="390" y="262" font-size="13" font-weight="600" text-anchor="middle">new production data flows into the next round of mining</text>
+
+  <text class="ts" x="24" y="306" font-size="13">A healthy team's normal state is this loop turning on a fixed rhythm, red lights or no red lights.</text>
+</svg>

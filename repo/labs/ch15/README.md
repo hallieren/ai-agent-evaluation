@@ -1,0 +1,21 @@
+# labs/ch15: The Improvement Loop (failure mining)
+
+Follow the chapter's Lab steps:
+
+1. **Circle the pool and cluster**: `python labs/ch15/cluster.py` pools, by default, every verdict and trace
+   under `labs/ch13/out/` (the 10 harvested in Chapter 13 are in there too), pre-sorts by failure_mode /
+   notes keyword, and separately mines for a behavior pattern ("fuzzy search by name even with the order ID given").
+   After stratified sampling, read and code every trace by hand.
+2. **Extend the atlas**: reuse Chapter 3's six-column row structure; check against the piles marked
+   "no -> new mode candidate" in the output.
+3. **Locate the bottleneck**: write both candidates as falsifiable hypotheses, and pick the one with the
+   smaller blast radius first (the tool description).
+4. **Fix on target**: change only the tool description, not one word of the prompt. Full worked example in `cycle-demo.md`.
+5. **Verify**: paired, `--repeat 5`, with intervals; run the full regression and look at the sev tiers. No drop, switch
+   hypotheses and go again, a normal step in the cycle, not a setback.
+6. **The finish**: produce the full eval report on Chapter 6's report format, side by side with Chapter 1's Pocket Eval decision sheet.
+
+**With no model API**: `cluster.py` is fully offline and runs against any verdict + trace JSONL
+(`--verdicts` / `--traces` point at paths; with no Chapter 13 output on hand, practice the craft on existing
+files such as `labs/ch16/material/incident-{verdict,trace}.jsonl`).
+Steps 4 and 5, the fix and the verification, need a real model.

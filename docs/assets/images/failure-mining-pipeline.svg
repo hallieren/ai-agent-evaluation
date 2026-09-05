@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 780 464" font-family="Inter,-apple-system,sans-serif">
+  <style>
+    .surface{fill:#FAFAF8}.tp{fill:#0A0A0A}.ts{fill:#737373}
+    .band{fill:#FFFFFF;fill-opacity:.55;stroke:#B8B8B4;stroke-width:1.5}
+    .find{fill:#002FA7;fill-opacity:.09;stroke:#002FA7;stroke-width:1.5}
+    .div{stroke:#B8B8B4;stroke-width:1.5}
+    .edge{stroke:#737373;stroke-width:1.5;fill:none}
+    .arw{fill:#737373}
+    .accent{fill:#002FA7}
+    .mono{font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+    @media (prefers-color-scheme: dark){
+      .surface{fill:#0A0A0A}.tp{fill:#FAFAF8}.ts{fill:#A8A8A6}
+      .band{fill:#FFFFFF;fill-opacity:.04;stroke:#5A5A58}
+      .find{fill:#7A96E8;fill-opacity:.16;stroke:#7A96E8}
+      .div{stroke:#5A5A58}
+      .edge{stroke:#A8A8A6}.arw{fill:#A8A8A6}
+      .accent{fill:#7A96E8}
+    }
+  </style>
+  <defs>
+    <marker id="m1" markerWidth="8" markerHeight="8" refX="6.5" refY="3.5" orient="auto"><path d="M0 0 L7 3.5 L0 7 Z" class="arw"/></marker>
+  </defs>
+  <rect class="surface" x="0" y="0" width="780" height="464"/>
+
+  <text class="tp" x="24" y="34" font-size="17" font-weight="600">Failure mining, four steps on one skeleton</text>
+  <text class="ts" x="24" y="56" font-size="13">The skeleton is Chapter 3's; what is industrialized is only how you sample what feeds it.</text>
+
+  <!-- flow axis -->
+  <line class="edge" x1="46" y1="98" x2="46" y2="402" marker-end="url(#m1)"/>
+  <text class="ts" x="34" y="250" font-size="13" text-anchor="middle" transform="rotate(-90 34 250)">production in  →  atlas out</text>
+
+  <!-- Step 1 -->
+  <rect class="band" x="78" y="94" width="682" height="72" rx="8"/>
+  <text class="accent" x="98" y="136" font-size="15" font-weight="600">1  Circle the failure pool</text>
+  <line class="div" x1="312" y1="110" x2="312" y2="150"/>
+  <text class="tp" x="332" y="124" font-size="15">Online signals circle the suspected failures</text>
+  <text class="ts" x="332" y="150" font-size="13">False positives and leaks are fine, not a clean pool</text>
+
+  <!-- Step 2 -->
+  <rect class="band" x="78" y="174" width="682" height="72" rx="8"/>
+  <text class="accent" x="98" y="216" font-size="15" font-weight="600">2  Stratified sampling</text>
+  <line class="div" x1="312" y1="190" x2="312" y2="230"/>
+  <text class="tp" x="332" y="204" font-size="15">Never in proportion to traffic, sev-1 all in</text>
+  <text class="ts" x="332" y="230" font-size="13">Read saturation separately per task type, then stop</text>
+
+  <!-- Step 3 (human, highlighted) -->
+  <rect class="find" x="78" y="254" width="682" height="72" rx="8"/>
+  <text class="accent" x="98" y="296" font-size="15" font-weight="600">3  Human read and code</text>
+  <line class="div" x1="312" y1="270" x2="312" y2="310"/>
+  <text class="tp" x="332" y="284" font-size="15">No industrial shortcut, mark <tspan class="mono">first_bad_step</tspan> by hand</text>
+  <text class="accent" x="332" y="310" font-size="13" font-weight="600">What scales up is the piling, not the judgment</text>
+
+  <!-- Step 4 -->
+  <rect class="band" x="78" y="334" width="682" height="72" rx="8"/>
+  <text class="accent" x="98" y="376" font-size="15" font-weight="600">4  Extend the atlas</text>
+  <line class="div" x1="312" y1="350" x2="312" y2="390"/>
+  <text class="tp" x="332" y="364" font-size="15">Same six-column rows, into Chapter 3's atlas</text>
+  <text class="ts" x="332" y="390" font-size="13">New rows never seen offline = the blind-spot list</text>
+
+  <text class="ts" x="24" y="440" font-size="13"><tspan class="accent" font-weight="600">Not one bone is replaced: read · code · cluster · atlas.</tspan> Only the sampling was scaled up to production.</text>
+</svg>
