@@ -1,20 +1,23 @@
 # AI Agent Evaluation
 
-[![smoke](https://github.com/hallieren/ai-agent-evaluation/actions/workflows/smoke.yml/badge.svg)](https://github.com/hallieren/ai-agent-evaluation/actions/workflows/smoke.yml)
+[![smoke](https://github.com/hallieren/ai-agent-evaluation/actions/workflows/smoke.yml/badge.svg)](https://github.com/hallieren/ai-agent-evaluation/actions/workflows/smoke.yml) [![docs](https://github.com/hallieren/ai-agent-evaluation/actions/workflows/docs.yml/badge.svg)](https://github.com/hallieren/ai-agent-evaluation/actions/workflows/docs.yml)
 
 > Score the endpoint, attribute the path, account for the side effects. Eval before you build. Written for engineers pushing agents toward production, the ones asked "can we ship?" with no evidence in hand. Sixteen chapters, one wall and one template each; the companion repo runs with zero dependencies (pure stdlib, Python ≥ 3.10).
 
 *Shore & Summit is a synthetic teaching world assembled from common enterprise scenarios; it does not correspond to any real company, and every character in this book is fictional.*
 
-The book is released chapter by chapter. All 16 chapters are live, and the appendices land one at a time, roughly weekly, each as it clears our own practice pass. Each released chapter is paired with an applied essay on the author's Substack: [hallieren.substack.com](https://hallieren.substack.com). Unreleased items below are marked 🚧 coming.
+All 16 chapters and the five appendices are live. Each chapter is paired with an applied essay on the author's Substack: [hallieren.substack.com](https://hallieren.substack.com).
 
 ## How to read
 
-```bash
-uvx --from mkdocs-material mkdocs serve   # local site at http://127.0.0.1:8000
-```
+- **Online**: <https://hallieren.github.io/ai-agent-evaluation/> (full-text search, dark mode, previous/next chapter).
+- **On GitHub**: the chapter links below render directly. The reading guide and the three reading paths are in [docs/index.md](docs/index.md); companion code is in [repo/](repo/README.md).
+- **Offline**: [EPUB](https://hallieren.github.io/ai-agent-evaluation/ai-agent-evaluation.epub), or build it yourself with `./scripts/build_epub.sh` (needs pandoc).
+- **Locally**: `uvx --from mkdocs-material mkdocs serve` and open <http://127.0.0.1:8000>.
 
-Or read the hosted site at <https://hallieren.github.io/ai-agent-evaluation/>, or the links below directly (GitHub renders them). The reading guide and the three reading paths are in [docs/index.md](docs/index.md); companion code is in [repo/](repo/README.md).
+## Hand it to your agent
+
+Every chapter's Lab opens with a prompt you paste into Claude Code, Codex, or any coding agent; it runs the chapter's steps and stops where the judgment is yours. The one-time setup prompt is on the [home page](docs/index.md). Agents can read the whole book from [llms.txt](https://hallieren.github.io/ai-agent-evaluation/llms.txt) (index) and [llms-full.txt](https://hallieren.github.io/ai-agent-evaluation/llms-full.txt) (full text).
 
 ## Chapters
 
@@ -43,6 +46,6 @@ Or read the hosted site at <https://hallieren.github.io/ai-agent-evaluation/>, o
 
 ★ = heavyweight chapter.
 
-**Appendices** (🚧 coming): A Template Pack · B Repo Map & Migration · C High-Stakes Domains · D Failure-Mode Taxonomy · E Glossary
+**Appendices** [A Template Pack](docs/appendices/appendix-a-template-pack.md) · [B Repo Map and Migration](docs/appendices/appendix-b-repo-and-migration.md) · [C High-Stakes Domains](docs/appendices/appendix-c-high-stakes.md) · [D Failure-Mode Taxonomy](docs/appendices/appendix-d-failure-taxonomy.md) · [E Glossary](docs/appendices/appendix-e-glossary.md)
 
-Prose CC BY-NC-SA 4.0 · code MIT ([LICENSE.md](LICENSE.md)) · [Contributing](CONTRIBUTING.md)
+Prose CC BY-NC-SA 4.0 · code MIT ([LICENSE.md](LICENSE.md)) · [Contributing](CONTRIBUTING.md) · [How to cite](CITATION.cff)

@@ -3,6 +3,7 @@ site_description: Score the endpoint, attribute the path, account for the side e
 site_url: https://hallieren.github.io/ai-agent-evaluation/
 repo_url: https://github.com/hallieren/ai-agent-evaluation
 repo_name: hallieren/ai-agent-evaluation
+edit_uri: edit/main/docs/
 
 theme:
   name: material
@@ -27,9 +28,14 @@ theme:
         name: Switch to light mode
   features:
     - navigation.instant
+    - navigation.tracking
     - navigation.sections
     - navigation.top
+    - navigation.footer
     - search.highlight
+    - search.suggest
+    - content.code.copy
+    - content.action.edit
     - toc.follow
 
 markdown_extensions:
@@ -48,25 +54,37 @@ extra_css:
 plugins:
   - search
 
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/hallieren/ai-agent-evaluation
+      name: GitHub
+
+copyright: Prose CC BY-NC-SA 4.0 · Code MIT · Hallie Ren
+
 nav:
   - Home: index.md
   - Chapters:
-      - "Ch 1 · The Two-Hour Pocket Eval": chapters/ch01-pocket-eval.md
-      - "Ch 2 · Endpoints, Paths, and Cost ★": chapters/ch02-defining-good.md
-      - "Ch 3 · Error Analysis ★": chapters/ch03-error-analysis.md
-      - "Ch 4 · Building Eval Sets": chapters/ch04-eval-sets.md
-      - "Ch 5 · The Judgment Ladder ★": chapters/ch05-judgment-ladder.md
-      - "Ch 6 · Variance, Sampling, and Significance": chapters/ch06-variance.md
-      - "Ch 7 · Harness and Sandbox": chapters/ch07-harness.md
-      - "Ch 8 · Dangerous Tools ★": chapters/ch08-dangerous-tools.md
-      - "Ch 9 · Planning and Cost": chapters/ch09-planning-and-cost.md
-      - "Ch 10 · Memory": chapters/ch10-memory.md
-      - "Ch 11 · Subagents ★": chapters/ch11-multi-agent.md
-      - "Ch 12 · Attacks ★": chapters/ch12-adversarial.md
-      - "Ch 13 · Online Eval ★": chapters/ch13-online-eval.md
-      - "Ch 14 · Regression and Gates": chapters/ch14-release-engineering.md
-      - "Ch 15 · The Improvement Loop": chapters/ch15-improvement-loop.md
-      - "Ch 16 · Eval Culture": chapters/ch16-eval-culture.md
+      - "Part I · Quick Wins":
+          - "Ch 1 · The Two-Hour Pocket Eval": chapters/ch01-pocket-eval.md
+          - "Ch 2 · Endpoints, Paths, and Cost ★": chapters/ch02-defining-good.md
+      - "Part II · From Reading Traces to Trustworthy Numbers":
+          - "Ch 3 · Error Analysis ★": chapters/ch03-error-analysis.md
+          - "Ch 4 · Building Eval Sets": chapters/ch04-eval-sets.md
+          - "Ch 5 · The Judgment Ladder ★": chapters/ch05-judgment-ladder.md
+          - "Ch 6 · Variance, Sampling, and Significance": chapters/ch06-variance.md
+          - "Ch 7 · Harness and Sandbox": chapters/ch07-harness.md
+      - "Part III · Agent-Specific Battlegrounds":
+          - "Ch 8 · Dangerous Tools ★": chapters/ch08-dangerous-tools.md
+          - "Ch 9 · Planning and Cost": chapters/ch09-planning-and-cost.md
+          - "Ch 10 · Memory": chapters/ch10-memory.md
+          - "Ch 11 · Subagents ★": chapters/ch11-multi-agent.md
+          - "Ch 12 · Attacks ★": chapters/ch12-adversarial.md
+      - "Part IV · Shipping and Sustaining":
+          - "Ch 13 · Online Eval ★": chapters/ch13-online-eval.md
+          - "Ch 14 · Regression and Gates": chapters/ch14-release-engineering.md
+          - "Ch 15 · The Improvement Loop": chapters/ch15-improvement-loop.md
+          - "Ch 16 · Eval Culture": chapters/ch16-eval-culture.md
   - Labs:
       - "Ch 1 Lab": labs/ch01.md
       - "Ch 2 Lab": labs/ch02.md
@@ -101,3 +119,9 @@ nav:
       - "Ch 14 templates": appendices/ch14-templates.md
       - "Ch 15 templates": appendices/ch15-templates.md
       - "Ch 16 templates": appendices/ch16-templates.md
+  - Appendices:
+      - "A · Template Pack": appendices/appendix-a-template-pack.md
+      - "B · Repo Map and Migration": appendices/appendix-b-repo-and-migration.md
+      - "C · High-Stakes Domains": appendices/appendix-c-high-stakes.md
+      - "D · Failure-Mode Taxonomy": appendices/appendix-d-failure-taxonomy.md
+      - "E · Glossary": appendices/appendix-e-glossary.md

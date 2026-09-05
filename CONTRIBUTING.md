@@ -34,7 +34,7 @@ python3 scripts/gen_companion_pages.py   # generates docs/appendices/chNN-templa
 uvx --with mkdocs-material mkdocs build  # or mkdocs serve for a local preview
 ```
 
-Before submitting a case, read the coverage matrix in Chapter 4, Building Eval Sets (🚧 not yet released), and say which empty cell your case fills.
+Before submitting a case, read the coverage matrix in [Chapter 4, Building Eval Sets](docs/chapters/ch04-eval-sets.md), and say which empty cell your case fills.
 
 ## Licensing
 

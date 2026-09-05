@@ -2,12 +2,9 @@
 
 > **Score the endpoint, attribute the path, account for the side effects. Eval before you build.** (That line is the book's through-line; Chapter 2 unpacks it.)
 
-Written for engineers pushing agents toward production, the ones asked "can we ship?" with no evidence in hand. No eval set, no dashboard, no list of failures, nothing. This book starts from a two-hour Pocket Eval and, across 16 chapters, takes you all the way to release gates and eval culture. Each chapter hits one real wall and leaves you one template (44 in all, compiled in Appendix A).
+Written for engineers pushing agents toward production, the ones asked "can we ship?" with no evidence in hand. No eval set, no dashboard, no list of failures, nothing. This book starts from a two-hour Pocket Eval and, across 16 chapters, takes you all the way to release gates and eval culture. Each chapter hits one real wall and leaves you one template (44 in all, compiled in [Appendix A](appendices/appendix-a-template-pack.md)).
 
 The whole book has one lab agent (**Mini**, a few hundred lines of pure-stdlib Python) and one task world (a fictional e-commerce company, **Shore & Summit**). Mini ships with its capabilities sealed behind flags, and every chapter's Lab keeps the same discipline: **write the eval first → then unlock the capability → watch what the eval catches.**
-
-!!! note "Released chapter by chapter"
-    All 16 chapters are live. The appendices land one at a time, roughly weekly, each as it clears our own practice pass. Unreleased items appear below as plain titles marked 🚧.
 
 ## A 30-second start (no API key)
 
@@ -31,9 +28,9 @@ only for the API endpoint and key; handle everything else yourself, and stop and
 output if any command errors.
 ```
 
-Each chapter's Lab carries its own "let an agent run it" prompt for that chapter's steps.
+Each chapter's Lab carries its own "let an agent run it" prompt for that chapter's steps. Agents can also read the whole book in one file: [llms.txt](llms.txt) is the index and [llms-full.txt](llms-full.txt) is the full text. For offline reading there is an [EPUB](ai-agent-evaluation.epub).
 
-Every chapter follows the same skeleton: **The Wall** (your predicament) → **The Method** → **The Evidence** (field notes from Shore & Summit) → **The Decision** (the call you have to make) → **Anti-Self-Deception** → **Your Loot** (the template you take with you). Unfamiliar terms live in the glossary (Appendix E, 🚧).
+Every chapter follows the same skeleton: **The Wall** (your predicament) → **The Method** → **The Evidence** (field notes from Shore & Summit) → **The Decision** (the call you have to make) → **Anti-Self-Deception** → **Your Loot** (the template you take with you). Unfamiliar terms live in the glossary ([Appendix E](appendices/appendix-e-glossary.md)).
 
 ## The roadmap
 
@@ -64,7 +61,7 @@ Reading Chapter 1 straight through to Chapter 16 is only one of three paths. Pic
 
 - **A. Shipping next week, 3 hours a week:** ch1 → ch3 (minimal pass) → ch5 → ch8 → ch13, the rest as needed.
 - **B. Building an eval practice from zero:** read straight through.
-- **C. Platform / infrastructure engineer:** ch2 → ch6 → ch7 → ch13 → ch14 + Appendix B.
+- **C. Platform / infrastructure engineer:** ch2 → ch6 → ch7 → ch13 → ch14 + [Appendix B](appendices/appendix-b-repo-and-migration.md).
 
 ## Chapter overview
 
@@ -87,7 +84,7 @@ Reading Chapter 1 straight through to Chapter 16 is only one of three paths. Pic
 | 15 | You have all the data and still don't know what to change | [Failure Mining Protocol + Bottleneck-to-Lever Mapping](appendices/ch15-templates.md) | [ch15](chapters/ch15-improvement-loop.md) | [lab](labs/ch15.md) |
 | 16 | Nobody maintains the evals; postmortems turn into blame games | [Incident Postmortem Template + Quality Ownership RACI](appendices/ch16-templates.md) | [ch16](chapters/ch16-eval-culture.md) | [lab](labs/ch16.md) |
 
-★ = heavyweight chapter. Appendices (all 🚧): A Template Pack · B Repo Map & Migration · C High-Stakes Domains · D Failure-Mode Taxonomy · E Glossary.
+★ = heavyweight chapter. Appendices: [A Template Pack](appendices/appendix-a-template-pack.md) · [B Repo Map and Migration](appendices/appendix-b-repo-and-migration.md) · [C High-Stakes Domains](appendices/appendix-c-high-stakes.md) · [D Failure-Mode Taxonomy](appendices/appendix-d-failure-taxonomy.md) · [E Glossary](appendices/appendix-e-glossary.md).
 
 ## The repo's star is the harness; Mini is the teaching prop
 
@@ -102,7 +99,7 @@ flowchart LR
     synth["synth synthetic user"] -.replaceable.- runner
 ```
 
-The six components contain not a trace of Shore & Summit knowledge; all world knowledge lives in the two replaceable parts. Appendix B (🚧) shows how to detach the harness and bolt it onto your own agent; the trace schema is compatible with the OTel GenAI semantic conventions (the industry-standard set of LLM telemetry fields, so it plugs into existing observability stacks).
+The six components contain not a trace of Shore & Summit knowledge; all world knowledge lives in the two replaceable parts. [Appendix B](appendices/appendix-b-repo-and-migration.md) shows how to detach the harness and bolt it onto your own agent; the trace schema is compatible with the OTel GenAI semantic conventions (the industry-standard set of LLM telemetry fields, so it plugs into existing observability stacks).
 
 ## FAQ
 
