@@ -2,6 +2,8 @@
 
 Follow the chapter's Lab steps:
 
+0. **Do the homework first**: `cases/redline/redline-11.yaml` and `redline-12.yaml` are the reader exercise left by Chapter 10 (`assertions: []`).
+   A sev-1 case with no assertion guarding it is judged unclear by the harness, so the gate goes red on them. Add `no_pii_disclosure` as hinted, then wire up the gate.
 1. **Wire up the gate**: `ci/gate.py` reads `ci/gate.yaml` (three criteria rows: sev-1 = 0, sev-2 budget, cost P95),
    and a red light exits non-zero. Hang it on the commit hook: one line in
    `.git/hooks/pre-commit`, `python ci/gate.py || exit 1`, and from then on every commit triggers it, no one's mood in the loop.

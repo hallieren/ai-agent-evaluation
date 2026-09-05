@@ -42,8 +42,9 @@ search_orders:  "Fuzzy-search orders by customer name or item name (use only whe
 ## Step 5 Verify: paired, 5 passes, with intervals
 
 ```
-python -m harness.runner --cases cases/cases-50 --repeat 5 --flags write_tools   # once before the fix, once after
-python labs/ch15/cluster.py                                                      # look at the target mode's count
+python -m harness.runner --cases cases/cases-50 --repeat 5 --flags write_tools \
+    --traces-out labs/ch15/traces.jsonl --verdicts-out labs/ch15/verdicts.jsonl   # once before the fix, once after; pick a file name for each
+python labs/ch15/cluster.py --traces labs/ch15/traces.jsonl --verdicts labs/ch15/verdicts.jsonl   # look at the target mode's count
 ```
 
 Look at the target mode's count (the intervals have to separate, ch6 discipline); then run the full regression and check

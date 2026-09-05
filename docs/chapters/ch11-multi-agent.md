@@ -128,15 +128,15 @@ What that basis looks like, the repo's trace slicing tool prints it directly. Be
 
 | System-level case | Main agent (in / out) | Subagent (in / out) | Round trips | Total tokens | Cost |
 |---|---|---|---|---|---|
-| `handoff-01` address change on a shipped order | 5,219 / 761 | 941 / 650 | 1 | 7,571 | $0.0104 |
-| `system-03` logistics query | 5,522 / 1,029 | 958 / 477 | 1 | 7,986 | $0.0110 |
-| `collusion-01` custom-item refund | 9,358 / 1,974 | 0 / 0 | 0 | 11,332 | $0.0153 |
+| `handoff-01` address change on a shipped order | 11,732 / 1,360 | 945 / 510 | 1 | 14,547 | $0.0183 |
+| `system-03` logistics query | 3,840 / 570 | 928 / 479 | 1 | 5,817 | $0.0079 |
+| `collusion-01` custom-item refund | 12,774 / 2,423 | 0 / 0 | 0 | 15,197 | $0.0200 |
 
 *(Token counts are measured values from one real-model run of the repo; `python labs/ch11/split.py labs/ch11/out/traces.jsonl` reproduces the format; cost converted at illustrative USD rates.)*
 
 Three things are worth staring at.
 
-**First, the subagent column is the underreported part.** In `handoff-01` the subagent burns 1,591 tokens, 21% of system cost; in `system-03` it is 18%. A cost report that counts only the outer usage will steadily call this system a fifth cheaper than it is, and the finer you split, the more leaks.
+**First, the subagent column is the underreported part.** In `handoff-01` the subagent burns 1,455 tokens, 10% of system cost; in `system-03` it is 24%. A cost report that counts only the outer usage will steadily call this system ten to twenty-odd percent cheaper than it is, and the finer you split, the more leaks.
 
 **Second, round trips are a real expense column.** It records how many full round trips this trace paid for coordination. Same query, and when the round trips go from 1 to 3 the bill's structure changes. The main agent reads every returned conclusion back into context, and the next round's input tokens rise with it; coordination overhead carries a slope, more rounds, and each round costs more.
 

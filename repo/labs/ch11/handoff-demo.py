@@ -43,6 +43,7 @@ def main():
                    {"write_tools": True, "subagents": True},
                    case_id="handoff-01", trace_id="t-handoff-demo", con=con)
     con.close()
+    tr["usage"]["wall_s"] = 0.0  # wall clock is meaningless in fake mode; zero it so regeneration is byte-identical
     path = os.path.join(HERE, "handoff-demo.jsonl")
     trace_io.save([tr], path)
     print(f"[demo] canonical handoff failure trace generated: {path}")

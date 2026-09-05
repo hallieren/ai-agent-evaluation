@@ -284,10 +284,12 @@ In the ai-agent-evaluation repo, run the Chapter 5 lab. From repo/, run
 python -m harness.runner --cases cases/cases-50 --traces-out labs/ch05/traces.jsonl
 --verdicts-out labs/ch05/verdicts.jsonl and tell me how many verdict records say
 judged_by: assertion. Then run python labs/ch05/run.py --traces labs/ch05/traces.jsonl
---judge judge-tone-commitment, and again with --judge judge-report-rubric. Draw me a
+--judge judge-tone-commitment, and again with --judge judge-report-rubric --out labs/ch05/judge-report-rubric.jsonl
+(without --out the second run overwrites the first). Draw me a
 severity-stratified sample of case ids to blind-label, and open
 templates/ch05/judge-validation-report.md so I can work from it. After I hand you my
 labels file, run python labs/ch05/align.py labs/ch05/judge-verdicts.jsonl <my-labels>
+and again with judge-report-rubric.jsonl
 and show me the report. Important: do not write the human labels for me, do not show
 me any judge verdict on a case before I finish blind-labeling it, and do not triage
 the disagreements for me. Blind labels and reading the disagreements are the whole

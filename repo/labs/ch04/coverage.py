@@ -4,29 +4,26 @@ Usage: python labs/ch04/coverage.py [cases dir, default cases/cases-50]
 An empty cell is not a sin, an unsigned one is — copy the empty-cell list into the
 annotation bar of templates/ch04/coverage-matrix.md and rule each "fill" or "reasoned empty".
 """
-import glob
 import os
 import sys
 
 REPO = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 sys.path.insert(0, REPO)
-from harness import caseyaml  # noqa: E402
+from harness import runner  # noqa: E402
 
 PERSONAS = ["cooperative", "angry", "vague", "multi"]
 
 
 def matrix(path):
-    files = sorted(glob.glob(os.path.join(path, "*.yaml")))
-    assert files, f"no case files in directory: {path}"
+    cases = runner.load_cases(path)
     rows = {}
-    for f in files:
-        c = caseyaml.load(f)
+    for c in cases:
         p = c.get("persona", "cooperative")
         for m in c.get("failure_modes") or ["(no failure mode tagged)"]:
             r = rows.setdefault(m, {"sev": set(), "n": {q: 0 for q in PERSONAS}})
             r["sev"].add(c.get("severity_if_fail", "sev-3"))
             r["n"][p] += 1
-    return rows, len(files)
+    return rows, len(cases)
 
 
 def main(path):

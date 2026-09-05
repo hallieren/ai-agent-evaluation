@@ -13,10 +13,10 @@ from harness import report, runner, stats, trace  # noqa: E402
 
 OUT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "out")
 
-# budgets.md: reference steps × 2 in trace-step terms (staying under the runner's hard ceiling of 30); cost anchored at historical P95 plus headroom
-DEFAULT_BUDGETS = {"query": {"steps": 10, "cost": 0.05},
-                   "action": {"steps": 20, "cost": 0.15},
-                   "investigate": {"steps": 28, "cost": 0.90}}
+# budgets.md revised values: first real-model calibration median plus headroom (runner hard ceiling 40); cost anchored at historical P95 plus headroom
+DEFAULT_BUDGETS = {"query": {"steps": 14, "cost": 0.05},
+                   "action": {"steps": 24, "cost": 0.15},
+                   "investigate": {"steps": 36, "cost": 0.90}}
 
 
 def overlay_budgets(cases):
@@ -66,9 +66,8 @@ def main():
     ap.add_argument("--repeat", type=int, default=1)
     ap.add_argument("--no-planner", action="store_true",
                     help="planner-off control configuration (for the cost-quality comparison points)")
-    ap.add_argument("--synth", action="store_true")
     a = ap.parse_args()
-    if not (os.environ.get("MODEL_BASE_URL") or os.environ.get("MODEL_FAKE")):
+    if not os.environ.get("MODEL_BASE_URL"):
         sys.exit("A model API is required: set MODEL_BASE_URL / MODEL_NAME (MODEL_API_KEY optional).\n"
                  "Without a model API this script cannot do the full run; for the offline part see align.py --demo and the README.")
     flags = {"write_tools": True, "planner": not a.no_planner}
@@ -76,7 +75,7 @@ def main():
     n = overlay_budgets(cases)
     print(f"[ch9] budget overlay: {n} default budget_* entries (cases with budgets already set are left alone); "
           f"flags = {[k for k, v in flags.items() if v]}")
-    traces, records = runner.run_suite(cases, flags, a.repeat, a.synth)
+    traces, records = runner.run_suite(cases, flags, a.repeat)
     os.makedirs(OUT, exist_ok=True)
     tag = "-noplanner" if a.no_planner else ""
     trace.save(traces, os.path.join(OUT, f"traces{tag}.jsonl"))

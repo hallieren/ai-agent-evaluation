@@ -19,7 +19,7 @@ def main():
     ap.add_argument("--cases", default=os.path.join(HERE, "cases"))
     ap.add_argument("--repeat", type=int, default=1)
     a = ap.parse_args()
-    if not (os.environ.get("MODEL_BASE_URL") or os.environ.get("MODEL_FAKE")):
+    if not os.environ.get("MODEL_BASE_URL"):
         sys.exit("Model API required: set MODEL_BASE_URL / MODEL_NAME.\n"
                  "Without a model API: python labs/ch11/handoff-demo.py replays the canonical failure trace offline.")
     flags = {"write_tools": True, "subagents": True}

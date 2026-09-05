@@ -51,8 +51,9 @@ def _item(s):
 
 def _value(s):
     s = s.strip()
-    if s.startswith(("'", '"')):
-        return s[1:-1]
+    if s.startswith(("'", '"')):  # quoted: take up to the matching close quote; a trailing comment is not part of the value
+        return s[1:s.rindex(s[0])]
+    s = s.split(" #")[0].rstrip()  # bare scalar: under YAML semantics "space + #" starts a comment
     if s.startswith("["):
         inner = s[1:-1].strip()
         return [_value(x) for x in _split(inner)] if inner else []

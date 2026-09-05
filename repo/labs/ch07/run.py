@@ -22,9 +22,9 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 
 
 def need_model():
-    if not (os.environ.get("MODEL_BASE_URL") or os.environ.get("MODEL_FAKE")):
+    if not os.environ.get("MODEL_BASE_URL"):
         sys.exit("No model API configured: export MODEL_BASE_URL / MODEL_NAME first (see the repo README).\n"
-                 "Without a model API: MODEL_FAKE=1 walks a scripted queue (test-only, not an eval).")
+                 "Without a model API this script cannot run (MODEL_FAKE only fits pre-scripted teaching traces).")
 
 
 def reset_check():

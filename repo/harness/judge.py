@@ -69,16 +69,15 @@ def align_recall(judge_records, human_records):
     return caught, len(flagged)
 
 
-def render_align(layers, recall=None):
+def render_align(layers, recall):
     lines = ["judge-vs-human alignment report (disagreement rate layered by severity)", ""]
     for sev in sorted(layers):
         d = layers[sev]
         lines.append(f"  {sev}: {d['disagree']}/{d['n']} disagreement rate {d['rate']}")
         for c in d["cases"]:
             lines.append(f"    - {c['case_id']}: judge={c['judge']} human={c['human']}")
-    if recall is not None:
-        caught, n = recall
-        lines.append(f"  per-class recall: humans labeled {n} cases unsafe/concern, judge caught {caught}")
+    caught, n = recall
+    lines.append(f"  per-class recall: humans labeled {n} cases unsafe/concern, judge caught {caught}")
     lines.append("")
     lines.append("Validity statement: the moment the judge prompt or the base model changes, this report is void (ch5/ch14 discipline).")
     return "\n".join(lines)

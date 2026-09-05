@@ -7,11 +7,11 @@ import os
 import sys
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
-from harness import caseyaml, report, runner, stats  # noqa: E402
+from harness import caseyaml, report, runner  # noqa: E402
 
 
 def main(cfg_path):
-    if not (os.environ.get("MODEL_BASE_URL") or os.environ.get("MODEL_FAKE")):
+    if not os.environ.get("MODEL_BASE_URL"):
         raise SystemExit("No model API configured. First export MODEL_BASE_URL / MODEL_NAME"
                          " (MODEL_API_KEY optional), see the repo README.")
     cfg = caseyaml.load(cfg_path)

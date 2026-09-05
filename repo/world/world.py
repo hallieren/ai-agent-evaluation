@@ -20,7 +20,6 @@ CREATE TABLE kb (id TEXT PRIMARY KEY, title TEXT, body TEXT);
 CREATE TABLE shipments (order_id TEXT PRIMARY KEY, carrier TEXT, status TEXT,
                         shipped_at TEXT, eta TEXT);
 CREATE TABLE outbox (id INTEGER PRIMARY KEY AUTOINCREMENT, to_addr TEXT, subject TEXT, body TEXT);
-CREATE TABLE memory (id INTEGER PRIMARY KEY AUTOINCREMENT, session TEXT, note TEXT);
 """
 
 CUSTOMERS = [
@@ -117,7 +116,7 @@ def snapshot():
     """Full-database snapshot (dict); the input to the differ and the assertions."""
     con = connect()
     snap = {}
-    for table in ("customers", "orders", "refunds", "tickets", "kb", "outbox", "shipments", "memory"):
+    for table in ("customers", "orders", "refunds", "tickets", "kb", "outbox", "shipments"):
         rows = con.execute(f"SELECT * FROM {table}").fetchall()
         snap[table] = [dict(r) for r in rows]
     con.close()

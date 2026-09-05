@@ -39,6 +39,6 @@ expect:
     - budget_cost_max: {max: 0.15}
 ```
 
-`labs/ch09/run.py` overlays the defaults above onto cases without budget_*; cases that
+`labs/ch09/run.py` overlays the revised defaults (14 / 24 / 36) onto cases without budget_*; cases that
 already carry budgets are never touched. After the decision, write the revised values back
 into the cases, and from then on this budget lives with the eval set.

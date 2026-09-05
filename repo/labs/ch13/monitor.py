@@ -16,7 +16,7 @@ BASELINES = {"escalation_band": (0.05, 0.30),  # ready-made baseline (band) from
              "cost_p95_max": 0.5}              # cost criterion shared with ci/gate.yaml (illustrative USD)
 
 
-def signals(traces, records, baselines=BASELINES):
+def signals(traces, records):
     sigs = []
     sev1 = [r for r in records if r["verdict"] != "pass" and r.get("severity") == "sev-1"]
     sigs.append({"signal": "red-line assertion hits (sev-1)", "source": "online assertions over production traces",
@@ -26,7 +26,7 @@ def signals(traces, records, baselines=BASELINES):
     esc = (sum(1 for t in traces
                if any(c["name"] == "escalate" for c in trace_mod.tool_calls(t)))
            / len(traces)) if traces else 0.0
-    lo, hi = baselines["escalation_band"]
+    lo, hi = BASELINES["escalation_band"]
     sigs.append({"signal": "escalation rate", "source": "human-handoff records",
                  "value": round(esc, 3), "band": f"[{lo}, {hi}] (spike = new inputs; dip = bluffing)",
                  "action": "out of band = pause promotion / shrink traffic", "tripped": not lo <= esc <= hi,
@@ -35,8 +35,8 @@ def signals(traces, records, baselines=BASELINES):
     p95 = stats.percentile(costs, 95)
     sigs.append({"signal": "three cost columns (median/P95/max)", "source": "trace usage (ch11 basis)",
                  "value": f"${stats.percentile(costs, 50)} / ${p95} / ${max(costs) if costs else 0}",
-                 "band": f"P95 <= ${baselines['cost_p95_max']} (the alarm sits at P95, not the mean)",
-                 "action": "over the line = shrink traffic and read the priciest trace", "tripped": p95 > baselines["cost_p95_max"],
+                 "band": f"P95 <= ${BASELINES['cost_p95_max']} (the alarm sits at P95, not the mean)",
+                 "action": "over the line = shrink traffic and read the priciest trace", "tripped": p95 > BASELINES["cost_p95_max"],
                  "cases": []})
     return sigs
 

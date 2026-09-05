@@ -57,11 +57,9 @@ def main():
     files = sys.argv[1:]
     assert files, "Usage: python labs/ch11/split.py <traces.jsonl> [...]"
     for path in files:
-        with open(path, encoding="utf-8") as f:
-            for line in f:
-                if line.strip():
-                    show(json.loads(line))
-                    print("=" * 64)
+        for tr in trace_mod.load(path):
+            show(tr)
+            print("=" * 64)
 
 
 if __name__ == "__main__":

@@ -77,6 +77,7 @@ def main():
                    case_id=CASE["id"], trace_id="t-incident-01", con=con,
                    inbound=INBOUND)
     con.close()
+    tr["usage"]["wall_s"] = 0.0  # wall clock is meaningless in fake mode; zero it so regeneration is byte-identical
     after = world.snapshot()
     rec = runner.evaluate(tr, before, after, CASE)
     assert rec["verdict"] == "pass", f"the material is expected to be an attempt (pass), got {rec}"

@@ -14,10 +14,11 @@ tool in this directory. Following the Chapter 5 Lab steps:
    `templates/ch05/`). Run the judges over the existing traces:
    `python labs/ch05/run.py --traces labs/ch05/traces.jsonl`
    For calibration, have each judge blind-judge the same batch: add
-   `--judge judge-tone-commitment` / `--judge judge-report-rubric`.
+   `--judge judge-tone-commitment`, then run again with `--judge judge-report-rubric --out labs/ch05/judge-report-rubric.jsonl`
+   (without `--out` the second run overwrites the first).
 3. **Align.** Sample stratified by severity, blind-label by hand into a verdict-record
    JSONL (copy the format of `human-labels-sample.jsonl`, `judged_by: human`), then:
-   `python labs/ch05/align.py labs/ch05/judge-verdicts.jsonl <your-human-labels.jsonl>`
+   `python labs/ch05/align.py labs/ch05/judge-verdicts.jsonl <your-human-labels.jsonl>`, then again with `judge-report-rubric.jsonl`.
    Disagreement rates come out layered by severity, one calibration report per judge
    (report template in `templates/ch05/judge-validation-report.md`).
 4. **Read the disagreements.** Read each disagreeing case and look for the patterns where

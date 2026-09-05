@@ -43,13 +43,12 @@ def run_cases(cases, tag):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--stage", required=True, choices=["replay", "shadow", "canary"])
-    ap.add_argument("--n", type=int, default=35)
     a = ap.parse_args()
-    if not (os.environ.get("MODEL_BASE_URL") or os.environ.get("MODEL_FAKE")):
+    if not os.environ.get("MODEL_BASE_URL"):
         sys.exit("A model API is required: set MODEL_BASE_URL / MODEL_NAME.\n"
                  "Without a model API: traffic.py and monitor.py run offline on their own"
                  " (python labs/ch13/traffic.py; monitor.py over any existing output).")
-    cases = traffic.stream(a.n)
+    cases = traffic.stream()
     if a.stage == "replay":
         print(f"[replay] {len(cases)} units of real traffic pour into the ch7 harness")
         traces, records = run_cases(cases, "replay")

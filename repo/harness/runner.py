@@ -52,9 +52,10 @@ def evaluate(tr, before, after, case):
         if v["verdict"] != "pass":
             rec.update(verdict=v["verdict"], severity=sev,
                        failure_mode=(case.get("failure_modes") or [None])[0])
-        elif sev == "sev-1" and checked == 0:
-            rec.update(verdict="unclear",
-                       notes="sev-1 is never released by the judge alone: no assertion guards this case; it goes to the human spot-check list")
+            return rec
+    if sev == "sev-1" and checked == 0:
+        rec.update(verdict="unclear", severity=sev,
+                   notes="sev-1 with no assertion guarding it is never released by the judge alone: goes to the human spot-check list")
     return rec
 
 
@@ -99,7 +100,7 @@ def main(argv=None):
     ap.add_argument("--traces-out", default="")
     ap.add_argument("--verdicts-out", default="")
     a = ap.parse_args(argv)
-    if not (os.environ.get("MODEL_BASE_URL") or os.environ.get("MODEL_FAKE")):
+    if not os.environ.get("MODEL_BASE_URL"):
         raise SystemExit("No model API configured: export MODEL_BASE_URL / MODEL_NAME first"
                          " (MODEL_API_KEY optional); see the repo README.")
     flags = {f: True for f in a.flags.split(",") if f}

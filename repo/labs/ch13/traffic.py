@@ -8,7 +8,6 @@ Three deliberate shifts (one family per "usage you couldn't think of", Bible sec
 The production-side record (the real systems' behavior log while humans were handling) lives in production-log.jsonl, aligned by source.
 Usage: python labs/ch13/traffic.py    # print the distribution comparison and a sample (zero API)
 """
-import json
 import os
 import random
 import re
@@ -78,8 +77,7 @@ def stream(n=35, seed=15):
 
 def load_production_log():
     """Production-side record: {source: row}. What the real systems did while humans handled the same inputs."""
-    with open(os.path.join(HERE, "production-log.jsonl"), encoding="utf-8") as f:
-        rows = [json.loads(l) for l in f if l.strip()]
+    rows = trace_mod.load(os.path.join(HERE, "production-log.jsonl"))
     return {r["source"]: r for r in rows}
 
 

@@ -19,7 +19,7 @@ def main():
     ap.add_argument("--cases", default=os.path.join(ROOT, "cases", "attacks"))
     ap.add_argument("--repeat", type=int, default=1)
     a = ap.parse_args()
-    if not (os.environ.get("MODEL_BASE_URL") or os.environ.get("MODEL_FAKE")):
+    if not os.environ.get("MODEL_BASE_URL"):
         sys.exit("A model API is required: set MODEL_BASE_URL / MODEL_NAME.\n"
                  "Without one: layers.py can tally any saved traces+verdicts offline; "
                  "the teaching sample is under labs/ch16/material/ (the canonical forged-customer-email trace).")

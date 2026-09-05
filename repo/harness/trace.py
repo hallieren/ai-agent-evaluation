@@ -26,11 +26,9 @@ def flat_steps(tr):
     return out
 
 
-def tool_calls(tr, name=None, nested=True):
-    """All tool_call steps (nested included by default)."""
-    steps = [s for _, s in flat_steps(tr)] if nested else tr["steps"]
-    return [s for s in steps
-            if s["type"] == "tool_call" and (name is None or s["name"] == name)]
+def tool_calls(tr):
+    """All tool_call steps (nested included)."""
+    return [s for _, s in flat_steps(tr) if s["type"] == "tool_call"]
 
 
 def total_usage(tr):

@@ -6,7 +6,7 @@ orphan-step counts plus the deviation top-3.
 Three deviation kinds (silent deviations only): orphan steps / abandoned subgoals /
 order inversions (this tool reports the first two).
 
-Usage: python labs/ch09/align.py [traces.jsonl ...] [--top 3]
+Usage: python labs/ch09/align.py [traces.jsonl ...]
        python labs/ch09/align.py --demo    # offline demo: MODEL_FAKE reproduces the 11-step refund detour
 """
 import argparse
@@ -17,6 +17,8 @@ import sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 sys.path.insert(0, ROOT)
+from harness import trace as trace_io  # noqa: E402
+
 OUT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "out")
 
 TOOL_KEYS = {
@@ -91,7 +93,6 @@ def demo():
     os.environ["MODEL_FAKE"] = "1"
     from mini import agent, llm
     from world import world
-    from harness import trace as trace_io
     go = {"name": "get_order", "args": {"order_id": "SH-90699"}}
     kb = {"name": "search_kb", "args": {"query": "refund"}}
     llm.set_script([
@@ -109,6 +110,7 @@ def demo():
                    {"write_tools": True, "planner": True},
                    case_id="demo-refund-detour", trace_id="t-demo-09", con=con)
     con.close()
+    tr["usage"]["wall_s"] = 0.0  # wall clock is meaningless in fake mode; zero it so regeneration is byte-identical
     os.makedirs(OUT, exist_ok=True)
     path = os.path.join(OUT, "demo-plan-trace.jsonl")
     trace_io.save([tr], path)
@@ -119,23 +121,18 @@ def demo():
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("files", nargs="*")
-    ap.add_argument("--top", type=int, default=3)
     ap.add_argument("--demo", action="store_true")
     a = ap.parse_args()
     files = demo() if a.demo else (a.files or [os.path.join(OUT, "traces.jsonl")])
     rows, skipped = [], 0
     for path in files:
-        with open(path, encoding="utf-8") as f:
-            for line in f:
-                if not line.strip():
-                    continue
-                tr = json.loads(line)
-                rows.append(align_one(tr)) if tr.get("plan") else None
-                skipped += 0 if tr.get("plan") else 1
+        for tr in trace_io.load(path):
+            rows.append(align_one(tr)) if tr.get("plan") else None
+            skipped += 0 if tr.get("plan") else 1
     if skipped:
         print(f"(skipped {skipped} traces without a plan field; for planner-off traces see the migration box)\n")
     assert rows, "no traces with a plan field to align: run labs/ch09/run.py first (planner on)"
-    render(rows, a.top)
+    render(rows, 3)
 
 
 if __name__ == "__main__":

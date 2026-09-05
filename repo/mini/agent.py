@@ -1,5 +1,4 @@
 """Mini itself: agent loop + capability flags. Trace schema locked to §3 of the Lab interface contract (internal design doc)."""
-import json
 import time
 
 from mini import llm, tools
@@ -66,7 +65,7 @@ def run(prompt, flags=None, case_id="", trace_id="", con=None, memory_notes=None
             continue
         for call in r["tool_calls"]:
             _step(trace, {"type": "tool_call", "name": call["name"], "args": call["args"]})
-            if call["name"] == "spawn_subagent":
+            if call["name"] == "spawn_subagent" and flags["subagents"]:
                 sub = _subagent(call["args"], con)
                 _use(trace, {"usage": sub["usage"]})
                 _step(trace, {"type": "subagent", "name": call["args"].get("name", "logistics"),
@@ -75,7 +74,7 @@ def run(prompt, flags=None, case_id="", trace_id="", con=None, memory_notes=None
             else:
                 try:
                     result = fns[call["name"]](con, call["args"])
-                except KeyError as e:  # model gave a bad arg/tool name: hand the error back for self-correction, don't kill the whole trace
+                except (KeyError, ValueError) as e:  # model gave a bad arg/tool name: hand the error back for self-correction, don't kill the whole trace
                     result = f"Tool call failed: invalid argument or tool name ({e})"
                 _step(trace, {"type": "tool_result", "name": call["name"], "content": result})
             messages.append({"role": "user",

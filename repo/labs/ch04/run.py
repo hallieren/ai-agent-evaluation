@@ -37,9 +37,9 @@ PERSONAS = {
 
 
 def need_model():
-    if not (os.environ.get("MODEL_BASE_URL") or os.environ.get("MODEL_FAKE")):
+    if not os.environ.get("MODEL_BASE_URL"):
         sys.exit("No model API configured: export MODEL_BASE_URL / MODEL_NAME first (see the repo README).\n"
-                 "Without a model API: MODEL_FAKE=1 uses the scripted queue (test only); coverage.py is offline anyway.")
+                 "Without a model API: coverage.py is offline anyway.")
 
 
 def world_card():

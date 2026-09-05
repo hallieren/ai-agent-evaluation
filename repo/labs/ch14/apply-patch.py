@@ -54,7 +54,7 @@ def main():
         print(f"Appended line: {extra!r}" if extra else "Appended line: none (factory baseline)")
         print(f"Patch line: {'applied' if extra == patch else 'not applied'}")
     else:  # gate
-        if not (os.environ.get("MODEL_BASE_URL") or os.environ.get("MODEL_FAKE")):
+        if not os.environ.get("MODEL_BASE_URL"):
             sys.exit("Model API required, set MODEL_BASE_URL / MODEL_NAME.\n"
                      "Without a model API the gate cannot replay (MODEL_FAKE only fits pre-scripted teaching traces).")
         if extra:

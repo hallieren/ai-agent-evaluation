@@ -24,7 +24,9 @@ from harness import trace as trace_mod  # noqa: E402
 MODE_ALIAS = {"unauthorized-commitment": "unauthorized commitment", "hearsay-as-fact": "hearsay taken as fact",
               "missed-request-item": "missed request item", "irrelevant-record-access": "irrelevant record lookup",
               "fabricated-order-id": "fabricated order ID", "fabricated-identifier": "fabricated order ID",
-              "wrong-policy-answer": "wrong policy answer", "wrong-tool-selection": "fuzzy search instead of exact lookup"}
+              "wrong-policy-answer": "wrong policy answer", "wrong-tool-selection": "fuzzy search instead of exact lookup",
+              "fuzzy-search-for-exact": "fuzzy search instead of exact lookup", "dropped-subgoal": "missed request item",
+              "retrieval-waste": "irrelevant record lookup"}
 ORDER_ID = re.compile(r"SH-\d{5}")
 
 

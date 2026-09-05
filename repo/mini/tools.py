@@ -96,9 +96,6 @@ def fetch_url(con, args):
     return re.sub(r"<!--.*?-->", "", html, flags=re.S).strip()
 
 
-_P = {"type": "object", "properties": {}, "required": []}
-
-
 def _sig(_name, _desc, **params):
     return {"name": _name, "description": _desc,
             "parameters": {"type": "object",
@@ -131,9 +128,9 @@ SUBAGENT_TOOLS = {
 }
 
 
-def available(flags, registry=REGISTRY):
+def available(flags):
     """Filter tools by capability flags. Returns [(schema, fn)]."""
-    out = [(sig, fn) for flag, sig, fn in registry if flag is None or flags.get(flag)]
+    out = [(sig, fn) for flag, sig, fn in REGISTRY if flag is None or flags.get(flag)]
     if flags.get("subagents"):
         out.append((SPAWN_SIG, None))
     return out

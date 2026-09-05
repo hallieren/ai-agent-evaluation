@@ -170,6 +170,7 @@ def t0007(con):
                   {}, case_id="case-031", trace_id="t-0007", con=con)
     s4 = t["steps"][3]
     assert s4["type"] == "tool_call" and s4["name"] == "get_customer", s4
+    t["usage"]["wall_s"] = 0.0  # wall clock is meaningless in fake mode; zero it so regeneration is byte-identical
     trace_io.save([t], os.path.join(HERE, "examples", "t-0007.jsonl"))
 
 
@@ -187,6 +188,7 @@ def main():
         traces.append(agent.run(s["prompt"], {}, case_id=f"case-p{i + 1:02d}",
                                 trace_id=tid, con=con))
         assert not llm._script, tid  # the script must be exactly exhausted
+        traces[-1]["usage"]["wall_s"] = 0.0  # as in t0007: zero it so regeneration is byte-identical
         key[tid] = s["fail"] or "clean"
     con.close()
     trace_io.save(traces, os.path.join(HERE, "pregen-60.jsonl"))
