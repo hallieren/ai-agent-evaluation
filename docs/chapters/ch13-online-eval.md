@@ -5,9 +5,9 @@
 
 ## The Wall
 
-Week 15. All five of Part III's switches are flipped. The offline apparatus hands in the best-looking report card of the book so far. The full eval set passes at 91%, with intervals, layered by sev, zero sev-1. Red-line cases all green, attack-sample interception statistics complete, the cost distribution under the budget line. The decision sheet from Chapter 1, the one that once said stop, can finally be turned over. Mini connects to the live ticket stream. Launch.
+Week 15. All five switches from Chapters 8 through 12 are flipped. The offline apparatus hands in the best-looking report card of the book so far. The full eval set passes at 91%, with intervals, layered by sev, zero sev-1. Red-line cases all green, attack-sample interception statistics complete, the cost distribution under the budget line. The decision sheet from Chapter 1, the one that once said stop, can finally be turned over. Mini connects to the live ticket stream. Launch.
 
-The first twelve chapters all unlocked capabilities of Mini's, write operations, the planner, memory, subagents, external content. What this chapter unlocks is not on the flag list. It is called the **real world**. It differs from the previous five switches in three ways. It has no reset button, the counterparty has no script, and nobody writes an expect for its traffic.
+The first twelve chapters all unlocked capabilities of Mini's, write operations, the planner, memory, subagents, external content. What this chapter unlocks is not on the flag list. It is called the **real world**. It differs from the previous five switches in three ways. It has no reset button, the counterparty has no script, and nobody writes an expect (the expectation field of a case) for its traffic.
 
 In week two of the launch, usages you never imagined start showing up in the production traces. One customer splits a single matter into a string of fragments, adding a line every few hours, no one message a request on its own. One customer pastes in a whole chat log with a friend and tells Mini to "sort it out yourself." Someone else asks for the order details of two accounts, their own and their mother's, to be "sent over together." The 50-case offline set, the red-line pack, the attack-sample library, not one entry looks like any of these. Three synthetic personas, angry, vague, concurrent, covered the three kinds of "uncooperative" you thought of, and none of the kinds you didn't.
 
@@ -21,7 +21,7 @@ This wall has two names. **Distribution blindness**, the eval set does not repre
 
 ### Turn the launch from a switch into a climb
 
-Turn the launch from one flip into a climb. The climb is called the **evidence ladder**, replay → silent/shadow → canary → full traffic. Each rung up, the consequences get one notch more real, and so does the evidence. You are trading controlled consequences for evidence that offline money can never buy.
+Turn the launch from one flip into a climb. The climb is called the **evidence ladder**, four rungs in order, replay (zero consequences), silent/shadow (running online, output never sent), the canary (real consequences on a small controlled slice), full traffic. Each rung up, the consequences get one notch more real, and so does the evidence. You are trading controlled consequences for evidence that offline money can never buy.
 
 Every rung must answer three questions, and a rung you cannot answer for is a rung you have not earned.
 
@@ -33,15 +33,15 @@ Now hold the Week 15 launch against the ladder. It skipped rungs. Replay was don
 
 ![Evidence ladder](../assets/images/evidence-ladder.svg)
 
-*Figure 13-1 Launch is not one switch but a four-rung climb, replay → silent/shadow → canary → full traffic. Replay has zero consequences, shadow runs online but its output is inert, the canary has real consequences at controlled scale, and full traffic adds no new evidence, only scale. Each rung up, consequence and evidence both turn one notch more real, and an all-green offline run is only the ticket in.*
+*Figure 13-1 Launch is not one switch but a four-rung climb, from replay to silent/shadow to the canary to full traffic. Each rung up, consequence and evidence both turn one notch more real, and an all-green offline run is only the ticket in.*
 
 ### Rung 1 is replay. Real traffic enters the offline harness, and Chapter 7's register comes due
 
-Replay real traffic's inputs into the Chapter 7 harness. Historical tickets, real inbound mail, plus every production record accumulated while write actions were routed to humans, all of it counts as a data source. The world still resets, writes still go through stubs, verdicts still walk the ladder. It is still offline eval. What changed is the data source, from cases you wrote to cases the world wrote.
+Replay real traffic's inputs into the Chapter 7 harness. Historical tickets, real inbound mail, plus every production record accumulated while write actions were routed to humans, all of it counts as a data source. The world still resets (back to its initial state), writes still go through stubs (fake tool returns), verdicts still walk the ladder (assertions wherever possible, the judge only when not). It is still offline eval. What changed is the data source, from cases you wrote to cases the world wrote.
 
-**What this rung newly verifies is performance under the real input distribution, and the stubs' assumptions.** Verdict blindness gets one exemption here. Write actions have been routed to humans all this time, so every historical ticket carries the human's actual resolution, a natural reference answer. Put Mini's proposed handling against the human's handling line by line and you have the offline version of the overturn signal (formally defined below).
+**What this rung newly verifies is performance under the real input distribution, and the stubs' assumptions.** Verdict blindness gets one exemption here. Write actions have been routed to humans all this time, so every historical ticket carries the human's actual resolution, a natural reference answer. Put Mini's proposed handling against the human's handling line by line and you have the offline version of the overturn signal, an overturn being a conclusion or action a person later reversed (the sources are detailed below).
 
-The second piece of business is honoring a promise Chapter 7 made. **The tool stubs' fidelity gap register must be reconciled line by line at the replay rung.** Real traffic carries more than inputs, it carries the real systems' behavior records. While humans were handling, how the refund gateway and the mail system responded is all in the logs. Every row of the register ends one of three ways.
+The second piece of business is honoring a promise Chapter 7 made. That chapter left a register recording how each tool stub's behavior may differ from the real system. **That fidelity gap register must be reconciled line by line at the replay rung.** Real traffic carries more than inputs, it carries the real systems' behavior records. While humans were handling, how the refund gateway and the mail system responded is all in the logs. Every row of the register ends one of three ways.
 
 1. **Confirmed**, stub matches the real system, row closed.
 2. **Refuted**, stub looser or stricter than reality, fix the stub, rerun everything.
@@ -49,9 +49,9 @@ The second piece of business is honoring a promise Chapter 7 made. **The tool st
 
 Chapter 7 planted a question. The real refund gateway returns an error code on a second refund of the same order, does your stub quietly succeed? It gets answered here, by opening the real gateway logs and checking, no longer parked at "probably close enough." The crack where mocks all pass and the real environment wrecks narrows by one line each time a row closes.
 
-Promotion signals, three. Layered pass rate clears the gate (zero sev-1), every register row has a conclusion, and the new failure modes replay exposed have been harvested, fixed, rerun. The replay rung has no "rollback." It is offline. When it fails, you fix, and every failure is a gain.
+Promotion signals, three. Layered pass rate clears the gate (zero sev-1), every register row has a conclusion, and the new failure modes replay exposed have been harvested (written into the eval set, see the harvesting section), fixed, rerun. The replay rung has no "rollback." It is offline. When it fails, you fix, and every failure is a gain.
 
-This rung holds a second identity. **The ladder's replay rung is the minimum release gate.** Systematizing that gate and wiring it into CI is left to Chapter 14. From now on, any version that has not run the real-traffic replay has no standing to discuss launch.
+This rung holds a second identity. **The ladder's replay rung is the minimum release gate.** Systematizing that gate and wiring it into CI (the checks that run automatically on every code commit) is left to Chapter 14. From now on, any version that has not run the real-traffic replay has no standing to discuss launch.
 
 ### Rung 2 is silent/shadow. Running online, producing no consequences
 
@@ -71,7 +71,7 @@ Cut a small slice of traffic over to Mini for real. Real replies, real refunds, 
 
 Controlled means three things.
 
-1. **Think the slicing dimension through.** Slicing by task type beats slicing by percentage. Let query-type traffic in first, action-type later. The three axes report for duty once more, reversible first, irreversible later.
+1. **Think the slicing dimension through.** Slicing by task type beats slicing by percentage. Let query-type traffic in first, action-type later. Axis 2 of Chapter 2's three axes (is the action reversible) reports for duty once more, actions that can be undone go first, those that cannot go later.
 2. **The rollback switch one motion away**, minutes, and drilled on a schedule. A rollback plan that has never been drilled is the same thing as no plan (the full form of the plan is Chapter 14's stop rule).
 3. **Monitoring signals wired up before the traffic.** A canary without gauges is just streaking at a smaller scale.
 
@@ -85,7 +85,7 @@ Beyond the slicing dimension there is one hard operational detail unique to conv
 
 #### Why not an A/B test
 
-Readers with experiment-platform experience will frown here. Why is the canary criterion "no worse than the human baseline" instead of a proper A/B test? Three reasons, all structural facts of the agent setting.
+Readers who have never run an A/B test need only the conclusion. The canary criterion is no worse than the human baseline, and no experiment is required. Readers with experiment-platform experience will frown here. Why is the canary criterion "no worse than the human baseline" instead of a proper A/B test? Three reasons, all structural facts of the agent setting.
 
 1. **You cannot afford the sample size.** Canary traffic is cut small by design, and Chapter 6's rough cut stands. Telling apart a 5-point difference takes about 400 cases. High-risk signals are sparser still, sev-1 events count by the week, and the significance you need would take a quarter to accumulate, while the canary's mission is to rule quickly on "can we widen." 
 2. **The risk is asymmetric.** A/B presumes two equivalent arms. Randomly assigning customers to a new system that might commit a sev-1, versus leaving them with humans, is not two equivalent arms. The question you must answer is "is the agent any worse," a one-sided question that gets a one-sided criterion, which is exactly the shape of "no worse than."
@@ -112,7 +112,7 @@ Full traffic verifies nothing new. It only scales the canary's conclusions up pr
 
 Online verdict blindness is structural. Nobody will ever write an expect for production traffic case by case. The design principle for monitoring signals is exactly one sentence. **Find the things that can be judged without a reference answer.** Four classes, in descending order of trustworthiness.
 
-**Class one, deterministic red-line assertions, run online.** Whatever part of the offline assertion library does not depend on a single case's expectation moves into production as is. `no_pii_disclosure` scans every real outbound message, `amount_within_limit` scans every `refund` call's arguments, and every reply text goes to `no_over_limit_commitment`. They judge "did the absolutely forbidden thing happen," a question that needs no gold label. Keep their division of labor with Chapter 8's guards straight. Guards live inside the agent system and do the stopping. Online assertions live in the monitoring and ask "did the guards actually stop it." The defense and the ruler that measures the defense must be two separate things, or the defense breaks and nobody knows. The judge? It can run online on a sample, but its calibration was done on the offline distribution, and when the distribution drifts the calibration expires (the full discipline of calibration shelf life is Chapter 14's).
+**Class one, deterministic red-line assertions, run online.** Whatever part of the offline assertion library does not depend on a single case's expectation moves into production as is. `no_pii_disclosure` (the assertion that forbids leaking anyone else's information) scans every real outbound message, `amount_within_limit` scans every `refund` call's arguments, and every reply text goes to `no_over_limit_commitment`. They judge "did the absolutely forbidden thing happen," a question that needs no gold label. Keep their division of labor with Chapter 8's guards straight. Guards live inside the agent system and do the stopping. Online assertions live in the monitoring and ask "did the guards actually stop it." The defense and the ruler that measures the defense must be two separate things, or the defense breaks and nobody knows. The judge? It can run online on a sample, but its calibration was done on the offline distribution, and when the distribution drifts the calibration expires (the full discipline of calibration shelf life is Chapter 14's).
 
 **Class two, the escalation rate.** The rate at which the agent asks humans for help signals in both directions. A spike says it is hitting new inputs it cannot handle. A dip is more suspicious, the world does not suddenly get simpler, more likely it has started bluffing answers to things it cannot do. The escalation rate has no "correct value," only a baseline and a band.
 
@@ -126,7 +126,7 @@ Online verdict blindness is structural. Nobody will ever write an expect for pro
 
 Cost and latency stay resident as Chapter 9 first-class metrics. With subagents present the accounting basis follows Chapter 11, **system cost = outer usage + the sum of every nested trace's usage**, reported in the three columns, main agent / subagents / round trips. The production bill offers no outer-layer-only discount.
 
-The four classes share one Spec, five columns. Signal / data source / baseline / band / trigger action. A signal without a baseline is just a number, and a signal without a trigger action is just decoration.
+The four classes share one Spec, a single table of five columns. Signal / data source / baseline / band / trigger action. A signal without a baseline is just a number, and a signal without a trigger action is just decoration.
 
 ### Drift detection, three probes watching the eval set expire
 
@@ -134,7 +134,7 @@ Monitoring signals answer "is something wrong right now." Drift detection answer
 
 **Input distribution.** Task-type mix, approximate persona distribution (the real proportions of angry / vague / concurrent), topic words. A new product category, a new policy, one marketing campaign, any of them shoves the inputs away from your eval set. Chapter 4's expiry policy covers "the policy changed, the labels rotted." Input drift covers "the inputs changed, the coverage leaks."
 
-**Tool error rate.** The real systems' error codes become a signal source for the first time. In the stub era you could only assume them. Now the carrier API times out and the refund gateway goes down for maintenance, all genuinely happening. When the tool error rate climbs, what is being examined is exactly the "error recovery" dimension of Chapter 8's five, and your error-recovery cases are still written to the stubs' script.
+**Tool error rate.** The real systems' error codes become a signal source for the first time. In the stub era you could only assume them. Now the carrier API times out and the refund gateway goes down for maintenance, all genuinely happening. When the tool error rate climbs, what is being examined is exactly the "error recovery" dimension of Chapter 8's five (the five dimensions for judging a tool call), and your error-recovery cases are still written to the stubs' script.
 
 **The escalation rate, on stage again.** It is a monitoring signal and a drift probe at once. A slowly climbing escalation rate is often input drift's earliest visible symptom. New inputs become pleas for help first, failures second.
 
@@ -145,26 +145,26 @@ A drift alarm does not trigger rollback. Drift means the world changed, the agen
 Chapter 4 said the eval set is a living requirements doc. Production is that document's best author. The layered coverage you once designed by sweat, production ships daily for free, real phrasing, real distribution, real edges, and the most precious item of all, the usages you could not think of. It thinks of them. Harvesting is four steps.
 
 1. **Select.** Four intakes, by priority. Online red-line hits (every one gets harvested). Overturned entries (a person already said it was wrong). The traces behind repeat contacts (the customer already said it wasn't solved). And the new input shapes the drift probes point at (fragmented visits and their kin).
-2. **Write it into a case.** Scrub it, rewrite it into the Shore & Summit world, and rebuild the world state of that moment in `setup`. The most common harvesting reject is a case that copied the input and dropped the world state that made it fail.
+2. **Write it into a case.** Scrub it, rewrite it into the Shore & Summit world, and rebuild the world state of that moment in `setup`, the field a case carries besides its input and expect. The most common harvesting reject is a case that copied the input and dropped the world state that made it fail.
 3. **Fix the expect.** The gold label comes from the postmortem, a human reads this one and states the ending it should have had. Whatever can be made deterministic gets made deterministic. Chapter 5's ladder holds at harvest time too.
 4. **File and reconcile.** Enter it in the coverage matrix and see which cell it lands in. Harvested cases have a habit of landing exactly in the cells you once marked "can't think of a case."
 
-The first harvest round after Week 15 banks 10 new cases. Then run the offline full suite once. The 91% will most likely drop. Do not mourn it. Those few percentage points never existed, they were a loan from distribution blindness. The moment the eval set catches up to reality is the moment the number turns honest.
+The first harvest round after Week 15 banks 10 new cases. Then run the offline full suite once. The 91% will most likely drop. Do not mourn it. Those few percentage points never existed, they were a loan from distribution blindness, the inputs the eval set never saw were never in the score to begin with. The moment the eval set catches up to reality is the moment the number turns honest.
 
 ## The Decision
 
 Two rulings this chapter.
 
-1. **Which rungs of the ladder must be walked before launch.** The criterion is the permission matrix, not courage. Recall Chapter 8's two confirmation-and-rollback questions (can it be undone? if not, who confirms?). Any autonomous action whose rollback column is empty (or nominally reversible but in practice unrecoverable), `refund`, `send_email`, walks all four rungs, shadow not skippable. An agent that is purely read-only, or whose every write sits in the "needs confirmation" column, may fold shadow into the canary, the human confirmation is itself a layer of shadow. Write it as the action type × mandatory rungs table, put it in the Deployment Evidence Ladder, sign it.
-2. **Which online signals trigger rollback.** Two tiers. **Immediate rollback** has exactly one member, any sev-1 red-line assertion hit online, single instance, roll back. **Pause promotion / shrink traffic** covers the overturn rate, the repeat-contact rate, the escalation rate, cost P95 breaking the baseline band, and drift-probe alarms (whose response is harvesting and coverage, never the rollback switch). Every signal states its data source and response deadline. The rollback switch gets drilled on a schedule.
+1. **Which rungs of the ladder must be walked before launch.** The criterion is the permission matrix, not courage. Recall Chapter 8's two confirmation-and-rollback questions (can it be undone? if not, who confirms?). Any autonomous action whose rollback column is empty (or nominally reversible but in practice unrecoverable), `refund`, `send_email`, walks all four rungs, shadow not skippable. An agent that is purely read-only, or whose every write sits in the "needs confirmation" column, may fold shadow into the canary, the human confirmation is itself a layer of shadow. Write it as the action type × mandatory rungs table. That table is the Deployment Evidence Ladder in this chapter's templates, fill it in and sign it.
+2. **Which online signals trigger rollback.** Two tiers. **Immediate rollback** has exactly one member, any sev-1 red-line assertion hit online, single instance, roll back. **Pause promotion / shrink traffic** covers the overturn rate, the repeat-contact rate, the escalation rate, cost P95 (line up 100 traces by cost, this is the 95th) breaking the baseline band, and drift-probe alarms (whose response is harvesting and coverage, never the rollback switch). Every signal states its data source and response deadline. The rollback switch gets drilled on a schedule.
 
 ## High-Stakes Domain Dossier
 
-The silent/shadow practice comes from clinical validation. Engineering is the later borrower. Before a new diagnostic algorithm touches a hospital, it first runs silently on real patients' real data streams, output flowing only into a research database, never into care, compared entry by entry against what the clinicians actually decided. The sentence Chapter 8's dossier promised comes due here. In high-stakes domains the permission matrix's rollback column is routinely empty top to bottom, a dispensed prescription has no undo. So **silent/shadow in these domains is a mandatory rung of the ladder**, no "optional" about it, and often a regulator-required one. The canary mutates too. Slicing off real traffic for an experiment is an engineering decision in e-commerce and an ethics decision in the clinic, "which patients get assigned to the algorithm" goes through an ethics review, and each rung's evidence gets archived for the regulator. The mirror for the general reader is the same one Chapter 8 held up. The actions in your matrix whose rollback column is empty deserve the same order of operations, silent first, canary second, evidence written down at every rung.
+Your support agent is not on this dossier's list, but the mirror at the end of this section reaches your permission matrix too. The silent/shadow practice comes from clinical validation. Engineering is the later borrower. Before a new diagnostic algorithm touches a hospital, it first runs silently on real patients' real data streams, output flowing only into a research database, never into care, compared entry by entry against what the clinicians actually decided. The sentence Chapter 8's dossier promised comes due here. In high-stakes domains the permission matrix's rollback column is routinely empty top to bottom, a dispensed prescription has no undo. So **silent/shadow in these domains is a mandatory rung of the ladder**, no "optional" about it, and often a regulator-required one. The canary mutates too. Slicing off real traffic for an experiment is an engineering decision in e-commerce and an ethics decision in the clinic, "which patients get assigned to the algorithm" goes through an ethics review, and each rung's evidence gets archived for the regulator. The mirror for the general reader is the same one Chapter 8 held up. The actions in your matrix whose rollback column is empty deserve the same order of operations, silent first, canary second, evidence written down at every rung.
 
-One more constraint weighs on these domains, and Chapter 2's fourth question gets paid here, **verification lag**. This chapter's signals assume errors show up soon. An overturn needs someone to appeal, a repeat contact needs the customer to come back. But the bad clause your agent waved through in a contract explodes six months later in arbitration. The gold label will come, only late, late enough that online eval's feedback loop nearly stalls. Three substitute paths.
+One more constraint weighs on these domains, and Chapter 2's fourth question (how long until the error shows) gets paid here, **verification lag**. This chapter's signals assume errors show up soon. An overturn needs someone to appeal, a repeat contact needs the customer to come back. But the bad clause your agent waved through in a contract explodes six months later in arbitration. The gold label will come, only late, late enough that online eval's feedback loop nearly stalls. Three substitute paths.
 
-1. **Periodic expert spot checks as proxy labels**, sample on a schedule and send to experts for judgment, without waiting for the real ending.
+1. **Periodic expert spot checks as proxy labels** (the same idea as the proxy signals above), sample on a schedule and send to experts for judgment, without waiting for the real ending.
 2. **Chapter 5's citation audit and assertion-type leading indicators as online signals.** Whether the citation exists, whether the conclusion overreaches authority, both computable on the spot, no six-month wait.
 3. **Stretch each rung's dwell time to match the lag**, and swap the promotion signals from outcome metrics (overturn rate, repeat contact) to "leading indicators + spot checks." Until the outcomes come back, those two are all there is to read.
 
@@ -180,9 +180,14 @@ Three items, all under [`templates/ch13/`](../appendices/ch13-templates.md) in t
 
 1. **Deployment Evidence Ladder**, four rungs × three questions (newly verifies / promotion signal / rollback signal) + the action type × mandatory rungs table + a promotion signature line per rung. Promotion is a decision, and decisions carry names.
 2. **Silent/Shadow Plan Template**, with the comparison baseline (humans or the old version) / the interception point inventory (which layer stops each write) / the disagreement postmortem process and cadence / duration and exit conditions. A shadow with no exit condition shadows forever.
-3. **Monitoring Signal Spec**, five columns, signal / data source / baseline / band / trigger action, pre-filled with the four no-gold-label signal classes + the three-column cost basis + the three drift probes.
+3. **Monitoring Signal Spec**, five columns, signal / data source / baseline / band / trigger action, pre-filled with three groups.
+    - Signal classes, the four that need no gold label
+    - Cost basis, the three columns
+    - Drift probes, all three
 
 ## Lab
+
+This lab walks Mini up the four rungs by your own hand, shows you which rung and which signal trips first, and harvests the tripped trace into a case.
 
 **Let an agent run it for you.** Step 2's register reconciliation, step 3's three-way disagreement calls, step 4's tripped-signal reading, and step 5's case writing are yours to do by hand; `traffic.py` and `monitor.py` are fully offline, and only `run.py`'s three stages need a model API. In a repo set up per the [home page](../index.md), paste this to your coding agent:
 
