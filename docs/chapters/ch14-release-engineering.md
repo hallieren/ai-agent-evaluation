@@ -17,7 +17,7 @@ After this incident, the change happens in the people. The next time someone wan
 
 ## The Method
 
-Eight moves, in three groups.
+Eight moves, in three groups, in time order. Before a change enters the main branch, block once. After it enters production, have a runbook. The first month gets its own way to start.
 
 - **The gates before merge**: the regression suite, flaky (red one run, green the next) quarantine, tiered gates, cost and latency SLOs, change tiers.
 - **The runbooks after production**: canary and rollback, the stop rule.
@@ -25,7 +25,7 @@ Eight moves, in three groups.
 
 ### The regression suite, replay as the floor, run on every commit
 
-Chapter 7 layered the ways of running and set down one promise, **deterministic replay runs on every commit, free simulation runs on every version**. This chapter pays it off. The replay layer is the gate's execution layer.
+Chapter 7 layered the ways of running and set down one promise, **deterministic replay runs on every commit, free simulation runs on every version** (replay freezes the tool returns and the user wording, simulation lets the synthetic user loose, and the variance rises one layer to the next). This chapter pays it off. The replay layer is the gate's execution layer.
 
 Replay earns "every commit" because tool returns and user wording are all recorded and frozen, so it is fast, cheap, and the lowest-variance of the three layers. Lowest is not zero, and this account has to be itemized to be honest. The environment side is zero-variance, recorded things don't change. The model side is not. The gate runs Chapter 7's rung-two replay, the model re-reasons each time, and running the same commit twice, sampling jitter alone is enough to flip the verdict on an edge case. Leave this unsaid and the team hits the same commit going red then green in the first week, then concludes the gate is untrustworthy. That conclusion wrongs the gate; what needs fixing is the expectation of "zero variance." Three countermeasures.
 
@@ -33,7 +33,11 @@ Replay earns "every commit" because tool returns and user wording are all record
 2. **The sev-1 gate row buys stability with a k-run majority.** The red-line subset is small to begin with, run it 3 times and take the majority, you can afford it.
 3. **Flaky quarantine applies to the replay layer too** (next section), the flip-rate statistic doesn't ask which layer a case runs on.
 
-"Run the full set on every commit" needs the arithmetic before the verdict. The rough cost model is cases × mean steps × tokens per step × unit price × commits per day. Plug in illustrative numbers, 50 cases × 12 steps each × about 3K tokens per step × $3 per million tokens, one pass is about $5, and 30 commits a day is $150, four figures of dollars a month, and an eval set grown to 200 cases multiplies it by 4. Look only at that $5 per pass and you'll want to say the money is too low to justify skipping. That is a wish; the account only counts once you multiply it out to the end of the month. So trigger by frequency, in tiers. **On every commit**, run the assertion subset plus `cases/redline` and `cases/attacks`, the cheapest verdicts that also cannot be skipped. **On every PR merge**, the full replay. **Nightly**, the simulation layer. Full replay retreats from every-commit to every-merge, what retreats is the frequency, not the promise, before any change enters the main branch full replay still cannot be gone around. The replay layer is still the fastest, cheapest floor of the three, only the floor also costs money.
+"Run the full set on every commit" needs the arithmetic before the verdict. The rough cost model is cases × mean steps × tokens per step × unit price × commits per day. Plug in illustrative numbers, with the arithmetic on its own line.
+
+50 cases × 12 steps each × about 3K tokens per step × $3 per million tokens = about $5 per pass. 30 commits a day = $150 a day, four figures of dollars a month. Grow the eval set to 200 cases, and multiply by 4.
+
+The conclusion in one sentence. In the illustrative setting, running the full set on every commit costs four figures of dollars a month. Look only at that $5 per pass and you'll want to say the money is too low to justify skipping. That is a wish; the account only counts once you multiply it out to the end of the month. So trigger by frequency, in tiers. **On every commit**, run the assertion subset plus `cases/redline` and `cases/attacks`, the cheapest verdicts that also cannot be skipped. **On every PR merge** (the moment a batch of changes is formally folded into the main branch), the full replay. **Nightly**, the simulation layer. Full replay retreats from every-commit to every-merge, what retreats is the frequency, not the promise, before any change enters the main branch full replay still cannot be gone around. The replay layer is still the fastest, cheapest floor of the three, only the floor also costs money.
 
 ![One gate, three cadences](../assets/images/gate-trigger-cadence.svg)
 
@@ -41,7 +45,13 @@ Replay earns "every commit" because tool returns and user wording are all record
 
 The replay layer judges two things. One, **are the assertions still green**, in-track regressions, a wording constraint punched through, an amount check gone dead, turn red on the spot. Two, **the derail rate**, on how many cases the new version departs from the recorded track. Derailing is not automatically wrong, you changed the prompt, behavior was supposed to change, but a derailed case can't be judged by replay and is auto-escalated to the simulation layer for a fresh verdict. Replay's blind spot was named in Chapter 7, it can't test new branches. So it answers one question only, "did anything regress?", which is exactly the question every commit should ask.
 
-The derail rate needs a sense of magnitude to be usable, the bands below are illustrative, calibrate them against your own history. Prompt-type changes, expect 30% to 60% derailment, the behavior surface was supposed to change broadly, and 5% derailment is suspicious instead, it says the change didn't take. Tool-description changes should be < 10%, they should only touch trajectories that use that tool. Report-wording changes should be near 0. The number itself doesn't judge right or wrong, it judges the **change tier** (see below). A change reported as tier 1 that runs a 40% derail rate was tiered too low, so tier it up per the fallback clause in the tier table.
+The derail rate needs a sense of magnitude to be usable, the bands below are illustrative, calibrate them against your own history.
+
+- Prompt-type changes, expect 30% to 60% derailment. The behavior surface was supposed to change broadly, and only 5% derailment is suspicious instead, it says the change didn't take.
+- Tool-description changes, should be < 10%, they should only touch trajectories that use that tool.
+- Report-wording changes, should be near 0.
+
+The number itself doesn't judge right or wrong, it judges the **change tier** (see below). A change reported as tier 1 that runs a 40% derail rate was tiered too low, so tier it up per the fallback clause in the tier table.
 
 The simulation layer runs on every candidate version. Full free simulation, the synthetic user takes the stage, `--repeat` for multiple passes with intervals, not one of Chapter 6's disciplines dropped.
 
@@ -53,17 +63,20 @@ Don't rush to delete the case. The right path is **quarantine**, in three steps.
 
 1. **Flag.** In the multi-pass record from `--repeat`, any case whose flip rate exceeds a preset threshold is auto-flagged flaky, the data is already there, no reliance on human impressions.
 2. **Isolate the lane.** Move it out of the blocking gate into a separate daily lane, results still recorded, trend still watched, only it no longer blocks merge.
-3. **Deadline the ruling.** Every quarantined case carries a deadline (say two weeks, illustrative) and an owner, and at the deadline it is one of three. Fix the case, the expect locked down a degree of freedom it shouldn't have, for example asserting the exact wording instead of the commitment's meaning. Fix the agent, the behavior really is unstable, Chapter 6 said it, a high flip rate is itself a reproducibility defect, the fault is in the system under test, not the measurement. Or demote it to non-gating monitoring, the behavior was meant to be watched as a trend and doesn't deserve to block a release.
+3. **Deadline the ruling.** Every quarantined case carries a deadline (say two weeks, illustrative) and an owner, and at the deadline it is one of three.
+    1. Fix the case, the expect (the column of a case that states the expected outcome) locked down a degree of freedom it shouldn't have, for example asserting the exact wording instead of the commitment's meaning.
+    2. Fix the agent, the behavior really is unstable, Chapter 6 said it, a high flip rate is itself a reproducibility defect, the fault is in the system under test, not the measurement.
+    3. Demote it to non-gating monitoring, the behavior was meant to be watched as a trend and doesn't deserve to block a release.
 
-Quarantine is **isolation with an alarm clock**, and three disciplines separate it from an exemption. First, a case whose deadline passes with no ruling doesn't get silent renewal, it defaults to "fix the agent," and the burden of proof is on whoever wants to revoke it. Second, a sev-1 red-line case is never quarantined. A red line that goes red one run and green the next is handled as an intermittent hit, go back and reread the pass^k passage in Chapter 6. Third, the length of the quarantine list is itself a gate-health metric. When the list exceeds 5% of the eval set (illustrative), the problem is on the system side, and what to inspect is the fidelity of the simulation layer or the stability of the agent, and fixing cases one by one here amounts to patching a systemic problem.
+Quarantine is **isolation with an alarm clock**, and three disciplines separate it from an exemption. First, a case whose deadline passes with no ruling doesn't get silent renewal, it defaults to "fix the agent," and the burden of proof is on whoever wants to revoke it. Second, a sev-1 red-line case is never quarantined. A red line that goes red one run and green the next is handled as an intermittent hit, go back and reread the pass^k passage in Chapter 6 (pass^k means the same case has to pass every one of k runs, and one miss marks it unstable). Third, the length of the quarantine list is itself a gate-health metric. When the list exceeds 5% of the eval set (illustrative), the problem is on the system side, and what to inspect is the fidelity of the simulation layer or the stability of the agent, and fixing cases one by one here amounts to patching a systemic problem.
 
 ### The release gate, pass criteria tiered by severity
 
 A total-threshold gate like "≥ 90% pass rate to ship" is average-score thinking, and Chapter 2 already vetoed it, the average is the best hiding place a high-risk failure could ask for, and using it as a gate is issuing high-risk failures a pass. Gate by sev, three regimes.
 
-**sev-1, zero tolerance, its own line.** Count 0 to release, never into the average, immune to any talk of intervals. The verdict source follows Chapter 5's discipline, a sev-1 release verdict must come from an assertion or a human, the judge can only escalate. If the gate's sev-1 row rests on a judge, zero tolerance becomes zero observation.
+**sev-1, zero tolerance, its own line.** Count 0 to release, never into the average, immune to any talk of intervals. The verdict source follows Chapter 5's discipline, a sev-1 release verdict must come from an assertion or a human, the judge can only escalate. A judge that misses is not easy to notice. If the gate's sev-1 row rests on a judge, zero tolerance becomes zero observation.
 
-**sev-2, budgeted.** The ceiling is written down in advance, plus one more clause, not significantly worse in the paired comparison. The ceiling number comes from the tolerance negotiation off Chapter 2's severity table, written into the gate config.
+**sev-2, budgeted.** The ceiling is written down in advance, plus one more clause, not significantly worse in the paired comparison. The ceiling number comes from the tolerance negotiation off Chapter 2's severity table (where how many failures each tier can bear gets settled), written into the gate config.
 
 **sev-3, trend.** Doesn't block a single release, recorded across versions, and if the trend keeps worsening it files a ticket. In register with a detour not worth blocking a release for, but worth not forgetting.
 
@@ -71,13 +84,13 @@ Comparison discipline follows Chapter 6, not a word changed. **Paired**, old and
 
 ### Cost and latency SLOs in the gate
 
-When Chapter 9 drew the budget line, it left a sentence, this line's future identity is Chapter 14's gate. Paid off today. `budget_steps_max` and `budget_cost_max` graduate from case-level assertions to release-level SLOs, same accounting basis, **watch P95, not the mean, the tail is the bill**. The gate row reads, the P95 of per-task cost and latency does not cross the budget line, and the budget-assertion hit rate is no higher than the previous version (paired). Once subagents ship (Chapter 11), cost keeps the system basis, outer usage plus the sum of every nested trace's usage, in three columns, main agent / subagents / round trips. Leave the nested account out and the SLO is decoration.
+When Chapter 9 drew the budget line, it left a sentence, this line's future identity is Chapter 14's gate. Paid off today. `budget_steps_max` and `budget_cost_max` graduate from case-level assertions to release-level SLOs (service level objectives, here simply the budget line), same accounting basis, **watch P95, not the mean, the tail is the bill** (P95 being the 95th of 100 traces lined up by cost). The gate row reads, the P95 of per-task cost and latency does not cross the budget line, and the budget-assertion hit rate is no higher than the previous version (paired). Once subagents ship (Chapter 11), cost keeps the system basis, outer usage plus the sum of every nested trace's usage, in three columns, main agent / subagents / round trips. Leave the nested account out and the SLO is decoration.
 
 With the SLO in the gate, "got more expensive, got slower" and "got wrong" go through the same door from now on. Without this row, cost degradation waits for the end-of-month bill to be seen, and by then it has run a whole month.
 
 ### Change tiers, which change runs which suite
 
-Full simulation with multiple passes isn't cheap, and you can't run it for every copy edit. Saving that money can't be done by mood, it goes through **change tiers**, writing down in advance what each kind of change must run, by blast radius, not diff size. Three tiers.
+Full simulation with multiple passes isn't cheap, and you can't run it for every copy edit. Saving that money can't be done by mood, it goes through **change tiers**, writing down in advance what each kind of change must run, by blast radius, not diff size. Three tiers. Read the table from its rightmost column first, and each tier down, that column's requirement only grows, never shrinks.
 
 | Tier | Change type | Must run |
 |---|---|---|
@@ -89,17 +102,17 @@ Full simulation with multiple passes isn't cheap, and you can't run it for every
 
 Tier 3's "recalibration" spelled out.
 
-**A vendor model swap is tier 3, and it triggers judge recalibration.** This is the tier-3 change most easily mistaken for tier 0, no diff, no PR, often just a vendor's upgrade notice. But swapping the model replaces the entire system under test, and voids your measuring instrument along with it. Chapter 5's judge calibration was done on the old model's output distribution, the judge learned to judge that model's ways of failing, the new one fails differently, and the alignment set no longer represents what the judge will face. The rule Chapter 5 set is paid off here, the prompt or the base changes, calibration is void, rerun the judge-vs-human alignment before you talk gate numbers. The judge swapping its own base, same thing.
+**A vendor model swap is tier 3, and it triggers judge recalibration.** This is the tier-3 change most easily mistaken for tier 0, no diff, no PR, often just a vendor's upgrade notice. But swapping the model replaces the entire system under test, and voids your measuring instrument along with it. Chapter 5's judge calibration was done on the old model's output distribution, the judge learned to judge that model's ways of failing, the new one fails differently, and the alignment set (Chapter 5's batch of human-labeled samples used to check how accurately the judge judges) no longer represents what the judge will face. The rule Chapter 5 set is paid off here, the prompt or the base changes, calibration is void, rerun the judge-vs-human alignment before you talk gate numbers. The judge swapping its own base, same thing.
 
 **A policy change triggers relabeling.** Adjust the refund ceiling and every label that used the old policy as gold rots on the spot. This is where Chapter 4's expiry policy sits in release engineering, a policy change goes tier 3, relabel the affected cases first, then run the gate. The order can't be reversed, run the gate on rotten labels and the gate itself is lying.
 
-**A mandatory canary.** The risk of a foundational change can't be fully tested offline (mock fidelity has a limit, Chapter 7), it has to be validated on a slice of traffic.
+**A mandatory canary.** The risk of a foundational change can't be fully tested offline (mocks, that is stubs, have a fidelity limit, Chapter 7), it has to be validated on a slice of traffic.
 
 The last row of the tier table is always the fallback, **when unsure of the tier, tier up**. Tiering saves the money that's certainly safe, not the money that's uncertain.
 
 ### Canary and rollback, decide in advance and write the runbook
 
-Chapter 13's evidence ladder is walked once at first launch, and release engineering turns its last rung into a routine act of every release. The canary is the default last gate, a small fraction of traffic, watching Chapter 13's online signals, promotion criteria written down in advance.
+Chapter 13's evidence ladder is walked once at first launch, and release engineering turns its last rung into a routine act of every release. The canary is the default last gate. In a routine release it is the last check that can still block before traffic opens up, and past it comes full traffic. A small fraction of traffic, watching Chapter 13's online signals, promotion criteria written down in advance.
 
 Rollback likewise. The most expensive thing at the scene of an incident is the decision. Who has authority, whether to wait for the lead, whether switching back loses data, each question costs ten minutes, and the harm runs ten more. Turning it into a runbook means these questions are answered in calm time, and at the moment of the incident there is **no decision to make, only a runbook to execute**. The rollback runbook has four elements. **Trigger**, which gate red lights and online signals count, a production sev-1 is on the list. **Executor**, on-call has authority, no meeting. **Action**, the previous version stays available, one command switches back. **Aftermath**, a rollback isn't done, the case that triggered it is harvested back into the eval set, waiting for it in the next version's gate.
 
@@ -119,9 +132,9 @@ Last, make "pause" concrete. A full stop is only one of three levels, and most o
 
 ![A pause has three levels, not one switch](../assets/images/stop-rule-levels.svg)
 
-*Figure 14-2 A pause has three levels, not one switch, and a full stop is only the last of them. Each level down locks back one more capability, Lv.1 turns off `write_tools` so every write becomes a draft, Lv.2 drafts the reply too, Lv.3 hands all traffic back to humans. The capability flags opened one layer at a time through Part III are the actuators, so they lock back one layer at a time, and recovery after a stop is treated as a tier-3 change.*
+*Figure 14-2 A pause has three levels, not one switch, and a full stop is only the last of them. Each level down locks back one more capability, Lv.1 (level one) turns off `write_tools` so every write becomes a draft, Lv.2 (level two) drafts the reply too, Lv.3 (level three) hands all traffic back to humans. The capability flags (the capability switch each chapter flipped open) opened one layer at a time through Chapters 8 to 12 are the actuators, so they lock back one layer at a time, and recovery after a stop is treated as a tier-3 change.*
 
-The execution mechanism holds nothing new, the three levels are flipping switches. The capability flags you flipped open chapter by chapter through Part III are also the stop rule's actuators, capability is unlocked one layer at a time, so it can be locked back one layer at a time. Recovery is a runbook too. After a stop, which eval set has to pass to earn the switch flipped open again? The answer is already in the change-tier table (Table 14-1), **recovery after a stop is treated as a tier-3 change**.
+The execution mechanism holds nothing new, the three levels are flipping switches. The capability flags you flipped open chapter by chapter through Chapters 8 to 12 are also the stop rule's actuators, capability is unlocked one layer at a time, so it can be locked back one layer at a time. Recovery is a runbook too. After a stop, which eval set has to pass to earn the switch flipped open again? The answer is already in the change-tier table (Table 14-1), **recovery after a stop is treated as a tier-3 change**.
 
 ### Threshold cold start, where the first month's numbers come from
 
@@ -138,14 +151,14 @@ The one exception, **sev-1 zero tolerance takes effect immediately, no cold star
 
 This chapter calls two shots.
 
-1. **The release-gate definition.** Five columns per row, metric / criterion / data source (replay layer or simulation layer) / verdict source (assertion, judge, or human) / red-light action. The sev-1 row is zero tolerance and its verdict source cannot be a judge alone; the sev-2 row writes the budget number; the cost-and-latency row writes the P95 budget line. Write it and put it in the config under `ci/`, not the wiki. **A gate not enforced in CI is only a wish.**
-2. **The change-tier table.** Calibrate it against your own change history. Page through the last month of merges, and ask of each one what tier it was run at and what tier the table says, and the gap is your current risk exposure. Keep the fallback row on the table always (when unsure, tier up), plus one reminder, a vendor's upgrade email is a change too, and it goes through this table.
+1. **The release-gate definition.** Five columns per row, metric / criterion / data source (replay layer or simulation layer) / verdict source (assertion, judge, or human) / red-light action. One sev-1 row as an example, unauthorized commitment count / count is 0 / replay layer plus simulation layer / assertion / block immediately. The sev-1 row is zero tolerance and its verdict source cannot be a judge alone; the sev-2 row writes the budget number; the cost-and-latency row writes the P95 budget line. Write it and put it in the config under `ci/` (the checks that run automatically when code is committed), not the wiki. **A gate not enforced in CI is only a wish.**
+2. **The change-tier table.** Calibrate it against your own change history. Page through the last month of merges, and ask of each one what tier it was run at and what tier the table says, and the gap is your current risk exposure. Keep the fallback row on the table always (when unsure, tier up), plus one reminder, a vendor's upgrade email is a change too, and it goes through this table. The first version of a gate you can stand up tonight is in the migration box at the end of this chapter's Lab.
 
 ## Anti-Self-Deception
 
 The self-comfort this chapter guards against is **"it's just a prompt change, no need to rerun."**
 
-The prompt is the single largest point on an agent's behavior surface, and the word "just" doesn't fit it, the line at the Wall is the proof, one line of wording instruction punched through the commitment red line. The runnable check is to page back through the last 10 merges, count how many times the eval was skipped, and find who made the "no need to run" decision in which line of which chat log. Once counted, hang the replay layer on the commit hook. The fix is process, and deleting "don't rerun" from the process as an option is more reliable than counting on people to be more disciplined.
+The prompt is the single largest point on an agent's behavior surface, and the word "just" doesn't fit it, the line at the Wall is the proof, one line of wording instruction punched through the commitment red line. The runnable check is to page back through the last 10 merges, count how many times the eval was skipped, and find who made the "no need to run" decision in which line of which chat log. Once counted, hang the replay layer on the commit hook (a check script that fires automatically on every git commit). The fix is process, and deleting "don't rerun" from the process as an option is more reliable than counting on people to be more disciplined.
 
 ## Your Loot
 
@@ -154,7 +167,12 @@ Four items, all under the repo's [`templates/ch14/`](../appendices/ch14-template
 1. **Release Gate Template**, the five-column gate table (metric / criterion / data source / verdict source / red-light action), pre-filled with the sev-1 zero-tolerance row and the cost/latency P95 row, with a note on replay-layer / simulation-layer trigger timing.
 2. **Change-Tier Matrix**, three tiers × (change type / suite that must run / recalibration triggered), pre-filled with the "vendor model swap" and "policy change" rows, with the fallback row "tier up."
 3. **Stop Rule Decision Sheet**, the safety branch (Chapter 12's shutdown red-line checklist verbatim) + a self-defined operational-branch row + each of the three pause levels with its own trigger and recovery conditions (recovery = rerun as a tier-3 change).
-4. **Go/No-Go review one-pager**, the bound handout for the room. Chapter 6's base-grid metric row (sev-tiered) + the evidence ladder's current rung and promotion signal + open reconciliation items + residual risk with a **risk-owner signature column** + a continue / narrow / stop decision signature.
+4. **Go/No-Go review one-pager**, the bound handout for the room, five blocks.
+    - The sev-tiered metric rows from Chapter 6's report base grid
+    - The evidence ladder's current rung and promotion signal
+    - Open reconciliation items
+    - Residual risk with a **risk-owner signature column**
+    - A continue / narrow / stop decision signature, the three words from Chapter 1's decision sheet, carried into the launch review as they are
 
 A word on the fourth item's use in the room. The last step of a launch decision happens in a room, and the VP, PM, and legal don't read traces, they read this one page. The heaviest column on this page is the residual risk owner's signature. When a deadline overrides the evidence, it turns "who carries the residual risk" from a vague consensus that evaporates when the meeting ends into a signing act. A name that can't be signed is the evidence that it shouldn't ship yet.
 
