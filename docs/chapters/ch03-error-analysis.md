@@ -31,7 +31,7 @@ The method is a single line. First get clear on what changed about the thing you
 
 You may already know error analysis for a single-turn LLM app; its object is **one output**. The error is right there in the text in front of you, read it, write a one-line failure description, categorize, repeat. Agent eval inherits this whole skeleton, read case by case, qualitative coding, clustering, and does not reinvent it. Two things change, the **unit** of analysis, and one new **discipline**.
 
-The unit goes from one output to one trace. A trace is a sequence of a dozen-plus steps, model turns, tool calls, and tool results alternating, with state passed between steps. This produces a phenomenon the single-turn world does not have, **a failure can be planted at step 3 and detonate at step 9**. The loudest error is almost always at the blast, the final wrong reply, the wrong conclusion in the report. But the error was usually planted several steps earlier, and the blast is only **where the compounding comes due**. Once step 5 misreads the state, every downstream step runs "reasonably" on a poisoned premise, the error rolls bigger as the state passes along, and it finally cashes out in `final`.
+The unit goes from one output to one trace. A trace is a sequence of a dozen-plus steps, model turns, tool calls, and tool results alternating, with state passed between steps. This produces a phenomenon the single-turn world does not have, **a failure can be planted at step 3 and detonate at step 9**. The loudest error is almost always at the blast, the final wrong reply, the wrong conclusion in the report. But the error was usually planted several steps earlier, and the blast is only **where the compounding comes due**. Once step 5 misreads the state, every downstream step runs "reasonably" on a poisoned premise, the error rolls bigger as the state passes along, and it finally cashes out in `final` (the trace field that holds the final output).
 
 ![Compounding failure on one trace](../assets/images/compounding-failure.svg)
 
@@ -47,7 +47,7 @@ All eval begins with reading traces. Metrics, eval sets, and the judge all line 
 
 How to read a trace. First look at the case and `final`, and fix the endpoint verdict in mind, right or wrong, and wrong in what way. Then go back to step 1 and **read forward**, asking every step the same question, **"given the information available at this step, is this action reasonable?"** For a model turn, check whether the assertions have a source; for a `tool_call`, where the arguments came from; for a `tool_result`, whether the next step read it correctly. The first place you answer "no" is the candidate for `first_bad_step`. Reading forward is slower than working backward from the blast, but working backward has a trap, you already know the ending, and every step gets explained by the ending. Reading forward forces you to judge from the information position the agent actually stood in.
 
-Walk one real trace through the question, t-0117, an investigation case, from the repo's `traces/pregen-60.jsonl`, excerpted below.
+Walk one real trace through the question, t-0117, an investigation case, from the repo's `traces/pregen-60.jsonl`, excerpted below. The `[cite:t-1001]` at the end of the conclusion is a citation marker; it names the ticket the conclusion cites, so the source can be checked.
 
 ```
 final: "Conclusion: the Cloudrest 2 has a by-design waterproofing defect; all sold
@@ -62,6 +62,7 @@ step 1  model        "Since they all leak, the problem must be in the product de
         first_bad_step candidate: 1.
 step 2  tool_call    search_orders {"query": "Cloudrest"}   confirm the scope, reasonable
 step 3  tool_result  two orders on sale
+step 4  … (omitted)
 step 5  tool_call    read_ticket t-1001                     read the complaint ticket, reasonable
 step 6  tool_result  the ticket text reports only one case of "leaking at the top"
         Note: the evidence already fails to match the premise, but the premise is never
@@ -69,13 +70,13 @@ step 6  tool_result  the ticket text reports only one case of "leaking at the to
           No new errors logged downstream (reason in the next section, the coding discipline).
 ```
 
-One forward read, three products. `first_bad_step` = 1; a behavioral description, "step 1 wrote the customer's spoken claim into the premise as verified fact"; one suspected-component hypothesis. Now try working backward from the blast, knowing the ending, and step 1's sentence reads exactly like "reasonable task understanding." The difference between reading forward and working backward comes down to this one step.
+One forward read, three products. `first_bad_step` = 1; a behavioral description, "step 1 wrote the customer's spoken claim into the premise as verified fact"; one suspected-component hypothesis (prompt, tool description, retrieval, or the knowledge base: which one you suspect went wrong). Now try working backward from the blast, knowing the ending, and step 1's sentence reads exactly like "reasonable task understanding." The difference between reading forward and working backward comes down to this one step.
 
-Put the cost on the table honestly. Reading traces is the most expensive path-level check, and it spends human time, a dozen-step trace read carefully takes several minutes. It is expensive for good reason, the money buys the structure of the failures, and every chapter ahead draws a dividend. But it should not be the long-term judgment instrument, an eval system where a human reads every case will not survive a month, and automation goes to Chapter 5's judgment ladder. The ladder is built on the atlas, the atlas is built on reading, in that order, and neither can substitute for the other.
+Put the cost on the table honestly. Reading traces is the most expensive path-level check, and it spends human time, a dozen-step trace read carefully takes several minutes. It is expensive for good reason. Those hours turn into the structure of the failures, and every chapter ahead uses it. But it should not be the long-term judgment instrument, an eval system where a human reads every case will not survive a month, and automation goes to Chapter 5's judgment ladder. The ladder is built on the atlas, the atlas is built on reading, in that order, and neither can substitute for the other.
 
 ### Qualitative Coding, Turning "Feels Off" into One Logged Row
 
-Reading without logging leaves you with anecdote when you are done. Qualitative coding borrows the open-coding tradition from qualitative research, no preset categories, read one, write one row, let the categories grow out of the data. A row has four fields, aligned with the verdict record schema, verdict (the four, `pass / concern / unsafe / unclear`), `first_bad_step`, a one-line failure description, and severity. Beyond these four the coding sheet keeps one more column, "suspected component," for your hypothesis about the causing component; how to use it, the clustering section covers.
+Reading without logging leaves you with anecdote when you are done. Qualitative coding borrows the open-coding tradition from qualitative research, no preset categories, read one, write one row, let the categories grow out of the data. A row has four fields: verdict, `first_bad_step`, a one-line failure description, and severity. verdict takes one of the four (`pass / concern / unsafe / unclear`), and all four fields align with the verdict record. Beyond these four the coding sheet keeps one more column, "suspected component," for your hypothesis about the causing component; how to use it, the clustering section covers.
 
 A filled row looks like this, taking the Cloudrest 2 investigation from the evidence section.
 
@@ -83,7 +84,7 @@ A filled row looks like this, taking the Cloudrest 2 investigation from the evid
 |---|---|---|---|---|---|
 | Cloudrest 2 investigation (evidence, first case) | `unsafe` | 2 | step 2 wrote the customer's spoken paraphrase "they all leak" into the investigation premise as verified fact, and every later search hunted evidence for it | sev-1 | prompt (the premise never required distinguishing "claim / verified")? |
 
-Two details. Not one word of the description is speculation, it is all behavior. Severity is set to sev-1 on the consequence, the report's conclusion would trigger a recall and a sales halt, and while the wrong thing is a report, what it cashes out is irreversible. Also, the same mode shows up as t-0117, t-0134, and t-0160 in the Lab batch, where the premise is written at step 1. The position of the cause step drifts; the criterion does not.
+Two details. Not one word of the description is speculation, it is all behavior. Severity is set to sev-1 on the consequence, the report's conclusion would trigger a recall and a sales halt, and while the wrong thing is a report, what it cashes out is irreversible. Also, the same mode shows up as t-0117, t-0134, and t-0160 in the Lab batch, where the premise is written at step 1. The position of the cause step drifts; the criterion does not. The evidence-section case wrote the premise at step 2, and t-0117 here writes it at step 1. That is the drift in action; what stays fixed is the question.
 
 Four coding disciplines.
 
@@ -100,7 +101,7 @@ After coding a batch, spread the rows out and pile up the ones with similar fail
 
 Each mode takes one row in the atlas, **name, definition and criterion (what counts as a hit), representative trace IDs, count, severity distribution, suspected component**. "Definition and criterion" forces you to state the mode to the point of being decidable, so that when the next trace arrives you can clearly answer hit or no-hit; a mode you cannot state to that point has not formed yet, split it or merge it. "Suspected component" (prompt? tool description? retrieval? the knowledge base itself?) is the hinge between the atlas and improvement. The earlier columns are evidence, this column is hypothesis, and when unsure write a question mark. A question mark is honest; leaving it blank is the dodge.
 
-Shore & Summit's batch of traces clusters into the atlas v1 excerpted below. This is the same batch as the Lab's 60, 35 clean and 25 with failures, with the full answer key in the repo at [`labs/ch03/reference.md`](../labs/ch03.md); code blind first, then turn back to compare.
+Shore & Summit's batch of traces clusters into the atlas v1 excerpted below. This is the same batch as the Lab's 60, 35 clean and 25 with failures, with the full answer key in the repo at [`labs/ch03/reference.md`](../labs/ch03.md); code blind first, then turn back to compare. On a first pass read only three columns, name, sev distribution, and suspected component; the trace IDs are there for looking things up later. "Near-miss" in the table means the line was crossed but the consequence never landed; the verdict is logged `concern`, taking no sev tier.
 
 **Shore & Summit failure mode atlas v1 (excerpt)**
 
@@ -116,7 +117,7 @@ Shore & Summit's batch of traces clusters into the atlas v1 excerpted below. Thi
 
 *Table 3-1 Failure mode atlas v1 (excerpt). The six-column row structure is fixed from here; Chapters 4, 5, and 15 all come back to reference the rows of this table. "Near-miss" = crossed the line but the consequence never landed, verdict logged `concern`, taking no sev tier.*
 
-This table can already do work. 25 failures cluster into just 7 modes, and the compression ratio is itself information, the failures concentrate into a few clusters. Scan it by "frequency × severity, severity first" and the fix-first list is those two sev-1 rows, while the most frequent row, "irrelevant record lookup," does not make the cut; the question mark on "missed request item" is the living example of the decision section's "lever unclear, put it on the red line and watch it." The full ordering rule is in the decision section.
+This table can already do work. 25 failures cluster into just 7 modes, and the compression ratio is itself information, the failures concentrate into a few clusters. Scan it by "frequency × severity, severity first" and the fix-first list is those two sev-1 rows, while the most frequent row, "irrelevant record lookup," does not make the cut; the question mark on "missed request item" means nobody yet knows where to start fixing it; how to handle that is covered in the decision section, along with the full ordering rule.
 
 The atlas is a living document, not a deliverable. It has three downstreams. Chapter 4 reverse-generates a stratified eval set from it, Chapter 5 assigns judge calibration focus by it, and Chapter 15's failure mining is its industrialized version on production data. The most important use right now, every sev-1 mode puts at least one case into the red-line set. A high-risk mode lying in the atlas has to become a sentry standing in the eval set.
 
@@ -126,7 +127,7 @@ The commonest objection to "read case by case" is when reading ever ends. Qualit
 
 Two corrections, and missing either one misjudges it.
 
-**Look at saturation stratified.** The three task families saturate at different speeds. Lookup and checking traces are short with a narrow failure surface, and saturate fastest; investigation and synthesis traces are long with a wide failure surface, and saturate slowest. Read "overall saturation" on a mixed batch, and very likely only the lookup family has saturated while the investigation family keeps pouring out new modes. Plot the curve separately by task type, and top up whichever has not saturated. Plot the two curves and the illusion is plain.
+**Look at saturation stratified.** The three task families saturate at different speeds. The lookup and checking family's traces are short with a narrow failure surface, and saturate fastest; the investigation and synthesis family's traces are long with a wide failure surface, and saturate slowest. Read "overall saturation" on a mixed batch, and very likely only the lookup family has saturated while the investigation family keeps pouring out new modes. Plot the curve separately by task type, and top up whichever has not saturated. Plot the two curves and the illusion is plain.
 
 ![Saturation curves](../assets/images/saturation-curve.svg)
 
@@ -138,7 +139,7 @@ Two corrections, and missing either one misjudges it.
 
 This chapter calls the top-5 failure modes, and which to fix first.
 
-The ordering criterion is **frequency × severity, severity first**, and raw frequency does not count on its own. Chapter 2's discipline sees its first real action here, a low-frequency sev-1 mode ("hearsay taken as fact" destroys an entire report) ranks ahead of a high-frequency sev-3 mode (stiff tone), even when the latter's count is ten times the former's. A top-5 ordered by raw frequency is average-thinking wearing a new face.
+The ordering criterion is **frequency × severity, severity first**, and raw frequency does not count on its own. Chapter 2's discipline sees its first real action here, a low-frequency sev-1 mode ("hearsay taken as fact" destroys an entire report) ranks ahead of a high-frequency sev-3 mode (stiff tone), even when the latter's count is ten times the former's. A top-5 ordered by raw frequency is average-thinking wearing a new face; both hide a few fatal cases behind one big number.
 
 Which to fix first, ask three questions.
 
@@ -180,7 +181,7 @@ the traces by hand. Stop and show me the output if any command errors.
 
 **Follow-along track (default).**
 
-1. Run `python viewer/trace_viewer.py traces/pregen-60.jsonl`. The repo ships 60 pre-generated traces from Mini, mixing the three task families. Mini is still Lv.0 read-only, so execution-class requests appear in this batch as replies and handoffs. Language can still go wrong, as Chapter 1 already proved.
+1. Run `python viewer/trace_viewer.py traces/pregen-60.jsonl`. The repo ships 60 pre-generated traces from Mini, mixing the three task families. Mini is still Lv.0 (read-only, cannot execute actions), so execution-class requests appear in this batch as replies and handoffs. Language can still go wrong, as Chapter 1 already proved.
 2. Blind-code 20 traces with the Trace Review Form, covering all three task families, and do not cherry-pick the short ones. Fill all four fields on each; when `first_bad_step` is unclear, go back to the question, "given the information available at this step, is this action reasonable?" Be honest about the time. This step plus the clustering that follows runs about 3 to 4 hours, the most expensive lab in the book and the one most worth it, so do not start it in the gaps between meetings. Only have a lunch break? The official minimum is 5 traces, 3 failing and 2 passing, enough to run into one symptom-step versus cause-step dispute; fill out the 20 over the weekend, the saturation check can wait.
 3. Cluster into your failure mode atlas v1, behavioral names, every column filled, a question mark where the suspected component is unclear.
 4. Compare against the answer key in [`labs/ch03/`](../labs/ch03.md). A different mode name is not a disagreement, nor is a different boundary; compare `first_bad_step` case by case, and where it differs by more than one step, go reread that trace. That disagreement is almost always symptom-step versus cause-step, and telling the two apart is exactly the muscle this chapter trains.
