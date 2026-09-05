@@ -23,6 +23,8 @@ internal/
 site/
 build/
 *.epub
+docs/llms.txt
+docs/llms-full.txt
 
 # Local virtualenvs and test caches
 .pytest_cache/

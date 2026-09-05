@@ -2,6 +2,7 @@ name: docs
 on:
   push:
     branches: [main]
+  pull_request:
   workflow_dispatch:
 
 permissions:
@@ -10,7 +11,7 @@ permissions:
   id-token: write
 
 concurrency:
-  group: pages
+  group: pages-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
@@ -22,12 +23,16 @@ jobs:
         with:
           python-version: "3.11"
       - run: pip install mkdocs-material
+      - run: sudo apt-get update -qq && sudo apt-get install -y -qq pandoc
       - run: python3 scripts/gen_companion_pages.py
-      - run: mkdocs build
+      - run: python3 scripts/gen_llms_txt.py
+      - run: ./scripts/build_epub.sh && cp build/ai-agent-evaluation.epub docs/
+      - run: mkdocs build --strict
       - uses: actions/upload-pages-artifact@v3
         with:
           path: site
   deploy:
+    if: github.event_name != 'pull_request'
     needs: build
     runs-on: ubuntu-latest
     environment:
