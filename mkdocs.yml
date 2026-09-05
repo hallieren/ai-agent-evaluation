@@ -65,6 +65,8 @@ nav:
       - "Ch 12 · Attacks ★": chapters/ch12-adversarial.md
       - "Ch 13 · Online Eval ★": chapters/ch13-online-eval.md
       - "Ch 14 · Regression and Gates": chapters/ch14-release-engineering.md
+      - "Ch 15 · The Improvement Loop": chapters/ch15-improvement-loop.md
+      - "Ch 16 · Eval Culture": chapters/ch16-eval-culture.md
   - Labs:
       - "Ch 1 Lab": labs/ch01.md
       - "Ch 2 Lab": labs/ch02.md
@@ -80,6 +82,8 @@ nav:
       - "Ch 12 Lab": labs/ch12.md
       - "Ch 13 Lab": labs/ch13.md
       - "Ch 14 Lab": labs/ch14.md
+      - "Ch 15 Lab": labs/ch15.md
+      - "Ch 16 Lab": labs/ch16.md
   - Template appendix:
       - "Ch 1 templates": appendices/ch01-templates.md
       - "Ch 2 templates": appendices/ch02-templates.md
@@ -95,3 +99,5 @@ nav:
       - "Ch 12 templates": appendices/ch12-templates.md
       - "Ch 13 templates": appendices/ch13-templates.md
       - "Ch 14 templates": appendices/ch14-templates.md
+      - "Ch 15 templates": appendices/ch15-templates.md
+      - "Ch 16 templates": appendices/ch16-templates.md

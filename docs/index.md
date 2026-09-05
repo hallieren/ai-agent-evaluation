@@ -7,7 +7,7 @@ Written for engineers pushing agents toward production, the ones asked "can we s
 The whole book has one lab agent (**Mini**, a few hundred lines of pure-stdlib Python) and one task world (a fictional e-commerce company, **Shore & Summit**). Mini ships with its capabilities sealed behind flags, and every chapter's Lab keeps the same discipline: **write the eval first → then unlock the capability → watch what the eval catches.**
 
 !!! note "Released chapter by chapter"
-    Chapters 1 through 14 are live. The remaining chapters and appendices land one at a time, roughly weekly, each as it clears our own practice pass. Unreleased items appear below as plain titles marked 🚧.
+    All 16 chapters are live. The appendices land one at a time, roughly weekly, each as it clears our own practice pass. Unreleased items appear below as plain titles marked 🚧.
 
 ## A 30-second start (no API key)
 
@@ -84,8 +84,8 @@ Reading Chapter 1 straight through to Chapter 16 is only one of three paths. Pic
 | 12 ★ | A piece of external content says "ignore previous instructions," and it does | [Red Team Protocol + Shutdown Red-Line Checklist](appendices/ch12-templates.md) | [ch12](chapters/ch12-adversarial.md) | [lab](labs/ch12.md) |
 | 13 ★ | 91% offline, wrecked in week two of production | [Evidence Ladder + Monitoring Signal Spec](appendices/ch13-templates.md) | [ch13](chapters/ch13-online-eval.md) | [lab](labs/ch13.md) |
 | 14 | You fixed scenario A; scenario B quietly regressed | [Release Gate + Change-Tier Matrix + Stop Rule](appendices/ch14-templates.md) | [ch14](chapters/ch14-release-engineering.md) | [lab](labs/ch14.md) |
-| 15 | You have all the data and still don't know what to change | Failure Mining Protocol + Bottleneck-to-Lever Mapping | The Improvement Loop 🚧 | 🚧 |
-| 16 | Nobody maintains the evals; postmortems turn into blame games | Incident Postmortem Template + Quality Ownership RACI | Eval Culture 🚧 | 🚧 |
+| 15 | You have all the data and still don't know what to change | [Failure Mining Protocol + Bottleneck-to-Lever Mapping](appendices/ch15-templates.md) | [ch15](chapters/ch15-improvement-loop.md) | [lab](labs/ch15.md) |
+| 16 | Nobody maintains the evals; postmortems turn into blame games | [Incident Postmortem Template + Quality Ownership RACI](appendices/ch16-templates.md) | [ch16](chapters/ch16-eval-culture.md) | [lab](labs/ch16.md) |
 
 ★ = heavyweight chapter. Appendices (all 🚧): A Template Pack · B Repo Map & Migration · C High-Stakes Domains · D Failure-Mode Taxonomy · E Glossary.
 

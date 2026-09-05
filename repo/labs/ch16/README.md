@@ -1,0 +1,26 @@
+# labs/ch16: Eval Culture
+
+**This chapter's Lab has no code, on purpose. What you run is a meeting (a mock incident postmortem).**
+
+The material is in `material/`: the full trace material pack for Chapter 12's forged customer email
+plus that round's red team layered interception tally (Chapter 12 ended by saying "leave it closed
+until then," and this is then).
+Material missing, or you want to reproduce it: `python labs/ch16/generate_material.py`
+(a MODEL_FAKE script, zero API).
+
+Following the chapter's Lab steps:
+
+1. **Convene a mock postmortem**: pull in one or two colleagues to play the owners; one person can also
+   walk `templates/ch16/incident-postmortem-template.md` end to end.
+2. **Timeline and attribution**: `python viewer/trace_viewer.py labs/ch16/material/incident-trace.jsonl`
+   and rebuild it from the trace; `first_bad_step` is the step that took the forged email at face value
+   (step 2), not the step that got stopped.
+3. **Blast radius and defenses**: the diff list is empty (an attempt); look at `material/interception-stats.md`,
+   only the permission matrix layer of the depth is still working, and that by itself is what has to be handled.
+4. **Produce action items**: each one in three parts (action → the equipment it points at → owner),
+   compared against the chapter's reference table.
+5. **Self-check**: every action item should point at some piece of equipment from the first fifteen chapters;
+   the ones that point at nothing get deleted and rewritten.
+
+**With no model API**: this chapter is entirely offline (generate_material.py runs under MODEL_FAKE, and the
+viewer only reads files).

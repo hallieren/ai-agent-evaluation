@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 780 344" font-family="Inter,-apple-system,sans-serif">
+  <style>
+    .surface{fill:#FAFAF8}.tp{fill:#0A0A0A}.ts{fill:#737373}
+    .band{fill:#FFFFFF;fill-opacity:.55;stroke:#B8B8B4;stroke-width:1.5}
+    .find{fill:#002FA7;fill-opacity:.09;stroke:#002FA7;stroke-width:1.5}
+    .slot{fill:#FFFFFF;fill-opacity:.55;stroke:#002FA7;stroke-width:1.5}
+    .edge{stroke:#737373;stroke-width:1.5;fill:none}
+    .arw{fill:#737373}
+    .accent{fill:#002FA7}
+    .mono{font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+    @media (prefers-color-scheme: dark){
+      .surface{fill:#0A0A0A}.tp{fill:#FAFAF8}.ts{fill:#A8A8A6}
+      .band{fill:#FFFFFF;fill-opacity:.04;stroke:#5A5A58}
+      .find{fill:#7A96E8;fill-opacity:.16;stroke:#7A96E8}
+      .slot{fill:#FFFFFF;fill-opacity:.04;stroke:#7A96E8}
+      .edge{stroke:#A8A8A6}.arw{fill:#A8A8A6}
+      .accent{fill:#7A96E8}
+    }
+  </style>
+  <defs>
+    <marker id="o1" markerWidth="8" markerHeight="8" refX="6.5" refY="3.5" orient="auto"><path d="M0 0 L7 3.5 L0 7 Z" class="arw"/></marker>
+  </defs>
+  <rect class="surface" x="0" y="0" width="780" height="344"/>
+
+  <text class="tp" x="24" y="34" font-size="17" font-weight="600">Quality ownership, one name per asset</text>
+  <text class="ts" x="24" y="56" font-size="13">"Everyone is responsible" translates, inside an org, to "nobody is". A department name does not count.</text>
+
+  <!-- row 1 -->
+  <rect class="band" x="30" y="80" width="400" height="40" rx="8"/>
+  <text class="tp" x="46" y="105" font-size="13.5">The spec (intended use · action boundary · severity table)</text>
+  <rect class="slot" x="490" y="80" width="260" height="40" rx="8"/>
+  <text class="accent" x="620" y="105" font-size="13.5" font-weight="600" text-anchor="middle">PM or tech lead</text>
+  <line class="edge" x1="432" y1="100" x2="488" y2="100" marker-end="url(#o1)"/>
+
+  <!-- row 2 -->
+  <rect class="band" x="30" y="130" width="400" height="40" rx="8"/>
+  <text class="tp" x="46" y="155" font-size="13.5">Gold labels (the eval set and relabeling)</text>
+  <rect class="slot" x="490" y="130" width="260" height="40" rx="8"/>
+  <text class="accent" x="620" y="155" font-size="13.5" font-weight="600" text-anchor="middle">The domain expert</text>
+  <line class="edge" x1="432" y1="150" x2="488" y2="150" marker-end="url(#o1)"/>
+
+  <!-- row 3 -->
+  <rect class="band" x="30" y="180" width="400" height="40" rx="8"/>
+  <text class="tp" x="46" y="205" font-size="13.5">Judge rubric (incl. calibration expiry)</text>
+  <rect class="slot" x="490" y="180" width="260" height="40" rx="8"/>
+  <text class="accent" x="620" y="205" font-size="13.5" font-weight="600" text-anchor="middle">Expert · Eng calibrates</text>
+  <line class="edge" x1="432" y1="200" x2="488" y2="200" marker-end="url(#o1)"/>
+
+  <!-- row 4: red-line veto, highlighted -->
+  <rect class="find" x="30" y="230" width="400" height="40" rx="8"/>
+  <text class="tp" x="46" y="255" font-size="13.5" font-weight="600">Red-line veto (any sev-1 change)</text>
+  <rect class="slot" x="490" y="230" width="260" height="40" rx="8"/>
+  <text class="accent" x="620" y="255" font-size="13.5" font-weight="600" text-anchor="middle">One name, no is no</text>
+  <line class="edge" x1="432" y1="250" x2="488" y2="250" marker-end="url(#o1)"/>
+
+  <text class="ts" x="24" y="304" font-size="13">Every row is one pointable name, not a department, not "everyone". The figure is the skeleton, the RACI the fill-in.</text>
+</svg>

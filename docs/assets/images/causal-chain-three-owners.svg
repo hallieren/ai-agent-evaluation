@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 780 452" font-family="Inter,-apple-system,sans-serif">
+  <style>
+    .surface{fill:#FAFAF8}.tp{fill:#0A0A0A}.ts{fill:#737373}
+    .band{fill:#FFFFFF;fill-opacity:.55;stroke:#B8B8B4;stroke-width:1.5}
+    .find{fill:#002FA7;fill-opacity:.09;stroke:#002FA7;stroke-width:1.5}
+    .stop{fill:#FFFFFF;fill-opacity:.55;stroke:#B23A48;stroke-width:1.5}
+    .edge{stroke:#737373;stroke-width:1.5;fill:none}
+    .arw{fill:#737373}
+    .accent{fill:#002FA7}.drop{fill:#B23A48}
+    .mono{font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+    @media (prefers-color-scheme: dark){
+      .surface{fill:#0A0A0A}.tp{fill:#FAFAF8}.ts{fill:#A8A8A6}
+      .band{fill:#FFFFFF;fill-opacity:.04;stroke:#5A5A58}
+      .find{fill:#7A96E8;fill-opacity:.16;stroke:#7A96E8}
+      .stop{fill:#FFFFFF;fill-opacity:.04;stroke:#E88A94}
+      .edge{stroke:#A8A8A6}.arw{fill:#A8A8A6}
+      .accent{fill:#7A96E8}.drop{fill:#E88A94}
+    }
+  </style>
+  <defs>
+    <marker id="c1" markerWidth="8" markerHeight="8" refX="6.5" refY="3.5" orient="auto"><path d="M0 0 L7 3.5 L0 7 Z" class="arw"/></marker>
+  </defs>
+  <rect class="surface" x="0" y="0" width="780" height="452"/>
+
+  <text class="tp" x="24" y="34" font-size="17" font-weight="600">The trace arrives, the positions leave</text>
+  <text class="ts" x="24" y="56" font-size="13">Same attempt, one postmortem. Adjourned with only positions; the trace lands and the positions leave.</text>
+
+  <!-- Panel 1: positions -->
+  <text class="tp" x="24" y="92" font-size="13" font-weight="600">① The hearing, three directions, each picking the stretch furthest from itself</text>
+
+  <rect class="band" x="30" y="104" width="232" height="74" rx="8"/>
+  <text class="tp" x="146" y="130" font-size="14" font-weight="600" text-anchor="middle">Ryan Tate · edits prompt</text>
+  <text class="ts" x="146" y="152" font-size="13" text-anchor="middle">"No cell for that phrasing,</text>
+  <text class="ts" x="146" y="170" font-size="13" text-anchor="middle">not the prompt's blame"</text>
+
+  <rect class="band" x="274" y="104" width="232" height="74" rx="8"/>
+  <text class="tp" x="390" y="130" font-size="14" font-weight="600" text-anchor="middle">Wendy Bishop · eval set</text>
+  <text class="ts" x="390" y="152" font-size="13" text-anchor="middle">"Red lines belong to</text>
+  <text class="ts" x="390" y="170" font-size="13" text-anchor="middle">security, never scheduled"</text>
+
+  <rect class="band" x="518" y="104" width="232" height="74" rx="8"/>
+  <text class="tp" x="634" y="130" font-size="14" font-weight="600" text-anchor="middle">Hayden Ross · security</text>
+  <text class="ts" x="634" y="152" font-size="13" text-anchor="middle">"Stopped, so an attempt,</text>
+  <text class="ts" x="634" y="170" font-size="13" text-anchor="middle">why was monitoring silent?"</text>
+
+  <text class="ts" x="390" y="200" font-size="13" text-anchor="middle">Forty minutes, not one action item on the whiteboard, only positions.</text>
+
+  <!-- Panel 2: the chain -->
+  <text class="tp" x="24" y="234" font-size="13" font-weight="600">② The postmortem, only the trace on the projector, one causal chain</text>
+
+  <rect class="band" x="41" y="248" width="210" height="60" rx="8"/>
+  <text class="tp mono" x="146" y="274" font-size="13.5" font-weight="600" text-anchor="middle">inbound</text>
+  <text class="ts" x="146" y="294" font-size="13" text-anchor="middle">forged email in</text>
+
+  <rect class="find" x="285" y="248" width="210" height="60" rx="8"/>
+  <text class="tp" x="390" y="274" font-size="13.5" font-weight="600" text-anchor="middle">trusted forged sender</text>
+  <text class="accent mono" x="390" y="294" font-size="13" text-anchor="middle">★ first_bad_step</text>
+
+  <rect class="stop" x="529" y="248" width="210" height="60" rx="8"/>
+  <text class="tp mono" x="634" y="274" font-size="13.5" font-weight="600" text-anchor="middle">refund</text>
+  <text class="drop" x="634" y="294" font-size="13" text-anchor="middle">stopped at the matrix</text>
+
+  <line class="edge" x1="253" y1="278" x2="283" y2="278" marker-end="url(#c1)"/>
+  <line class="edge" x1="497" y1="278" x2="527" y2="278" marker-end="url(#c1)"/>
+
+  <!-- three territories under the chain -->
+  <rect class="band" x="30" y="330" width="232" height="48" rx="8"/>
+  <text class="tp" x="146" y="352" font-size="13.5" font-weight="600" text-anchor="middle">Input filter</text>
+  <text class="ts" x="146" y="370" font-size="13" text-anchor="middle">did not stop it · Ryan</text>
+
+  <rect class="band" x="274" y="330" width="232" height="48" rx="8"/>
+  <text class="tp" x="390" y="352" font-size="13.5" font-weight="600" text-anchor="middle">Eval set</text>
+  <text class="ts" x="390" y="370" font-size="13" text-anchor="middle">did not test it · Wendy</text>
+
+  <rect class="band" x="518" y="330" width="232" height="48" rx="8"/>
+  <text class="tp" x="634" y="352" font-size="13.5" font-weight="600" text-anchor="middle">Monitoring</text>
+  <text class="ts" x="634" y="370" font-size="13" text-anchor="middle">did not watch it · Hayden</text>
+
+  <path class="edge" d="M30 392 L30 398 L750 398 L750 392"/>
+  <text class="accent" x="390" y="416" font-size="13" font-weight="600" text-anchor="middle">one causal chain running through three owners' territory</text>
+
+  <text class="ts" x="390" y="440" font-size="13" text-anchor="middle">A postmortem examines the system, whose fault → which defense layer should have caught it.</text>
+</svg>
