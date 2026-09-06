@@ -1,6 +1,6 @@
 # AI Agent Evaluation
 
-[![smoke](https://github.com/hallieren/ai-agent-evaluation/actions/workflows/smoke.yml/badge.svg)](https://github.com/hallieren/ai-agent-evaluation/actions/workflows/smoke.yml) [![docs](https://github.com/hallieren/ai-agent-evaluation/actions/workflows/docs.yml/badge.svg)](https://github.com/hallieren/ai-agent-evaluation/actions/workflows/docs.yml)
+[![smoke](https://github.com/hallieren/ai-agent-evaluation/actions/workflows/smoke.yml/badge.svg)](https://github.com/hallieren/ai-agent-evaluation/actions/workflows/smoke.yml) [![docs](https://github.com/hallieren/ai-agent-evaluation/actions/workflows/docs.yml/badge.svg)](https://github.com/hallieren/ai-agent-evaluation/actions/workflows/docs.yml) [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.22543653.svg)](https://doi.org/10.5281/zenodo.22543653)
 
 > **Score the endpoint, attribute the path, account for the side effects. Eval before you build.**
 

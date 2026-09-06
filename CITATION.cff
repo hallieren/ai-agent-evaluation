@@ -9,6 +9,11 @@ url: "https://hallieren.github.io/ai-agent-evaluation/"
 repository-code: "https://github.com/hallieren/ai-agent-evaluation"
 license: CC-BY-NC-SA-4.0
 version: "1.0"
+doi: 10.5281/zenodo.22543654
+identifiers:
+  - type: doi
+    value: 10.5281/zenodo.22543653
+    description: "Concept DOI, resolves to the latest version"
 date-released: 2026-09-06
 year: 2026
 abstract: "A free, open-source book on evaluating AI agents: score the endpoint, attribute the path, account for the side effects. Sixteen chapters with templates and zero-dependency labs."
