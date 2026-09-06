@@ -2,11 +2,13 @@
 
 [![smoke](https://github.com/hallieren/ai-agent-evaluation/actions/workflows/smoke.yml/badge.svg)](https://github.com/hallieren/ai-agent-evaluation/actions/workflows/smoke.yml) [![docs](https://github.com/hallieren/ai-agent-evaluation/actions/workflows/docs.yml/badge.svg)](https://github.com/hallieren/ai-agent-evaluation/actions/workflows/docs.yml)
 
-> Score the endpoint, attribute the path, account for the side effects. Eval before you build. Written for engineers pushing agents toward production, the ones asked "can we ship?" with no evidence in hand. Sixteen chapters, one wall and one template each; the companion repo runs with zero dependencies (pure stdlib, Python ≥ 3.10).
+> **Score the endpoint, attribute the path, account for the side effects. Eval before you build.**
+
+Written for engineers pushing agents toward production, the ones asked "can we ship?" with no evidence in hand. Sixteen chapters, one wall and one template each; the companion repo runs with zero dependencies (pure stdlib, Python ≥ 3.10).
 
 *Shore & Summit is a synthetic teaching world assembled from common enterprise scenarios; it does not correspond to any real company, and every character in this book is fictional.*
 
-All 16 chapters and the five appendices are live. Each chapter is paired with an applied essay on the author's Substack: [hallieren.substack.com](https://hallieren.substack.com).
+All 16 chapters and the five appendices are live, tagged as [v1.0](https://github.com/hallieren/ai-agent-evaluation/releases/tag/v1.0). Each chapter is paired with an applied essay on the author's Substack: [hallieren.substack.com](https://hallieren.substack.com).
 
 ## How to read
 
