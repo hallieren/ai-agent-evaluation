@@ -25,7 +25,7 @@ So an agent's numbers are **less** trustworthy than a single-turn app's, and the
 
 ### Multiple Runs and Confidence Intervals
 
-A single-run pass rate is one sample of the true value, and the randomness comes from two layers. The **case layer**, your eval set is a sample of reality; the **run layer**, every run of the same case is a sample of the agent's behavior distribution.
+A single-run pass rate is one sample of the true value, and the randomness comes from two layers. The **case layer**, your eval set is a sample of reality; the **run layer** (one trial of one case, in the term the evals literature uses), every run of the same case is a sample of the agent's behavior distribution.
 
 The minimum discipline is to run the same version at least 5 times, report the mean and the interval, and never report a single-run point value. An interval says which range the true pass rate most likely falls in, and the narrower it is, the more you can trust it. The interval needs no statistics package; an engineer's rough cut is enough. For a pass rate over n cases, the 95% interval's half-width is about 1/√n, a worst-case estimate, since the error is largest when the pass rate sits nearest 50%. For reference, roughly ±10 percentage points at 100 cases, about ±5 at 400, illustrative integers, and the Cheat Sheet carries the derivation.
 
@@ -115,14 +115,14 @@ The opposite extreme is just as real. If failures concentrate on a fixed 10% of 
 
 *Figure 6-2 The same single-run 90% can produce pass⁵ ≈ 59% or ≈ 90%, and the shape of the failure decides which. On the left, failures behave like a coin: each run independently fails about 10%, the failures scatter across cases, and five clean runs in a row is 0.9⁵ ≈ 59%. On the right, failures behave like fixed hard cases: the same 10% fails every run while the easy 90% passes every run, so five fully correct runs is ≈ 90%. Both panels carry the identical single-run pass rate; only the flip rate tells you which one your agent is, so measure it rather than assume.*
 
-The **flip rate** exists for exactly this. Run the same case 5 times; the share of cases whose verdicts disagree measures directly how much "coin" is in your failures. An agent with a high flip rate fails like a coin, and any mean you report is a report on luck. An agent with a low flip rate and failures nailed to fixed cases gives you a stable mean, but every one of those hard cases deserves to go back to Chapter 3 for case-by-case coding (labeling and classifying the failure, not writing code). They are defects, not noise to throw away.
+The **flip rate** exists for exactly this. Run the same case 5 times; the share of cases whose verdicts disagree measures directly how much "coin" is in your failures. An agent with a high flip rate fails like a coin, and any mean you report is a report on luck. An agent with a low flip rate and failures nailed to fixed cases gives you a stable mean, but every one of those hard cases deserves to go back to Chapter 3 for case-by-case coding (labeling and classifying the failure, not writing code). They are defects, not noise to throw away. Before coding them, ask one question first. A frontier model failing all N runs points first at a broken task, an ambiguous spec, a misconfigured grader, an unreachable setup, and only second at capability; Chapter 4's seventh step, the reference trajectory, exists for exactly this question.
 
 The flip-rate algorithm is visible at a glance in the data. Back to the 50 × 5 example, lay out three cases' per-run verdicts.
 
 | case | r-01 | r-02 | r-03 | r-04 | r-05 | Flips? |
 |---|---|---|---|---|---|---|
 | case-A | pass | pass | pass | pass | pass | No |
-| case-B | unsafe | unsafe | unsafe | unsafe | unsafe | No. Fails stably, a hard case, not a flip |
+| case-B | unsafe | unsafe | unsafe | unsafe | unsafe | No. Fails stably, a hard case, not a flip; clear the reference trajectory before coding it |
 | case-C | pass | unsafe | pass | pass | concern | Yes. More than one verdict in the set |
 
 *Table 6-2 How to read the flip rate (illustrative). Only case-C counts as a flip; 9 of the 50 cases look like case-C, flip rate 9/50 = 18%. case-B stays out of the flip rate, but it belongs in Chapter 3's coding queue.*

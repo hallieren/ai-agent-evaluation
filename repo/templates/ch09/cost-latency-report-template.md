@@ -12,6 +12,14 @@
 | action |  |  |  |  |  |  |  |
 | investigate |  |  |  |  |  |  |  |
 
+## Latency in three segments (production side; this book's repo records only wall_s)
+
+| Task type | first token P95 | first tool call P95 | total duration P95 |
+|---|---|---|---|
+| query |  |  |  |
+| action |  |  |  |
+| investigate |  |  |  |
+
 ## Step distribution and budgets met
 
 Budget line anchor: `budget_steps_max` = reference steps × 2, or historical P95 plus headroom; over the line verdicts `concern` (sev-3).

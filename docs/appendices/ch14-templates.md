@@ -53,6 +53,7 @@
 |---|---|---|---|---|---|
 | Pass rate (offline full set) |  | ±____ (clustered by case) |  |  | sev-1: 0 / sev-2: _ / sev-3: _ |
 | Cost P95 / latency P95 |  |  |  |  |  |
+| Capability-set pass rate and trend (does not block) |  |  |  |  | graduated this version: _ |
 
 - [ ] sev-1 = 0. Nonzero, no meeting needed, zero tolerance does not enter the review, it simply does not release.
 
@@ -112,7 +113,7 @@
 
 ### Replay-layer / simulation-layer trigger timing (following ch7's layering)
 
-- **Replay layer**: deterministic replay, run **on every commit** (hung on the commit hook; a red light exits non-zero). Scope: the cheapest-to-judge subset (what assertions can judge) + the red-line set.
+- **Replay layer**: deterministic replay, run **on every commit** (hung on the commit hook; a red light exits non-zero). Scope: the cheapest-to-judge subset (what assertions can judge) + the red-line set. suites lists the regression set only; the capability set (`cases/capability/`) runs on every version and reports on its own line, outside the gate.
 - **Simulation layer**: free simulation, run **on every version**, `--repeat` with intervals (ch6 discipline); triggered by tier-2-and-up changes (see the Change-Tier Matrix).
 
 ### Interception record

@@ -106,6 +106,7 @@ The six components contain not a trace of Shore & Summit knowledge; all world kn
 - **The ch14 Lab gate occasionally goes red?** On purpose. The release-gate baseline probabilistically trips a sev-1 after the vendor swaps the model underneath, a live specimen of Chapter 14's change tiers (which tier is a vendor model swap?). Details ship with Chapter 14's lab (`repo/labs/ch14/README.md`).
 - **What are the traces in `labs/*/out/`?** Pre-generated teaching material, for following the Labs offline and checking against the reference answers. Committed on purpose.
 - **Is `MODEL_FAKE=1` an evaluation method?** No. It's a programming interface for tests and teaching-trace generation (replies come from a scripted queue). Evaluation must measure a real model.
+- **What does this book not cover?** Public benchmarks and model leaderboards (the eval set grows only out of your own failures; there is no benchmark roundup), how to build an agent (Mini is handed to you, how it was written is not taught), and prompt engineering as such.
 - **Is Shore & Summit a real company?** No. Shore & Summit is a synthetic teaching world assembled from common enterprise scenarios; it does not correspond to any real company, and every character in this book is fictional.
 
 ## Contributing & license

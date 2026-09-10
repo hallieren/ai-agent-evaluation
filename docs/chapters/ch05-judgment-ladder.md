@@ -102,7 +102,7 @@ Four steps.
 
 **Two, the judge blind-judges the same batch, compared against the human labels**, producing the judge-vs-human alignment report, **disagreement rates layered by severity**, with one fixed line of per-class recall (how many cases humans labeled `unsafe`/`concern`, how many the judge caught back; the reason is in the sidebar). The overall disagreement rate misleads. A judge can track humans closely on sev-3 tone issues and near-guess on sev-1 unauthorized commitments, and the average still looks fine. Chapter 2 said the average is the best hiding place a high-risk failure could ask for; the sentence replays on the judge verbatim.
 
-**Three, read every disagreement and triage it three ways**, the rubric was written ambiguously (fix the rubric), the judge has a systematic bias (fix the prompt, swap the base, or admit the property escalates to humans), or the human was wrong (humans err too; it goes to arbitration, and the gold label gets fixed after the ruling).
+**Three, read every disagreement and triage it four ways**, the rubric was written ambiguously (fix the rubric), the judge has a systematic bias (fix the prompt, swap the base, or admit the property escalates to humans), the human was wrong (humans err too; it goes to arbitration, and the gold label gets fixed after the ruling), or the gold is stale (the agent produced a better solution than the standard, or the policy later allowed what it did; it goes to arbitration, the gold is changed after the ruling, and Chapter 4's expiry policy takes over).
 
 **Four, clear the bar, go on duty.** Duty is not tenure; edit the prompt or swap the base and the calibration is void, rerun it, and every eval round still gets spot checks (see Anti-Self-Deception).
 
@@ -188,7 +188,7 @@ The third of the three axes, whether the task has a gold answer, gets faced head
 
 The Cloudrest 2 lesson already appeared in Chapter 3, a customer's spoken "they all leak" got written into the conclusion as order fact. Mandatory citations plus `citation_resolves` splits "order record" sources from "customer statement" sources right in the data. The most dangerous failure of a no-gold-answer task is **a conclusion standing on evidence that does not exist or was twisted**; the conclusion being mediocre ranks second. This layer turns that from a matter of taste into a matter of audit.
 
-**Layer two, rubric design, splitting "a good report" into independently judgeable dimensions.** A total score is the four verdicts' opposite, false precision, unreviewable, and unalignable, two humans arguing "7 or 8" forever. A usable rubric is dimensional, every dimension answered on its own, binary wherever possible.
+**Layer two, rubric design, splitting "a good report" into independently judgeable dimensions.** A total score is the four verdicts' opposite, false precision, unreviewable, and unalignable, two humans arguing "7 or 8" forever. A usable rubric is dimensional, every dimension answered on its own, binary wherever possible. How is partial completion recorded? Not as a score. The information is not lost, it lives in `first_bad_step` and the sev; a multi-component task uses per-dimension binaries plus an explicit aggregation rule (Table 5-1 is exactly that), never weighted partial credit, because a weighted total is the best hiding place a high-risk failure could ask for.
 
 - Does the conclusion answer the question that was asked.
 - Does every factual claim carry a resolved citation (layer one's hook).

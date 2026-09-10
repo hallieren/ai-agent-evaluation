@@ -13,7 +13,7 @@ The order of use is the chapter order; each template makes its first appearance 
 | 3 | [`ch03/trace-review-form.md`](ch03-templates.md) | One row per trace, a coding sheet whose fields align with the verdict-record schema |
 | 3 | [`ch03/qualitative-coding-protocol.md`](ch03-templates.md) | Four coding disciplines + operating notes for blind coding and saturation |
 | 3 | [`ch03/failure-mode-atlas-starter.md`](ch03-templates.md) | The six-column atlas skeleton + the behavioral-naming self-check |
-| 4 | [`ch04/golden-task-design-protocol.md`](ch04-templates.md) | Six steps to one golden task, one check question per step |
+| 4 | [`ch04/golden-task-design-protocol.md`](ch04-templates.md) | Seven steps to one golden task, one check question per step |
 | 4 | [`ch04/coverage-matrix.md`](ch04-templates.md) | Failure mode × severity × user type; an empty cell needs a signature |
 | 4 | [`ch04/label-expiry-policy.md`](ch04-templates.md) | Register the policy basis + relabel on change + periodic audit |
 | 5 | [`ch05/judgment-ladder-decision-tree.md`](ch05-templates.md) | Choosing the judgment instrument starting from three questions, with the sev-1 authority rule |

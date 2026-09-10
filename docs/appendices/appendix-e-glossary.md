@@ -5,6 +5,7 @@ The book's terms, grouped by theme. Entry format: **term**: a one-line definitio
 ## 1. Objects and basic units
 
 - **trace (trajectory)**: the complete record of one agent run, the sequence of steps alternating between model turns, tool calls, and tool results, plus the final output; the basic unit of evaluation. (ch2)
+- **case (task / test case)**: one test, a world state (setup) plus a request (prompt) plus the expected trace properties (expect); the evals literature calls it a task or a test case. (first used in ch1, schema fixed in ch4)
 - **inbound (external content ingestion event)**: one of the trace step types, the moment external content such as a fetched web page or an incoming email body enters the context; attack-surface inventories and injection attribution both start from it. (ch12)
 - **eval (evaluation)**: the systematic evaluation of an agent, the sum of cases, verdicts, and reports; this book's position is that the eval is the agent's spec. (ch1)
 - **eval-as-spec**: attribute priorities + the severity table + the action boundary form a spec that can exist before the code; extend the eval before extending capability; at the case level, this means the eval set itself precedes the code, and a new requirement first becomes a new case. (ch2, ch4)
@@ -26,7 +27,12 @@ The book's terms, grouped by theme. Entry format: **term**: a one-line definitio
 
 - **golden task**: a pre-designed evaluation task with an endpoint made as verifiable as possible; the basic unit of an eval set. (ch4)
 - **coverage matrix**: the tiered coverage table of failure mode × severity × user type; an empty cell is a testing blind spot. (ch4)
+- **regression set**: the part of the eval set the gate reads, expected to pass at close to 100%, where a red light means a regression; in the repo it is the directories listed under suites in `ci/gate.yaml`. (ch4, ch14)
+- **capability set**: cases written eval-first that the agent cannot pass yet, living in `cases/capability/`; expected to fail, run on every version, reported on their own line, never blocking a release. (ch4)
+- **graduation**: a capability-set case moves into the regression set after passing `--repeat 5` on two consecutive versions, and a sev-1 case also needs a deterministic assertion first; its first-run score on graduation day is the one reading in its life that was never optimized against. (ch15)
+- **reference trajectory**: the one known-passing trajectory attached to every case, hand-written or harvested from a passing trace, run through the assertions and judge rules with zero model calls to prove the task is solvable and the verdict configuration is right. (ch4)
 - **harness**: the self-built eval infrastructure, runner, trace, assertions, judge, stats, report; the repo's real asset. (ch7)
+- **agent harness (scaffold)**: the layer that turns around the model, the loop, tool orchestration, prompt assembly; Mini = model + scaffold, and the thing under test is the two together. In this book the word harness on its own always means the eval infrastructure. (ch7)
 - **tool stub**: a fake implementation that catches calls in place of the real tool (a refund stub, an outbox stub), making dangerous actions testable; the stub's fidelity must itself be evaluated. (ch7)
 - **synthetic user**: the counterparty played by an LLM, three personas, angry / vague / multi; the four script elements and the three distortions are in ch7. (ch7)
 - **seeded-error probe**: a deliberately planted error, to see whether the process catches it; manually adding sev-1 scenarios to the alignment set follows the same idea. (ch8)
@@ -35,6 +41,9 @@ The book's terms, grouped by theme. Entry format: **term**: a one-line definitio
 
 - **pass@k / pass^k**: at least one success in k attempts / all k consecutive attempts succeed; an agent should watch the latter. (ch6)
 - **flip rate**: the share of a case's verdicts that disagree across repeated runs; a high flip rate is itself a reproducibility defect, not only a measurement problem. A different concept from ch13's "overturn rate," never confuse them. (ch6)
+- **trial**: one attempt at one case. This book's "run" is one pass over the whole eval set, which gives every case one trial; the k in pass@k / pass^k counts trials. (ch6)
+- **paired comparison**: old and new versions run the same cases, compared case by case; the evals literature's pairwise comparison, a judge comparing two candidate outputs, is a different thing. (ch6)
+- **saturation (of the eval set)**: the regression set and the capability set both pass in full, and the score stops carrying any improvement signal; the move is to add harder cases. Three different concepts from ch3's saturation of coding (reading traces no longer surfaces new failure modes) and ch15's suite aging (overfitting), never confuse them. (ch15)
 
 ## 5. Agent-specific battlegrounds
 

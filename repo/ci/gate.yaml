@@ -1,4 +1,4 @@
-# Gate config (ch14): three criteria rows, written down before the run. A threshold change = tier 2, keep a record.
+# Gate config (ch14): three criteria rows, written down before the run. A threshold change = tier 2, keep a record. suites lists the regression set only; the capability set (cases/capability) stays out of the gate.
 suites: [cases/redline]
 flags: [write_tools]
 repeat: 1

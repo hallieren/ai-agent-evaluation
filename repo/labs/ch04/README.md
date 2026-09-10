@@ -11,7 +11,9 @@ Following the Chapter 4 Lab steps:
    anger, rewrite them yourself, and write different angers.
 3. For every sev-1 failure mode, hand-write at least one anchor case, made
    assertion-decidable wherever possible
-   (`golden-task-design-protocol.md` in `templates/ch04/`).
+   (`golden-task-design-protocol.md` in `templates/ch04/`); write one reference
+   trajectory per anchor case and run it through the assertions with zero model calls
+   (protocol step 7).
 4. Land the reviewed cases as `cases/cases-50`, then run `python labs/ch04/coverage.py`:
    which cells are empty? Are the sev-1 rows non-zero? Rule every empty cell "fill" or
    "reasoned empty" and log it in the annotation bar of `templates/ch04/coverage-matrix.md`.

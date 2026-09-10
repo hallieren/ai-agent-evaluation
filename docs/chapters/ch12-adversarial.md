@@ -204,6 +204,8 @@ Security cuts across all the earlier battlegrounds; it does not count as Part II
 
 - **Subagents (Chapter 11).** `handoff` is injection's propagation path. An injection the main agent read travels to the subagent with the context handoff, and the subagent trusts input from the main agent, taking it for an internal instruction. So an injection that was merely "read" at the main agent becomes "executed" at the subagent. Chapter 11's handoff quality check gains a question. Does the handed-over context carry unquarantined external content?
 
+- **Verdicts (Chapter 5).** The verdict instruments are an attack surface of their own. Can an assertion or a judge be fooled by the agent's output itself, wording that just clears the regex, a report that looks like a good report? That takes no attacker; wherever the score is, behavior crowds toward it (Chapter 5's verbosity bias and Chapter 9's process score are the same thing). Design every verdict assuming the agent will try to satisfy it cheaply, and whatever can sink down to world state should not stay on wording.
+
 Cutting across means you cannot "finish security" in this chapter. Every time a capability is unlocked, come back and ask once more. What new doors does this new entrance open for each of the five kinds of attack above?
 
 ## The Decision

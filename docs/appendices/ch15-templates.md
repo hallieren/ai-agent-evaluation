@@ -114,6 +114,11 @@ Once extended: a new sev-1 mode -> a red-line case; the suspected component -> l
 
 - Conclusion: ☐ keep it, in effect ☐ roll back and try the next hypothesis (a normal step in the cycle, not a setback)
 
+#### Capability-set ledger
+
+- Graduated ____ (passed `--repeat 5` on two consecutive versions, moved into the regression set; sev-1 needs a deterministic assertion first)  Newly added to the capability set ____
+- Saturated? ☐ no ☐ yes, harder cases added this cycle: ____
+
 #### Next cycle's candidates
 
 - Mode: ____  Basis (failure-pool signal): ____

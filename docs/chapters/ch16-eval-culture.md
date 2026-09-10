@@ -99,7 +99,7 @@ Readers outside a heavily regulated industry can read only the last sentence of 
 
 The comfort this chapter guards against is **"we have eval infrastructure, therefore we have an eval culture."**
 
-Infrastructure is an asset, culture is a habit. Assets stay in the repo, habits quietly break when headcount multiplies by five. The executable check has two questions. Go through the eval set's commit history and count the people who added a case in the last month, fewer than half the team and your "culture" is a few people's overtime. Then ask a random colleague which case in the eval set corresponds to the most recent incident, no case ID for an answer and what you own is infrastructure.
+Infrastructure is an asset, culture is a habit. Assets stay in the repo, habits quietly break when headcount multiplies by five. The executable check has two questions. Go through the eval set's commit history and count the people who added a case in the last month, fewer than half the team and your "culture" is a few people's overtime. Then count how many of them are not engineers; a PM or a support lead with a coding agent can submit a case as a PR, the eval set is the highest-bandwidth interface between the product and model teams, and with no non-engineer among the committers that interface is not yet connected. Then ask a random colleague which case in the eval set corresponds to the most recent incident, no case ID for an answer and what you own is infrastructure.
 
 ## Your Loot
 

@@ -41,11 +41,11 @@ The repo has carried a minimal world all along; what else was Chapter 1's read-o
 
 **Stubs (the mock/stub of testing, a fake and controllable stand-in for a real system).** Write tools never touch real systems. refund edits the sandbox order database; send_email sends nothing and writes into the outbox stub, a mailbox with an entrance and no exit. The point of stubs is not only safety but **observability**. The order's post-refund state is one lookup away (the assertion order_state_equals, which checks whether the order's end state is right); outbound content lies in the outbox and gets inspected message by message (the assertion no_pii_disclosure, which checks whether details went to someone who should not receive them). The side effects that are hard to capture in a real system all become assertable evidence in the sandbox.
 
-**Reset.** Before every case runs, the world rebuilds from the seed, the starting point strictly identical. Chapter 6 taught you to account for variance; the sandbox's job is to delete "the environment differed" from the list of variance sources, so that whatever variance remains is the agent's own.
+**Reset.** Before every case runs, the world rebuilds from the seed, the starting point strictly identical. Chapter 6 taught you to account for variance; the sandbox's job is to delete "the environment differed" from the list of variance sources, so that whatever variance remains is the agent's own. Two boundaries need stating. Reset rebuilds the world only, it does not clean up what a trial left behind, temp files, caches, the previous git history in a coding agent's sandbox, and an agent can peek at answers in there, so reset has to cover them too. Rate limits, shared containers, and resource exhaustion make several cases fail for the same reason, and Chapter 6's case-clustered interval cannot rescue that kind of correlated failure, because it is correlated across cases; once found, the whole batch is void and reruns.
 
 Mind the order. write_tools stays sealed (Chapter 8 unlocks it), and the stubs get built first. Eval before build, stubs before write_tools, landed at the infrastructure layer, is **the world before the capability**.
 
-Which tools must be stubbed? Two criteria, **irreversibility** and **a real counterparty**. refund, send_email, update_order, escalate: anything irreversible, or involving a real other person, gets stubbed. Read-only tools like get_order and search_kb read sandbox data anyway, and the stub-versus-real line dissolves. The one thing that must never be stubbed is the model API. The model is the thing under test; stub it and the replies you see are fake data you wrote in advance, so what gets judged is whether your own writing is right, not whether the model is any good; the eval is testing itself.
+Which tools must be stubbed? Two criteria, **irreversibility** and **a real counterparty**. refund, send_email, update_order, escalate: anything irreversible, or involving a real other person, gets stubbed. Read-only tools like get_order and search_kb read sandbox data anyway, and the stub-versus-real line dissolves. The one thing that must never be stubbed is the model API. The model and its scaffold are the thing under test; stub the model and the replies you see are fake data you wrote in advance, so what gets judged is whether your own writing is right, not whether the model is any good; the eval is testing itself.
 
 ### Synthetic Users, an LLM Playing the Counterparty
 
@@ -116,6 +116,8 @@ One iron rule spans all three levels: **deviation raises an alarm, never a force
 This half page is prepaid for Chapter 14. "Every commit clears the gate" holds because level 2 is the cheapest floor of the three (how cheap, and how often each layer triggers, is Chapter 14's cost ledger), and deviation-raises-an-alarm guarantees the cheapness was never bought with infidelity.
 
 ### The Minimal Harness Architecture, Where Six Chapters Assemble
+
+First separate the two harnesses. Mini is a model plus a **scaffold**, the layer that turns around the model, the loop, tool orchestration, prompt assembly, what the evals literature calls an agent harness or scaffold; the thing under test is the two together, swapping the model and editing the scaffold each replace half of the system under test, and Chapter 14's change tiers are set on that basis. When this book says harness, it means the eval infrastructure below, and nothing else.
 
 Now assemble the machine (`harness/`). Six components, each one loot from an earlier chapter.
 

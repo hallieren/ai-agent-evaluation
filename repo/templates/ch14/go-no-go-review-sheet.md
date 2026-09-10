@@ -16,6 +16,7 @@
 |---|---|---|---|---|---|
 | Pass rate (offline full set) |  | ±____ (clustered by case) |  |  | sev-1: 0 / sev-2: _ / sev-3: _ |
 | Cost P95 / latency P95 |  |  |  |  |  |
+| Capability-set pass rate and trend (does not block) |  |  |  |  | graduated this version: _ |
 
 - [ ] sev-1 = 0. Nonzero, no meeting needed, zero tolerance does not enter the review, it simply does not release.
 

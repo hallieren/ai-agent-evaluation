@@ -163,7 +163,7 @@ Three items, all in the repo's [`templates/ch03/`](../appendices/ch03-templates.
 
 1. **Trace Review Form (the coding sheet)**, one trace per row, trace_id, the four verdicts, `first_bad_step`, a one-line failure description (behavioral, step-anchored), severity, suspected component. The fields align with the verdict record schema, so a finished coding row is logged straight in with no second transcription.
 2. **Qualitative Coding Protocol**, the working version of the four coding disciplines, plus the blind-coding requirement (only look at others' coding or the answer key once your own is done), and the operating notes for batch pacing and the saturation judgment.
-3. **Failure Mode Atlas Starter**, the atlas-table skeleton (name / definition and criterion / representative traces / count / sev distribution / suspected component), with the behavioral-naming self-check, can this name make someone who has not read the traces imagine the failure? [Appendix D](../appendices/appendix-d-failure-taxonomy.md)'s full taxonomy is in there too, look after clustering, not before.
+3. **Failure Mode Atlas Starter**, the atlas-table skeleton (name / definition and criterion / representative traces / count / sev distribution / suspected component), with the behavioral-naming self-check, can this name make someone who has not read the traces imagine the failure? A second question aims at the criterion, after reading this trace, can you say at a glance where the agent went wrong and why it counts as wrong? If not, suspect the criterion first; failures should seem fair. [Appendix D](../appendices/appendix-d-failure-taxonomy.md)'s full taxonomy is in there too, look after clustering, not before.
 
 ## Lab
 
