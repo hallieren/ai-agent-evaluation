@@ -45,7 +45,7 @@ The order of use is the chapter order; each template makes its first appearance 
 | 14 | [`ch14/stop-rule-decision-sheet.md`](ch14-templates.md) | Safety branch + operational branch + three pause levels with triggers and recovery |
 | 14 | [`ch14/go-no-go-review-sheet.md`](ch14-templates.md) | The one-page launch review for the room: base-format metrics + evidence rung + the residual-risk owner's signature |
 | 15 | [`ch15/failure-mining-protocol.md`](ch15-templates.md) | Failure pool → stratified sampling → coding and clustering → atlas extension |
-| 15 | [`ch15/bottleneck-lever-mapping.md`](ch15-templates.md) | Seven levers × failure category, with the "handy != on target" self-check |
+| 15 | [`ch15/bottleneck-lever-mapping.md`](ch15-templates.md) | Eight levers × failure category, with the "handy != on target" self-check |
 | 15 | [`ch15/improvement-cycle-template.md`](ch15-templates.md) | A one-page cycle: falsifiable hypothesis + rejection rule written in advance |
 | 16 | [`ch16/incident-postmortem-template.md`](ch16-templates.md) | The five-column postmortem; every action item must point at equipment + an owner + a deadline |
 | 16 | [`ch16/quality-ownership-raci.md`](ch16-templates.md) | Spec / gold labels / rubric / red-line veto, one name per row |

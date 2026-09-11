@@ -83,7 +83,7 @@ Beyond the rules there are three more platform-side matters, for readers who are
 
 The minimum viable form of an eval culture is three habits scheduled on the calendar. Committees and quarterly reviews you can do without, these three you cannot.
 
-1. **Read traces every week.** On rotation, everyone's turn comes, PMs and new hires included. Chapter 3's move becomes a standing meeting. Reading traces is the one way of touching ground in a team that cannot be faked. The cure for the decay curve back in the Wall (fewer people each time) is not a pep talk, it is trading attendance for output. Every meeting has to produce at least one atlas addition or one new case, committed into the repo, and no output counts as absent.
+1. **Read traces every week.** On rotation, everyone's turn comes, PMs and new hires included, and the batch read always holds a random slice, not only what the signals circled. Chapter 3's move becomes a standing meeting. Reading traces is the one way of touching ground in a team that cannot be faked. The cure for the decay curve back in the Wall (fewer people each time) is not a pep talk, it is trading attendance for output. Every meeting has to produce at least one atlas addition or one new case, committed into the repo, and no output counts as absent.
 2. **Every incident enters the eval set.** A postmortem that produced no case is the same as no postmortem.
 3. **Every new feature has a case before it has code.** Chapter 1's two hours were your own discipline, alone. Now it is the team's threshold, and a feature without a case does not enter review. Eval-first walks from personal habit into organizational process, and the line that runs through the whole book, the case before the code, closes here.
 

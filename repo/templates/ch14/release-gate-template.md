@@ -10,6 +10,7 @@
 | cost P95 | ≤ ____ (dollars, illustrative) | stats cost distribution | deterministic | refuse merge |
 | latency P95 | ≤ ____ | stats | deterministic | refuse merge |
 | sev-2 failure count | ≤ ____ |  |  |  |
+| case text ↔ prompt / knowledge-base near duplicates | zero hits | replay layer (zero model calls) | deterministic | intercept, reword the case or mark it contaminated (ch4) |
 |  |  |  |  |  |
 
 ## Replay-layer / simulation-layer trigger timing (following ch7's layering)

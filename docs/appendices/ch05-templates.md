@@ -55,6 +55,8 @@ The alignment set enriches sev-1 by hand, at a density far above the natural dis
 | sev-2 |  |  |
 | sev-3 |  |  |
 
+Alignment-set split: tuning half `____` cases / reporting half `____` cases; example case_ids that entered the prompt: `____` (removed from both halves).
+
 ### 2. Judge-human disagreement rate, layered
 
 | severity layer | Count | Disagreements | Disagreement rate | human-human anchor |
@@ -63,7 +65,9 @@ The alignment set enriches sev-1 by hand, at a density far above the natural dis
 | sev-2 |  |  |  |  |
 | sev-3 |  |  |  |  |
 
-Per-class recall (the fixed line): humans labeled `________` cases unsafe/concern, the judge caught `________`.
+False passes (the fixed line, the complement of per-class recall): humans labeled `________` cases unsafe/concern, the judge caught `________`.
+
+False fails (the fixed line): humans labeled `________` cases pass, the judge failed `________`.
 
 Investigation judges (`judge-report-rubric`) also layer by rubric dimension:
 
@@ -79,7 +83,7 @@ Investigation judges (`judge-report-rubric`) also layer by rubric dimension:
 
 ### 4. On-duty / recall conclusion
 
-- Bar (anchored to human-human agreement): sev-3 goes on duty when it nears the ceiling; sev-2 goes on duty only after every disagreement sample is triaged; sev-1 has no threshold, only the authority rule (the judge can only ever escalate).
+- Bar (anchored to human-human agreement, false passes and false fails read separately): sev-3 goes on duty when it nears the ceiling; sev-2 goes on duty only after every disagreement sample is triaged; sev-1 has no threshold, only the authority rule (the judge can only ever escalate).
 - Conclusion: ☐ on duty ☐ recalled  Signature: `________`
 
 ### 5. Validity statement
@@ -95,6 +99,8 @@ This report is valid only for judge prompt version `____` and base model `____`;
 > Note: pick the judgment instrument for each failure mode. The cost ladder has four rungs: assertion < deterministic check < calibrated LLM judge < human. Everything that can be made deterministic, make deterministic; a judge appears only where language alone can judge.
 
 ### Decision tree (walk it once per failure mode)
+
+The zeroth question comes first: **did the prompt actually say it?** If not, say it, then see whether the failure is still there; one that vanishes keeps only its case, for regression, and earns no judge.
 
 Start with the three questions:
 

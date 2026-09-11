@@ -14,7 +14,7 @@
 
 ### Lever moved (only one allowed)
 
-- ☐ edit the prompt ☐ edit the tool description ☐ swap the model ☐ add a confirmation gate ☐ edit the handoff contract ☐ fix the memory policy
+- ☐ edit the prompt ☐ edit the tool description ☐ swap the model ☐ add a confirmation gate ☐ edit the handoff contract ☐ fix the memory policy ☐ fix the knowledge base ☐ remove a component
 - The change itself:
 
 ### Pre-written rejection rule (signed before the run)

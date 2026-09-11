@@ -8,7 +8,7 @@
 |---|---|---|---|
 | Tier 1 (local) |  | replay-layer subset + affected cases | none |
 | Tier 2 (behavioral) |  | full simulation with intervals + red-line set | as needed (if the rubric moved, recalibrate the related judge) |
-| Tier 3 (foundational) | **vendor model swap** (incl. vendor upgrade email) | full simulation with intervals + red-line and attack sets rerun, **no sampling** | all judges recalibrated (rerun judge-vs-human alignment, ch5 validity discipline) |
+| Tier 3 (foundational) | **vendor model swap** (incl. vendor upgrade email; pin the version first, an alias counts as unpinned) | full simulation with intervals + red-line and attack sets rerun, **no sampling** | all judges recalibrated (rerun judge-vs-human alignment, ch5 validity discipline) |
 | Tier 3 (foundational) | **policy change** | affected cases relabeled, then full rerun (ch4 label-expiry process) | recalibrate if the change touches a rubric |
 | Fallback | any change you are unsure of | **tier up** | tier up |
 

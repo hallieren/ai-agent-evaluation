@@ -1,4 +1,4 @@
-"""Chapter 5 alignment tool (offline): judge verdicts vs human labels → disagreement rate layered by severity.
+"""Chapter 5 alignment tool (offline): judge verdicts vs human labels → disagreement rate layered by severity, plus the false-pass (per-class recall) and false-fail lines.
 
 Usage: python labs/ch05/align.py <judge-verdicts.jsonl> [<human-labels.jsonl>]
   human-labels defaults to labs/ch05/human-labels-sample.jsonl (a format sample; replace it with your blind labels).
@@ -23,7 +23,8 @@ def main(judge_path, human_path):
     matched = sum(d["n"] for d in layers.values())
     print(f"{len(judge_records)} judge verdicts × {len(human_records)} human labels, "
           f"{matched} matched by case_id\n")
-    print(judge.render_align(layers, judge.align_recall(judge_records, human_records)))
+    print(judge.render_align(layers, judge.align_recall(judge_records, human_records),
+                             judge.align_false_fail(judge_records, human_records)))
     print("\nRead the disagreements: read each case and look for the patterns where the judge deceives you. "
           "Check first for long, polite unauthorized commitments (judge-tone-commitment's soft spot) "
           "and reports whose citations are complete but twist their sources (judge-report-rubric's soft spot).")

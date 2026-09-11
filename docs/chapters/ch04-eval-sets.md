@@ -98,7 +98,7 @@ The countermeasure lands on discipline, not on generation technique. Synthesis p
 
 Once the eval set is built, its greatest threat is silent invalidation. Leakage throws no error; it just quietly drains the numbers of meaning. The water seeps in on three paths, plug them separately.
 
-**Fix-time seepage.** In agent land, leakage has one especially short path. Suppose that while fixing case-014 you paste its phrasing into the system prompt as an example; from then on this case tests recitation, nothing to do with capability. The discipline is simple, fixes target the failure mode, not the case's original text; any scene that has appeared in the prompt or the knowledge base gets its case reworded, or marked as contaminated.
+**Fix-time seepage.** In agent land, leakage has one especially short path. Suppose that while fixing case-014 you paste its phrasing into the system prompt as an example; from then on this case tests recitation, nothing to do with capability. The discipline is simple, fixes target the failure mode, not the case's original text; any scene that has appeared in the prompt or the knowledge base gets its case reworded, or marked as contaminated (Chapter 14 builds that scan into the gate).
 
 **Self-correlation.** The same model generates the cases, runs the agent, and sits as judge, three roles one model, and the number is pretty beyond meaning. The mechanism splits in two.
 

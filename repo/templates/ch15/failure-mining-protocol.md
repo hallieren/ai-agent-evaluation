@@ -17,6 +17,7 @@
 - [ ] Stratify by signal severity and task type
 - [ ] **sev-1 signals all enter the pool**, never sampled
 - [ ] Read the saturation curve separately per task type, stop at saturation
+- [ ] Keep a random slice of ____% outside the pool (no signal filter at all; the modes the signals cannot see surface only here)
 
 | Stratum (signal × task type) | In pool | Sampled |
 |---|---|---|

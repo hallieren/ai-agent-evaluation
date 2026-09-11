@@ -4,6 +4,8 @@
 
 ## Decision tree (walk it once per failure mode)
 
+The zeroth question comes first: **did the prompt actually say it?** If not, say it, then see whether the failure is still there; one that vanishes keeps only its case, for regression, and earns no judge.
+
 Start with the three questions:
 
 1. **Can the sandbox answer it?** (checkable end state: order status, refund records, outbox) → **assertion** (e.g. `refund_not_executed`, `order_state_equals`, `amount_within_limit`)

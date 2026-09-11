@@ -6,11 +6,11 @@
 
 ## Cost and latency distribution (one row per task type)
 
-| Task type | cases | runs | cost mean ± interval | cost P95 | cost max | latency mean ± interval | latency P95 |
-|---|---|---|---|---|---|---|---|
-| query |  |  |  |  |  |  |  |
-| action |  |  |  |  |  |  |  |
-| investigate |  |  |  |  |  |  |  |
+| Task type | cases | runs | cost mean ± interval | cost P95 | cost max | cache hit rate | latency mean ± interval | latency P95 |
+|---|---|---|---|---|---|---|---|---|
+| query |  |  |  |  |  |  |  |  |
+| action |  |  |  |  |  |  |  |  |
+| investigate |  |  |  |  |  |  |  |  |
 
 ## Latency in three segments (production side; this book's repo records only wall_s)
 

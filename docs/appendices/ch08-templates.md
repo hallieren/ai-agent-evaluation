@@ -11,7 +11,7 @@
 
 ### Permission matrix
 
-| Tool | Condition | Autonomous | Needs confirmation | Forbidden | Guard (assertion / diff / gate) |
+| Tool | Condition | Autonomous | Needs confirmation | Forbidden | Guard (assertion / diff / gate; test its miss rate and its false-stop rate once each) |
 |---|---|---|---|---|---|
 | escalate | always | ✅ |  |  | none |
 | refund | amount ≤ $500 and order not refunded |  |  |  | `amount_within_limit`, diff |

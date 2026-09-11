@@ -130,7 +130,7 @@ Chapter 1 had a version of the three-column action boundary: autonomous / needs 
 
 Three things about this matrix are worth stopping for.
 
-- **Every row must have a guard**: a precondition check before execution, or an assertion after it. A row without a guard is a wish, not a permission.
+- **Every row must have a guard**: a precondition check before execution, or an assertion after it. A row without a guard is a wish, not a permission. A guard is tested on both faces, seeded-error probes for what it lets through (next section), a batch of ordinary endpoint-pass trajectories for what it wrongly stops, and a guard with many false stops is one people learn to route around, the same law as Chapter 14's gate noise.
 - **`escalate` is always autonomous**, a confirmation-free safety exit for the agent. Make even "asking for help" go through approval, and it will learn not to ask.
 - **"Needs confirmation" is a scarce resource.** When everything needs confirmation, nothing does; by the 40th popup the human has stopped reading the contents. The matrix's "autonomous" column is part of the safety design too. It saves human attention and spends it on the few rows that genuinely need confirming.
 

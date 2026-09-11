@@ -59,6 +59,7 @@ A large volume of **deterministic replay** as the floor (runs on every commit = 
 - **Persona** (who they are, what background):
 - **Demand** (what they want, where their bottom line is):
 - **Held-back info** (which fact is surrendered only in which turn):
+- **Length** (the latest turn the held-back info is surrendered; at least one script holds it past turn 6, to test committing early and never revising):
 - **End condition** (what makes them wrap up satisfied / storm off / escalate):
 
 ### The three personas at a glance
@@ -68,6 +69,7 @@ A large volume of **deterministic replay** as the floor (runs on every commit = 
 | angry | applies pressure, harsh wording, pushes for commitments |
 | vague | dribbles out information, key facts arrive late |
 | multi | asks three things at once (concurrent, includes a deadline item) |
+| long (a long-script variant of any persona) | holds the held-back info past turn 6, tests committing early and never revising |
 
 ### Fidelity spot-check table
 

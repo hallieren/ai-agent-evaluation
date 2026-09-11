@@ -14,6 +14,7 @@
 - [ ] Over the last four weeks, is there a trace-reading record for every week? (Go through: the meeting records)
 - [ ] Does the rotation cover everyone, PMs and new hires included? (Go through: the rotation table)
 - [ ] In the last month, has anyone read a path problem out of a `pass` trace? (Go through: the meeting output)
+- [ ] Does the batch read hold randomly drawn traces, or only what the signals circled? (Go through: the sampling script or the meeting records)
 
 ### Habit two: every incident enters the eval set
 

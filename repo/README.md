@@ -10,7 +10,7 @@ The model is configured via environment variables; any OpenAI-compatible endpoin
 
 ```bash
 export MODEL_BASE_URL=https://api.example.com/v1   # your provider's endpoint
-export MODEL_NAME=<model name>
+export MODEL_NAME=<model name>    # use a dated version id; an alias swaps its base without telling you (Chapter 14)
 export MODEL_API_KEY=<api key>
 ```
 

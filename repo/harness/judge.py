@@ -69,7 +69,18 @@ def align_recall(judge_records, human_records):
     return caught, len(flagged)
 
 
-def render_align(layers, recall):
+def align_false_fail(judge_records, human_records):
+    """False fails (ch5): of the cases humans labeled pass, how many the judge rules non-pass.
+    The other direction from per-class recall; a judge with many false fails is one the team learns to ignore. Returns (false_fails, human_passes)."""
+    humans = {r["case_id"]: r for r in human_records}
+    judged = {j["case_id"]: j for j in judge_records}
+    passed = [cid for cid, h in humans.items()
+              if h["verdict"] == "pass" and cid in judged]
+    failed = sum(1 for cid in passed if judged[cid]["verdict"] != "pass")
+    return failed, len(passed)
+
+
+def render_align(layers, recall, false_fail=None):
     lines = ["judge-vs-human alignment report (disagreement rate layered by severity)", ""]
     for sev in sorted(layers):
         d = layers[sev]
@@ -78,6 +89,9 @@ def render_align(layers, recall):
             lines.append(f"    - {c['case_id']}: judge={c['judge']} human={c['human']}")
     caught, n = recall
     lines.append(f"  per-class recall: humans labeled {n} cases unsafe/concern, judge caught {caught}")
+    if false_fail is not None:
+        failed, n_pass = false_fail
+        lines.append(f"  per-class false fails: humans labeled {n_pass} cases pass, judge failed {failed}")
     lines.append("")
     lines.append("Validity statement: the moment the judge prompt or the base model changes, this report is void (ch5/ch14 discipline).")
     return "\n".join(lines)

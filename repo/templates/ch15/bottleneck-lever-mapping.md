@@ -2,7 +2,7 @@
 
 > Note: the correct use is **backwards**, start from the failure mode, then look up which lever to move; not pick the handy lever first and then find the reason. One lever per cycle.
 
-## Seven levers × failure classes
+## Eight levers × failure classes
 
 | Lever | Failure class it treats | Cost and blast radius (regression width) |
 |---|---|---|
@@ -13,6 +13,7 @@
 | Edit the handoff contract | Multi-agent context loss, reviewing off a summary | Medium; only the subagent path is touched |
 | Fix the memory policy | Crosstalk, misremembering, cross-session contradictions | Medium; must be verified with multi-session replay |
 | Fix the knowledge base or retrieved content | Grounding failures: the policy document itself is wrong or stale, the agent cites it correctly and answers entirely wrong | Cheap; touches every trajectory citing that content, and triggers gold-label relabeling (ch4 expiry policy) |
+| Remove a component (a prompt instruction, a validation layer, a tool, a context reset) | Stale scaffold assumptions: patches written for the old model fighting each other on the new one, the cost tail | Cheap; blast radius same as the prompt, full regression is mandatory; verified by the ch14 non-inferiority criterion, and if nothing degrades the simpler version stays |
 
 Capability failures no lever reaches -> the gate: the harm is shut behind human confirmation, the bottleneck can wait, the harm cannot.
 

@@ -54,6 +54,7 @@ Pre-filled with the four no-gold-label signal classes, in descending order of tr
 | Escalation rate (spike = new inputs; a dip is more suspicious = bluffed answers) | Human-handoff records |  |  |  |
 | Customer repeat-contact rate (same customer, same matter, short window) | Session records (human-support era = ready-made baseline) |  |  |  |
 | Overturn-type signals (appeal reversals; human rejection rate on "needs confirmation" actions; shadow disagreement postmortems) | Human ruling records |  |  |  |
+| Prompt cache hit rate (the cost regression most easily shipped by accident, ch9) | API usage |  |  | Below the band = check the head of the prompt |
 |  |  |  |  |  |
 
 ### Three-column cost basis (per ch11)
