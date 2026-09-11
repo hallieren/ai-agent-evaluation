@@ -28,3 +28,8 @@ docs/llms-full.txt
 
 # Local virtualenvs and test caches
 .pytest_cache/
+
+# interactive lesson experiment, not published
+docs/lessons/
+docs/javascripts/
+docs/stylesheets/lessons.css
