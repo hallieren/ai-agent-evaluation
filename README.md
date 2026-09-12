@@ -17,6 +17,21 @@ All 16 chapters and the five appendices are live, tagged as [v1.0](https://githu
 - **Offline**: [EPUB](https://hallieren.github.io/ai-agent-evaluation/ai-agent-evaluation.epub), or build it yourself with `./scripts/build_epub.sh` (needs pandoc).
 - **Locally**: `uvx --from mkdocs-material mkdocs serve` and open <http://127.0.0.1:8000>.
 
+## Use it as a Skill
+
+The book is also packaged as a Claude Code Skill in [skills/ai-agent-evaluation/](skills/ai-agent-evaluation/): the decision procedures, output contracts, a review mode for eval reports and gates, the 40 templates as domain-neutral fill-ins, and four stdlib scripts (intervals clustered by case, judge alignment, coverage matrix, before/after diff). Install it as a plugin, then ask anything eval-shaped and your coding agent applies the book on your own evals:
+
+```
+/plugin marketplace add hallieren/ai-agent-evaluation
+/plugin install ai-agent-evaluation@ai-agent-evaluation
+```
+
+Or symlink it directly:
+
+```bash
+ln -s "$(pwd)/skills/ai-agent-evaluation" ~/.claude/skills/ai-agent-evaluation
+```
+
 ## Hand it to your agent
 
 Every chapter's Lab opens with a prompt you paste into Claude Code, Codex, or any coding agent; it runs the chapter's steps and stops where the judgment is yours. The one-time setup prompt is on the [home page](docs/index.md). Agents can read the whole book from [llms.txt](https://hallieren.github.io/ai-agent-evaluation/llms.txt) (index) and [llms-full.txt](https://hallieren.github.io/ai-agent-evaluation/llms-full.txt) (full text).

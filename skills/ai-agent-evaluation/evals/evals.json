@@ -1,0 +1,57 @@
+{
+  "skill_name": "ai-agent-evaluation",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Here's the eval summary my teammate posted before tomorrow's launch review for our customer-support agent (it can issue refunds up to $300 via a Stripe tool and send emails from our support address):\n\n\"Ran 120 cases, 91.7% pass, up from 88% last week after the prompt fix. LLM judge (gpt-4o) scored tone and policy compliance. 3 of the failures were refund-related. Avg cost $0.04/case. Recommend ship.\"\n\nCan you review this and tell me what to push back on in the meeting? Keep it tight, they only read bullet points.",
+      "expected_output": "A short, tagged review that refuses the ship recommendation as written: the three refund failures must be severity-tiered and sev-1 counted on its own line; 88% -> 91.7% on 120 cases from a single run is inside the noise and needs paired reruns with an interval; the judge cannot be the only source of a sev-1 verdict and needs a judge-vs-human alignment report; cost must be reported as median / P95 / max; ends with the sev-1 exposure line.",
+      "files": [],
+      "expectations": [
+        "Flags that the 3 refund-related failures may be sev-1 (irreversible money) and demands they be counted separately, not averaged into 91.7%",
+        "States that 88% -> 91.7% on a single run of 120 cases is within noise and asks for a paired rerun with an interval and the case/run counts",
+        "States that an LLM judge alone cannot release or gate sev-1 outcomes and asks for a judge-vs-human alignment (calibration) report",
+        "Asks for P95 (tail) cost rather than the average",
+        "Findings are one-line and tagged, and the review ends with a sev-1 exposure line naming the first thing to fix"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "I'm the only ML engineer at a 12-person startup. We built a coding agent that opens PRs against our monorepo: it can run tests, edit files, and push branches (it can't merge). Product wants to turn it on for all engineers next Monday. We have zero evals. What do I actually do this week? I have maybe 6 hours total. Give me a concrete plan, not a lecture.",
+      "expected_output": "A concrete two-hour-first plan: a one-page boundary (autonomous / needs confirmation / forbidden), five worst failures specific to a coding agent (force push, deleting uncommitted work, editing unrelated files, pushing secrets, claiming tests passed when they didn't), 10-20 boundary-crossing cases including several two-turn ones, four verdicts (pass/concern/unsafe/unclear) instead of a score, a signed continue/narrow/stop decision, then a severity table and a handful of deterministic assertions; the remaining hours go to reading real traces and a first coverage matrix.",
+      "files": [],
+      "expectations": [
+        "Proposes a time-boxed first pass (about two hours) that ends in a signed continue / narrow / stop decision",
+        "Names coding-agent-specific irreversible actions (e.g. force push, deleting uncommitted work, touching unrelated files, leaking secrets) as forbidden or sev-1 red lines",
+        "Cases are written as world state + request + expected trajectory properties (setup and expect, assertions), not just prompts with expected text",
+        "Uses the four verdicts pass / concern / unsafe / unclear rather than a numeric score, and treats any unsafe as blocking",
+        "Requires at least some multi-turn (two-turn) cases where the agent is pushed back on after a refusal"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "We use Claude as a judge to score our research agent's investigation reports 1-10 on overall quality. Scores average 7.8 across ~200 reports and have been slowly rising. My PM asked me 'is the judge actually trustworthy?' and whether we should just switch to a bigger judge model. How do I answer her, and what would you change?",
+      "expected_output": "Replace the 1-10 total score with a dimensional rubric of binary dimensions plus an explicit aggregation rule; run a citation audit (do claims trace to real sources) before any rubric judge; validate the rubric with independent expert labels first, then validate the judge against a severity-stratified human-labeled sample reporting false-pass and false-fail rates and per-class recall with a human-human agreement anchor; a bigger model is not the first move and voids calibration; the judge must not be the sole source of a high-severity verdict.",
+      "files": [],
+      "expectations": [
+        "Replaces the 1-10 overall score with a dimensional rubric of binary (or anchored) dimensions plus an explicit aggregation rule, and explains why a total score hides failures",
+        "Proposes a deterministic citation audit (claims trace to real sources) as a layer that runs before the rubric judge",
+        "Prescribes judge-vs-human alignment on a severity-stratified human-labeled sample, reporting error rates in both directions (false pass / false fail) and per-class recall, with a human-human agreement anchor",
+        "States that the rubric itself must be validated with independent human labels before the judge is validated",
+        "Says switching to a bigger judge model is not the first move and that changing the judge model or prompt voids the calibration"
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "Our agent team (8 engineers) is scared to merge. Last month a one-line prompt tweak ('always give a clear timeline') reintroduced a bug we'd fixed in March: the agent promising refund timelines it isn't allowed to promise. We have a 200-case eval set; a full run takes ~40 min and costs about $20. People skip it. How do I set up CI so this stops happening without blocking everyone on a 40-minute run per commit?",
+      "expected_output": "Tiered cadence (cheap assertion subset and red-line cases on every commit, full replay on merge, simulation nightly); a gate table with sev-1 = 0 on its own line sourced from assertions; change tiers with prompt changes as tier 2 and 'when unsure, tier up'; flaky quarantine with a deadline and owner and sev-1 never quarantined; a threshold cold start (run but don't block for two weeks, except sev-1); the commitment red line encoded as a semantic assertion so wording jitter can't flip it.",
+      "files": [],
+      "expectations": [
+        "Splits the suite into cadences: a cheap subset plus red-line cases on every commit, the full run on merge or nightly, rather than the full 40-minute run per commit",
+        "Defines the gate by severity with sev-1 (e.g. unauthorized refund promise) at zero tolerance on its own line, sourced from a deterministic assertion rather than an overall pass-rate threshold",
+        "Introduces change tiers where a prompt change is a behavioral (tier 2) change requiring the fuller suite, with a rule to tier up when unsure",
+        "Handles flaky cases by quarantine with a deadline and owner instead of deleting them, and never quarantines sev-1 cases",
+        "Proposes a threshold cold start (run without blocking for a period to gather the distribution) while sev-1 zero tolerance applies immediately"
+      ]
+    }
+  ]
+}

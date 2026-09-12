@@ -1,0 +1,19 @@
+{
+  "name": "ai-agent-evaluation",
+  "version": "1.0.0",
+  "description": "Evaluate AI agents and LLM systems — define what good means, read traces, build eval sets, calibrate LLM judges, trust the numbers, and gate releases.",
+  "author": {
+    "name": "Hallie Ren",
+    "url": "https://github.com/hallieren"
+  },
+  "homepage": "https://github.com/hallieren/ai-agent-evaluation",
+  "repository": "https://github.com/hallieren/ai-agent-evaluation",
+  "keywords": [
+    "ai-agent",
+    "evaluation",
+    "llm-judge",
+    "eval-set",
+    "release-gate",
+    "red-team"
+  ]
+}

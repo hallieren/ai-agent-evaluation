@@ -33,3 +33,6 @@ docs/llms-full.txt
 docs/lessons/
 docs/javascripts/
 docs/stylesheets/lessons.css
+
+# Skill test workspace (eval runs, regenerable; not part of the published repo)
+skills/*-workspace/

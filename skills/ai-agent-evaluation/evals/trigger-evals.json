@@ -1,0 +1,82 @@
+[
+  {
+    "query": "our support bot's eval went from 82 to 86% after i changed the system prompt, PM wants to ship today, thoughts?",
+    "should_trigger": true
+  },
+  {
+    "query": "How many test cases do I need to tell whether the new planner is actually better than the old one? we have like 60 cases right now and run them once",
+    "should_trigger": true
+  },
+  {
+    "query": "Design a golden dataset for an agent that books travel through the Amadeus API. It can hold, confirm, and cancel reservations.",
+    "should_trigger": true
+  },
+  {
+    "query": "we're using gpt-4o-mini as a judge for our sales-email agent and it passes basically everything, is that a problem or is the agent just good",
+    "should_trigger": true
+  },
+  {
+    "query": "Postmortem for yesterday's incident where the agent emailed a customer someone else's invoice. Three teams are blaming each other. Help me run it.",
+    "should_trigger": true
+  },
+  {
+    "query": "we're adding long-term memory (mem0) to our tutoring agent next sprint, what tests should exist before we turn it on",
+    "should_trigger": true
+  },
+  {
+    "query": "how should I set up a canary for our new agentic checkout flow? thinking 5% of traffic",
+    "should_trigger": true
+  },
+  {
+    "query": "Red team plan for an agent that reads inbound vendor emails and creates purchase orders in NetSuite",
+    "should_trigger": true
+  },
+  {
+    "query": "here's a trace (attached as trace.jsonl) where the agent refunded the same order twice. help me figure out where it went wrong and what regression test to add",
+    "should_trigger": true
+  },
+  {
+    "query": "our agent eval suite has been 100% green for a month straight. are we done, or is something off?",
+    "should_trigger": true
+  },
+  {
+    "query": "Which open-source model tops SWE-bench Verified right now?",
+    "should_trigger": false
+  },
+  {
+    "query": "Improve recall@10 for our RAG retriever on the internal docs index, it's at 0.61",
+    "should_trigger": false
+  },
+  {
+    "query": "Write pytest unit tests for this FastAPI endpoint in api/orders.py",
+    "should_trigger": false
+  },
+  {
+    "query": "Rewrite this system prompt so the support agent sounds friendlier and less robotic",
+    "should_trigger": false
+  },
+  {
+    "query": "Set up a GitHub Actions workflow to run our Python test suite on every PR",
+    "should_trigger": false
+  },
+  {
+    "query": "Evaluate whether we should migrate from Postgres to DynamoDB for the orders service",
+    "should_trigger": false
+  },
+  {
+    "query": "Build me a LangGraph agent that triages Zendesk tickets and drafts replies",
+    "should_trigger": false
+  },
+  {
+    "query": "Compute a 95% confidence interval for this conversion-rate A/B test from our marketing dashboard CSV",
+    "should_trigger": false
+  },
+  {
+    "query": "Write an incident postmortem for last night's database outage (Postgres primary failover took 40 min)",
+    "should_trigger": false
+  },
+  {
+    "query": "Grade these 30 student essays 1-10 on argument quality using the attached rubric",
+    "should_trigger": false
+  }
+]

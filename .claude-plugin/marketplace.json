@@ -1,0 +1,17 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "ai-agent-evaluation",
+  "description": "The book AI Agent Evaluation, packaged as a Claude Code Skill for evaluating agents and LLM systems.",
+  "owner": {
+    "name": "Hallie Ren",
+    "url": "https://github.com/hallieren"
+  },
+  "plugins": [
+    {
+      "name": "ai-agent-evaluation",
+      "description": "Evaluate AI agents and LLM systems — define what good means, read traces, build eval sets, calibrate LLM judges, trust the numbers, and gate releases.",
+      "source": "./",
+      "category": "productivity"
+    }
+  ]
+}

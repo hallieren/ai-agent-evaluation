@@ -1,0 +1,47 @@
+# Improvement Cycle
+
+Source: repo/templates/ch15/improvement-cycle-template.md (the repo holds the latest version; on conflict the repo wins).
+Use when: one bottleneck is being fixed with one lever, and the hypothesis and rejection rule must be signed before the run.
+
+> Note: one page per cycle. The rejection rule is written before the run; set the standard after the run and any result can be called "fixed".
+
+## Cycle #____ (dates ____ to ____)
+
+### Target mode
+
+- Atlas row: ____ (count ____, sev ____)
+
+### Experimental hypothesis (falsifiable form)
+
+- "____ fails because of ____ in the ____ component; change it and the target mode's count should drop from ____ to ____, and no other mode should rise."
+
+### Lever moved (only one allowed)
+
+- ☐ edit the prompt ☐ edit the tool description ☐ swap the model ☐ add a confirmation gate ☐ edit the handoff contract ☐ fix the memory policy ☐ fix the knowledge base ☐ remove a component
+- The change itself:
+
+### Pre-written rejection rule (signed before the run)
+
+- The target mode's count has to drop to: ____ (paired, `--repeat` 5 passes, with intervals, how the interval is computed: ____)
+- Full-regression gate line (by sev tier): ____
+- What result counts as failure: ____
+- Signature: ____  Date: ____
+
+### Two-part verification result (one part short doesn't count)
+
+1. **Did it get fixed?** Target mode's count (paired ± interval, not the overall pass rate; `python scripts/evalstats.py compare before.jsonl after.jsonl`):
+2. **Did it break anything else?** Full regression by sev tier, sev-1 on its own line:
+
+- Conclusion: ☐ keep it, in effect ☐ roll back and try the next hypothesis (a normal step in the cycle, not a setback)
+
+### Capability-set ledger
+
+- Graduated ____ (passed `--repeat 5` on two consecutive versions, moved into the regression set; sev-1 needs a deterministic assertion first; first-run score recorded: ____)  Newly added to the capability set ____
+- Holdout score this version (never optimized against): ____  First-run score of newly harvested cases: ____
+- Saturated? ☐ no ☐ yes, harder cases added this cycle: ____
+
+### Next cycle's candidates
+
+- Mode: ____  Basis (failure-pool signal): ____
+
+Filled in → goes to: the updated count on the atlas row (templates/failure-mode-atlas.md), the merge record through the gate (templates/release-gate.md), and the next cycle's target.
